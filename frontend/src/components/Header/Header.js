@@ -11,12 +11,12 @@ const StyledHeader = styled.header`
   justify-content: space-between;
   alignt-content: center;
   background: #242424;
-  padding: 10px;
-  text-align: center;
+  padding: 5px;
 `;
 
 const HeaderLogo = styled.h2`
   margin: 0 auto;
+  padding: 0;
   color: white;
   align-self: center;
   position: relative;
@@ -42,6 +42,13 @@ export default function Header() {
           aria-haspopup="true"
           aria-expanded={open ? "true" : undefined}
           onClick={handleClick}
+          sx={{
+            color: "white",
+            position: "absolute",
+            right: "0",
+            alignSelf: "center",
+            margin: "2px",
+          }}
         >
           <DensityMediumIcon />
         </Button>
