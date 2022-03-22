@@ -16,6 +16,7 @@ const BottomNavBar = styled.footer`
   background: #242424;
   margin: 0;
 `;
+
 const ProfileAvatar = styled.span`
   display: flex;
   justify-content: center;
@@ -24,9 +25,9 @@ const ProfileAvatar = styled.span`
   padding: 5px;
   right: 0;
 `;
+
 export default function BottomNav() {
   const [value, setValue] = React.useState(0);
-
   return (
     <BottomNavBar>
       <Box
