@@ -24,7 +24,7 @@ const ProfileAvatar = styled.span`
   padding: 5px;
   right: 0;
 `;
-export default function SimpleBottomNavigation() {
+export default function BottomNav() {
   const [value, setValue] = React.useState(0);
 
   return (
