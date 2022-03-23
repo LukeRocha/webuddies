@@ -75,6 +75,7 @@
     "parent-module": "^1.0.1",
     "path-is-absolute": "^1.0.1",
     "path-key": "^3.1.1",
+    "pg": "^8.7.3",
     "prelude-ls": "^1.2.1",
     "punycode": "^2.1.1",
     "regexpp": "^3.2.0",
