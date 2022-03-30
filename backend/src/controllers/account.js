@@ -1,6 +1,6 @@
-const get = (req, res) => {
+const get = async (req, res) => {
   try {
-    res.send("Api setup");
+    await res.send("Api setup");
   } catch (error) {
     console.error(error);
   }
