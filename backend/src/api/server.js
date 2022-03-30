@@ -19,6 +19,19 @@ router.get("/api", (req, res) => {
   }
 });
 
+router.post("/register", (req, res) => {
+  const testUser = {
+    name: req.body.name,
+    pass: req.body.pass,
+  };
+
+  try {
+    console.log(testUser);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 app.use(router);
 app.listen(port, () => {
   console.log("Server is running...");
