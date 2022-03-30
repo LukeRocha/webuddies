@@ -11,26 +11,6 @@ app.use(cors({ origin: /http:\/\/localhost/ }));
 app.options("*", cors());
 
 const router = express.Router();
-router.get("/api", (req, res) => {
-  try {
-    res.send("Api setup");
-  } catch (error) {
-    console.error(error);
-  }
-});
-
-router.post("/register", (req, res) => {
-  const testUser = {
-    name: req.body.name,
-    pass: req.body.pass,
-  };
-
-  try {
-    console.log(testUser);
-  } catch (error) {
-    console.error(error);
-  }
-});
 
 app.use(router);
 app.listen(port, () => {
