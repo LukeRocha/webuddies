@@ -1,15 +1,25 @@
 const express = require("express");
-const app = express();
-const port = process.env.port || process.env.PORT || 3700;
+const cors = require("cors");
+const bodyParser = require("body-parser");
 
-app.get("/api", (req, res) => {
+const port = process.env.port || process.env.PORT || 3700;
+const app = express();
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(cors({ origin: /http:\/\/localhost/ }));
+app.options("*", cors());
+
+const router = express.Router();
+router.get("/api", (req, res) => {
   try {
     res.send("Api setup");
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 });
 
+app.use(router);
 app.listen(port, () => {
-  console.log("Server is running");
+  console.log("Server is running...");
 });
