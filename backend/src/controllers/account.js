@@ -1,3 +1,5 @@
+const db = require("../database/db.js");
+
 const get = async (req, res) => {
   try {
     await res.send("Api setup");
@@ -7,4 +9,5 @@ const get = async (req, res) => {
 };
 
 const create = async (req, res) => {};
+
 module.exports = { get };
