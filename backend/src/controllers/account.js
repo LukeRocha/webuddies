@@ -6,4 +6,5 @@ const get = async (req, res) => {
   }
 };
 
+const create = async (req, res) => {};
 module.exports = { get };
