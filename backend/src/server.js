@@ -13,8 +13,8 @@ app.options("*", cors());
 const router = express.Router();
 
 router.get("/api", accountController.get);
-app.use(router);
 
+app.use(router);
 app.listen(port, () => {
   console.log("Server is running...");
 });
