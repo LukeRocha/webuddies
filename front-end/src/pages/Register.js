@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Input from '../components/Input/Input'
-
+import Button from "../components/Button/Button"
 const FormBackground = styled.section`
   display: flex;
   flex-direction: column;
@@ -32,6 +32,10 @@ const HeaderLogo = styled.h1`
 `;
 
 const Form = () =>{
+  const buttonColors = {
+     primary: "purple",
+     submit: "green",
+    }
   return(
     <>
       <FormBackground>
@@ -45,6 +49,7 @@ const Form = () =>{
         <Input placeholder="Country"></Input>
         <Input placeholder="e-mail"></Input>
         <Input type="password" placeholder="Choose password"></Input>
+        <Button bg={'green'}>Submit</Button>
         </FormModal>
       </FormBackground>
         </>
