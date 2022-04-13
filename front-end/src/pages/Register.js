@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Input from '../components/Input/Input'
 import Button from "../components/Button/Button"
+
 const FormBackground = styled.section`
   display: flex;
   flex-direction: column;
@@ -9,7 +10,7 @@ const FormBackground = styled.section`
   align-items: center;
   height: 100vh;
   width: 102vw;
-  margin: -50px auto;
+  margin: 0 auto;
 
   background-color: #191A1C;
 `
