@@ -10,16 +10,18 @@ const StyledHeader = styled.header`
   flex-flow: row nowrap;
   justify-content: space-between;
   alignt-content: center;
-  background: #242424;
   padding: 5px;
+
+  background-color: #242424;
 `;
 
 const HeaderLogo = styled.h2`
   margin: 0 auto;
   padding: 0;
-  color: white;
   align-self: center;
   position: relative;
+  
+  color: white;
 `;
 
 export default function Header() {

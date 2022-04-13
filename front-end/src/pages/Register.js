@@ -3,14 +3,15 @@ import styled from 'styled-components'
 import Input from '../components/Input/Input'
 
 const FormBackground = styled.section`
-margin: -50px auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #191A1C;
   height: 100vh;
   width: 102vw;
+  margin: -50px auto;
+
+  background-color: #191A1C;
 `
 const FormModal = styled.div`
   display: flex;
@@ -25,6 +26,7 @@ const FormModal = styled.div`
 `
 const HeaderLogo = styled.h1`
   margin: 10px auto;  
+  
   color: #A32FFF;
   font-size: 3em;
 `;
