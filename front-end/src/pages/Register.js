@@ -1,60 +1,74 @@
-import React from 'react'
-import styled from 'styled-components'
-import Input from '../components/Input/Input'
-import Button from "../components/Button/Button"
+import React from "react";
+import styled from "styled-components";
+import Input from "../components/Input/Input";
+import Button from "../components/Button/Button";
 
 const FormBackground = styled.section`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100vw;
+  overflow-y: hidden;
+
+  height: 100vh;
+  background: #191a1c;
+  background-size: cover;
+`;
+const FormModal = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  width: 102vw;
-  margin: 0 auto;
-
-  background-color: #191A1C;
-`
-const FormModal = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   width: 300px;
+  position: absolute;
 
-  margin:10px;
+  margin: 10px;
   padding: 20px;
   background-color: #242424;
-  border-radius: 4px
-`
-const HeaderLogo = styled.h1`
-  margin: 10px auto;  
-  
-  color: #A32FFF;
-  font-size: 3em;
+  border-radius: 4px;
 `;
 
-const Form = () =>{
-  const buttonColors = {
-     primary: "purple",
-     submit: "green",
-    }
-  return(
+const LogoHeader = styled.header`
+  display: flex;
+  flex-direction: column;
+  margin: 18px auto;
+`;
+
+const Logo = styled.h1`
+  color: #a32fff;
+  font-size: 2.8em;
+`;
+
+const HeaderQuote = styled.p`
+  color: white;
+`;
+
+const Form = () => {
+  return (
     <>
       <FormBackground>
         <FormModal>
-        <HeaderLogo>we<br/>Buddies</HeaderLogo>
-        <Input placeholder="Nickname"></Input>
-        <Input placeholder="first name"></Input>
-        <Input placeholder="last name"></Input>
-        <Input type="date" placeholder="Birth"></Input>
-        <Input placeholder="City"></Input>
-        <Input placeholder="Country"></Input>
-        <Input placeholder="e-mail"></Input>
-        <Input type="password" placeholder="Choose password"></Input>
-        <Button bg={'green'}>Submit</Button>
+          <LogoHeader>
+            <Logo>
+              we
+              <br />
+              Buddies
+            </Logo>
+            <HeaderQuote>{"Create you account, it's easy"}</HeaderQuote>
+          </LogoHeader>
+          <Input placeholder="Nickname"></Input>
+          <Input placeholder="first name"></Input>
+          <Input placeholder="last name"></Input>
+          <Input type="date" placeholder="Birth"></Input>
+          <Input placeholder="City"></Input>
+          <Input placeholder="Country"></Input>
+          <Input placeholder="e-mail"></Input>
+          <Input type="password" placeholder="Choose password"></Input>
+          <Button bg={"green"}>Submit</Button>
         </FormModal>
       </FormBackground>
-        </>
-    )
-}
+    </>
+  );
+};
 
-export default Form
+export default Form;
