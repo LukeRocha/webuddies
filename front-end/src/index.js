@@ -8,10 +8,10 @@ import "./styles.css";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Header />
-    <App />
-    <BottomNav />
+    {/* <Header /> */}
+    {/* <App /> */}
     <Form />
+    {/* <BottomNav /> */}
   </React.StrictMode>,
   document.getElementById("root")
 );
