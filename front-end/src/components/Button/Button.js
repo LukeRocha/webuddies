@@ -8,7 +8,7 @@ const StyledButton = styled.button`
   border-radius: 4px;
   border: none;
   color: white;
-  background-color: ${({ bg }) => (bg ? bg : "white")};
+  background-color: ${({ bg }) => (bg ? bg : "black")};
 `;
 
 const Button = ({ children, bg, ...props }) => {

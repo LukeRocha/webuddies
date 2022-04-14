@@ -8,12 +8,10 @@ const FormBackground = styled.section`
   flex-direction: row;
   justify-content: center;
   width: 100vw;
-  overflow-y: hidden;
-
   height: 100vh;
-  background: #191a1c;
-  background-size: cover;
+  overflow-y: hidden;
 `;
+
 const FormModal = styled.div`
   display: flex;
   flex-direction: column;
@@ -63,8 +61,9 @@ const Form = () => {
           <Input placeholder="City"></Input>
           <Input placeholder="Country"></Input>
           <Input placeholder="e-mail"></Input>
-          <Input type="password" placeholder="Choose password"></Input>
-          <Button bg={"green"}>Submit</Button>
+          <Input type="password" placeholder="choose password"></Input>
+          <Input type="password" placeholder="confirm password"></Input>
+          <Button bg={"#6FB794"}>Submit</Button>
         </FormModal>
       </FormBackground>
     </>

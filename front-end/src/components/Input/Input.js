@@ -1,19 +1,19 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const StyledInput = styled.input`
-    margin: 12px;
-    padding: 12px;
-    width: 240px;
-    
-    color: white;
-    background-color: #3A393E;
-    border: 1px solid black;
-    border-radius: 4px;
-`
+  margin: 12px;
+  padding: 12px;
+  width: 220px;
 
-const Input = ({children, ...props}) =>{
-   return <StyledInput {...props}>{children}</StyledInput>
-}
+  color: white;
+  background-color: #3a393e;
+  border: 1px solid black;
+  border-radius: 4px;
+`;
 
-export default Input
+const Input = ({ children, ...props }) => {
+  return <StyledInput {...props}>{children}</StyledInput>;
+};
+
+export default Input;
