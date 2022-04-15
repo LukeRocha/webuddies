@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledInput = styled.input`
-  margin: 12px;
+  margin: 12px auto;
   padding: 12px;
   width: 220px;
 
