@@ -2,7 +2,7 @@ import { React, useState } from "react";
 import styled from "styled-components";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
-
+import { useGlobalContext } from "../../context";
 const StyledModal = styled.div`
   display: flex;
   flex-direction: column;
@@ -34,6 +34,8 @@ const Label = styled.label`
 `;
 
 const Form = () => {
+  const { logger } = useGlobalContext();
+
   const [userInputs, setUserInputs] = useState({
     nickname: "",
     first_name: "",
@@ -53,6 +55,7 @@ const Form = () => {
         onSubmit={(e) => {
           e.preventDefault();
           console.log(userInputs);
+          logger(userInputs);
         }}
       >
         <InputContainer>
