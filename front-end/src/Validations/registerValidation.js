@@ -9,7 +9,7 @@ const registerSchema = yup.object().shape({
   country: yup.string().required(),
   mail: yup.string().email().required(),
   phone: yup.number().required().positive().integer().min(11),
-  password: yup.string().required(),
+  password: yup.string().min(8).max(16).required(),
   rePassword: yup.string().required(),
 });
 
@@ -19,7 +19,7 @@ const registerValidation = async (userInputs) => {
     console.log("Valid");
   } else {
     const error = new yup.ValidationError();
-    console.log(error);
+    alert(error);
   }
 };
 

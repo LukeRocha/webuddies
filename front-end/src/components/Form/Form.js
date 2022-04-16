@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
 import { useGlobalContext } from "../../context";
-import { registerValidation } from "../../controllers/validations";
+import { registerValidation } from "../../Validations/registerValidation";
 
 const StyledModal = styled.div`
   display: flex;
@@ -33,6 +33,17 @@ const InputContainer = styled.span`
 const Label = styled.label`
   color: white;
   margin: 0 12px;
+`;
+
+const Select = styled.select`
+  margin: 12px auto;
+  padding: 12px;
+  width: 220px;
+
+  color: white;
+  background-color: #3a393e;
+  border: 1px solid black;
+  border-radius: 4px;
 `;
 
 const Form = () => {
@@ -105,22 +116,32 @@ const Form = () => {
 
         <InputContainer>
           <Label>City</Label>
-          <Input
-            type="text"
+          <Select
             onChange={(e) =>
               setUserInputs({ ...userInputs, city: e.target.value })
             }
-          />
+          >
+            <option value="Bhutan">Santos</option>
+            <option value="Bolivia">São Vicente</option>
+            <option value="Bolivia">Guarujá</option>
+            <option value="Bolivia">Praia Grande</option>
+            <option value="Bonaire">São Paulo</option>
+          </Select>
         </InputContainer>
 
         <InputContainer>
           <Label>Country</Label>
-          <Input
-            type="text"
+          <Select
             onChange={(e) =>
               setUserInputs({ ...userInputs, country: e.target.value })
             }
-          />
+          >
+            <option value="Bhutan">Bhutan</option>
+            <option value="Bolivia">Bolivia</option>
+            <option value="Bonaire">Bonaire</option>
+            <option value="Botswana">Botswana</option>
+            <option value="Brazil">Brazil</option>
+          </Select>
         </InputContainer>
 
         <InputContainer>
