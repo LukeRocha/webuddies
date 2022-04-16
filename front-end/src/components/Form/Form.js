@@ -1,9 +1,10 @@
 import { React, useState } from "react";
 import styled from "styled-components";
-import * as yup from "yup";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
 import { useGlobalContext } from "../../context";
+import { registerValidation } from "../../controllers/validations";
+
 const StyledModal = styled.div`
   display: flex;
   flex-direction: column;
@@ -35,23 +36,6 @@ const Label = styled.label`
 `;
 
 const Form = () => {
-  const userSchema = yup.object().shape({
-    nickname: yup.string().required(),
-    first_name: yup.string().required(),
-    last_name: yup.string().required(),
-    birth: yup.date().required(),
-    city: yup.string().required(),
-    country: yup.string().required(),
-    mail: yup.string().email().required(),
-    phone: yup.number().required().positive().integer().min(11),
-    password: yup.string().required(),
-    rePassword: yup.string().required(),
-  });
-
-  const formValidate = async () => {
-    const isValid = await userSchema.isValid(userInputs);
-    isValid ? console.log(userInputs) : console.log("?");
-  };
   const [userInputs, setUserInputs] = useState({
     nickname: "",
     first_name: "",
@@ -70,7 +54,7 @@ const Form = () => {
       <FormContainer
         onSubmit={(e) => {
           e.preventDefault();
-          formValidate();
+          registerValidation(userInputs);
         }}
       >
         <InputContainer>
