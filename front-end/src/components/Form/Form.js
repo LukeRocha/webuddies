@@ -2,20 +2,7 @@ import { React, useState } from "react";
 import styled from "styled-components";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
-import { useGlobalContext } from "../../context";
 import { registerValidation } from "../../Validations/registerValidation";
-
-const StyledModal = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 280px;
-  margin: 0 auto;
-
-  padding: 10px;
-  background-color: #242424;
-  border-radius: 4px;
-`;
 
 const FormContainer = styled.form`
   display: flex;
@@ -61,127 +48,122 @@ const Form = () => {
   });
 
   return (
-    <StyledModal>
-      <FormContainer
-        onSubmit={(e) => {
-          e.preventDefault();
-          registerValidation(userInputs);
-        }}
-      >
-        <InputContainer>
-          <Label>Nickname</Label>
-          <Input
-            type="text"
-            onChange={(e) =>
-              setUserInputs({ ...userInputs, nickname: e.target.value })
-            }
-          />
-        </InputContainer>
-        <InputContainer>
-          <Label>First name</Label>
-          <Input
-            type="text"
-            onChange={(e) =>
-              setUserInputs({ ...userInputs, first_name: e.target.value })
-            }
-          />
-        </InputContainer>
-        <InputContainer>
-          <Label>Last name</Label>
-          <Input
-            type="text"
-            onChange={(e) =>
-              setUserInputs({ ...userInputs, last_name: e.target.value })
-            }
-          />
-        </InputContainer>
-        <InputContainer>
-          <Label>E-mail </Label>
-          <Input
-            type="text"
-            onChange={(e) =>
-              setUserInputs({ ...userInputs, mail: e.target.value })
-            }
-          />
-        </InputContainer>
-        <InputContainer>
-          <Label>Birth</Label>
-          <Input
-            type="date"
-            onChange={(e) =>
-              setUserInputs({ ...userInputs, birth: e.target.value })
-            }
-          />
-        </InputContainer>
+    <FormContainer
+      onSubmit={(e) => {
+        e.preventDefault();
+        registerValidation(userInputs);
+      }}
+    >
+      <InputContainer>
+        <Label htmlFor="nick">Nickname</Label>
+        <Input
+          id="nick"
+          type="text"
+          onChange={(e) =>
+            setUserInputs({ ...userInputs, nickname: e.target.value })
+          }
+        />
+      </InputContainer>
+      <InputContainer>
+        <Label>First name</Label>
+        <Input
+          type="text"
+          onChange={(e) =>
+            setUserInputs({ ...userInputs, first_name: e.target.value })
+          }
+        />
+      </InputContainer>
+      <InputContainer>
+        <Label>Last name</Label>
+        <Input
+          type="text"
+          onChange={(e) =>
+            setUserInputs({ ...userInputs, last_name: e.target.value })
+          }
+        />
+      </InputContainer>
+      <InputContainer>
+        <Label>E-mail </Label>
+        <Input
+          type="text"
+          onChange={(e) =>
+            setUserInputs({ ...userInputs, mail: e.target.value })
+          }
+        />
+      </InputContainer>
+      <InputContainer>
+        <Label>Birth</Label>
+        <Input
+          type="date"
+          onChange={(e) =>
+            setUserInputs({ ...userInputs, birth: e.target.value })
+          }
+        />
+      </InputContainer>
 
-        <InputContainer>
-          <Label>City</Label>
-          <Select
-            onChange={(e) =>
-              setUserInputs({ ...userInputs, city: e.target.value })
-            }
-          >
-            <option value="Bhutan">Santos</option>
-            <option value="Bolivia">São Vicente</option>
-            <option value="Bolivia">Guarujá</option>
-            <option value="Bolivia">Praia Grande</option>
-            <option value="Bonaire">São Paulo</option>
-          </Select>
-        </InputContainer>
+      <InputContainer>
+        <Label>City</Label>
+        <Select
+          onChange={(e) =>
+            setUserInputs({ ...userInputs, city: e.target.value })
+          }
+        >
+          <option value="Guarujá">Guarujá</option>
+          <option value="Santos">Santos</option>
+          <option value="São Vicente">São Vicente</option>
+          <option value="São Paulo">São Paulo</option>
+          <option value="Praia Grande">Praia Grande</option>
+        </Select>
+      </InputContainer>
 
-        <InputContainer>
-          <Label>Country</Label>
-          <Select
-            onChange={(e) =>
-              setUserInputs({ ...userInputs, country: e.target.value })
-            }
-          >
-            <option value="Bhutan">Bhutan</option>
-            <option value="Bolivia">Bolivia</option>
-            <option value="Bonaire">Bonaire</option>
-            <option value="Botswana">Botswana</option>
-            <option value="Brazil">Brazil</option>
-          </Select>
-        </InputContainer>
+      <InputContainer>
+        <Label>Country</Label>
+        <Select
+          onChange={(e) =>
+            setUserInputs({ ...userInputs, country: e.target.value })
+          }
+        >
+          <option value="Brazil">Brazil</option>
+        </Select>
+      </InputContainer>
 
-        <InputContainer>
-          <Label>Phone</Label>
-          <Input
-            type="text"
-            onChange={(e) =>
-              setUserInputs({ ...userInputs, phone: e.target.value })
-            }
-          />
-        </InputContainer>
+      <InputContainer>
+        <Label>Phone</Label>
+        <Input
+          type="text"
+          onChange={(e) =>
+            setUserInputs({ ...userInputs, phone: e.target.value })
+          }
+        />
+      </InputContainer>
 
-        <InputContainer>
-          <Label>Password</Label>
-          <Input
-            type="password"
-            placeholder="Input Nickname"
-            onChange={(e) =>
-              setUserInputs({ ...userInputs, password: e.target.value })
-            }
-          />
-        </InputContainer>
+      <InputContainer>
+        <Label>Password</Label>
+        <Input
+          type="password"
+          placeholder="Input Nickname"
+          onChange={(e) =>
+            setUserInputs({ ...userInputs, password: e.target.value })
+          }
+        />
+      </InputContainer>
 
-        <InputContainer>
-          <Label>Confrm password</Label>
-          <Input
-            type="password"
-            placeholder="Input Nickname"
-            onChange={(e) =>
-              setUserInputs({ ...userInputs, rePassword: e.target.value })
-            }
-          />
-        </InputContainer>
-        <InputContainer>
-          <Button bg={"green"} type="submit">
-            Submit
-          </Button>
-        </InputContainer>
-      </FormContainer>
-    </StyledModal>
+      <InputContainer>
+        <Label>Confrm password</Label>
+        <Input
+          type="password"
+          placeholder="Input Nickname"
+          onChange={(e) =>
+            setUserInputs({ ...userInputs, rePassword: e.target.value })
+          }
+        />
+      </InputContainer>
+      <InputContainer>
+        <Button bg={"green"} type="submit">
+          Submit
+        </Button>
+      </InputContainer>
+    </FormContainer>
   );
 };
 

@@ -15,11 +15,16 @@ const registerSchema = yup.object().shape({
 
 const registerValidation = async (userInputs) => {
   const isValid = await registerSchema.isValid(userInputs);
-  if (isValid) {
-    console.log("Valid");
+
+  if (userInputs.password === userInputs.rePassword) {
+    if (isValid) {
+      console.log("Valid");
+    } else {
+      const error = new yup.ValidationError();
+      alert(error);
+    }
   } else {
-    const error = new yup.ValidationError();
-    alert(error);
+    alert("password must match");
   }
 };
 

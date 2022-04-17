@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Form from "../components/Form/Form";
+import Modal from "../components/Modal/Modal";
 
 const MainContainer = styled.section`
   display: flex;
@@ -38,7 +39,9 @@ const Register = () => {
           </Logo>
           <RegisterQuote>{"Create your account, it's easy :D"}</RegisterQuote>
         </RegisterHeader>
-        <Form />
+        <Modal>
+          <Form />
+        </Modal>
       </MainContainer>
     </>
   );
