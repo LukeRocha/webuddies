@@ -4,12 +4,10 @@ import styled from "styled-components";
 const StyledModal = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  text-align: left;
   width: 280px;
   margin: 0 auto;
 
-  padding: 10px;
+  padding: 8px;
   background-color: #242424;
   border-radius: 4px;
 `;

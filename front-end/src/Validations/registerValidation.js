@@ -1,31 +1,28 @@
 import * as yup from "yup";
 
-const registerSchema = yup.object().shape({
-  nickname: yup.string().required(),
-  first_name: yup.string().required(),
-  last_name: yup.string().required(),
-  birth: yup.date().required(),
-  city: yup.string().required(),
-  country: yup.string().required(),
-  mail: yup.string().email().required(),
-  phone: yup.number().required().positive().integer().min(11),
-  password: yup.string().min(8).max(16).required(),
-  rePassword: yup.string().required(),
-});
-
 const registerValidation = async (userInputs) => {
+  const registerSchema = yup.object().shape({
+    nickname: yup.string().required("this field is required"),
+    first_name: yup.string().required("this field is required"),
+    last_name: yup.string().required("this field is required"),
+    birth: yup.date().required("this field is required"),
+    city: yup.string().required(),
+    mail: yup.string().email().required("this field is required"),
+    phone: yup
+      .number()
+      .positive()
+      .integer()
+      .min(11)
+      .required("this field is required"),
+    password: yup
+      .string()
+      .min(8)
+      .max(16)
+      .required("Choose a password between 8 and 16 characters"),
+    rePassword: yup.string().required("Password must match"),
+  });
   const isValid = await registerSchema.isValid(userInputs);
-
-  if (userInputs.password === userInputs.rePassword) {
-    if (isValid) {
-      console.log("Valid");
-    } else {
-      const error = new yup.ValidationError();
-      alert(error);
-    }
-  } else {
-    alert("password must match");
-  }
+  isValid ? console.log("yes") : console.log("no");
 };
 
 export { registerValidation };
