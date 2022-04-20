@@ -1,9 +1,10 @@
 import { React, useState } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import Input from "../Input/Input";
 import InputError from "../InputError/InputError";
 import Button from "../Button/Button";
 import { Formik, Form, Field } from "formik";
+import { registerSchema } from "../../Validations/registerValidation";
 import * as yup from "yup";
 
 const InputContainer = styled.div`
@@ -29,66 +30,80 @@ const Select = styled.select`
   border-radius: 4px;
 `;
 
+const useFormik = ({ initialValues }) => {
+  const [values, setValues] = useState(initialValues);
+
+  const handleChange = (event) => {
+    const fieldName = event.target.getAttribute("name");
+    const value = event.target.value;
+
+    setValues({
+      ...values,
+      [fieldName]: value,
+    });
+    console.log("mexi no selola", fieldName);
+  };
+
+  return {
+    values,
+    handleChange,
+  };
+};
+
+const validate = (values) => {
+  const errors = {};
+
+  if (!registerSchema.validateAt(values.nickname)) {
+    errors.nickname = "input nickname";
+    console.log(errors);
+  } else {
+    console.log("nao");
+  }
+
+  return errors;
+};
 const FormComponent = () => {
-  const registerSchema = yup.object().shape({
-    nickname: yup.string().required("this field is required"),
-    first_name: yup.string().required("this field is required"),
-    last_name: yup.string().required("this field is required"),
-    birth: yup.date().required("this field is required"),
-    city: yup.string().required(),
-    mail: yup.string().email().required("this field is required"),
-    phone: yup
-      .number()
-      .positive()
-      .integer()
-      .min(11)
-      .required("this field is required"),
-    password: yup
-      .string()
-      .min(8)
-      .max(16)
-      .required("Choose a password between 8 and 16 characters"),
-    rePassword: yup.string().required("Password must match"),
+  const [errors, setErrors] = useState();
+  const formik = useFormik({
+    initialValues: {
+      nickname: "",
+      first_name: "",
+      last_name: "",
+      birth: "",
+      city: "",
+      mail: "",
+      phone: "",
+      password: "",
+      confirm_password: "",
+    },
   });
 
-  const [userInputs, setUserInputs] = useState({
-    nickname: "",
-    first_name: "",
-    last_name: "",
-    birth: "",
-    city: "",
-    mail: "",
-    phone: "",
-    password: "",
-    rePassword: "",
-  });
   return (
     <Formik
-      initialValues={userInputs}
+      initialValues={formik.values}
       validationSchema={registerSchema}
       validateOnSubmit={false}
       validateOnBlur={false}
-      onSubmit={(userInputs, { validate }, e) => {
+      onSubmit={(e) => {
         e.preventDefault();
-        validate(userInputs);
+        setErrors(validate(formik.values));
       }}
     >
       {({ errors }) => (
         <Form>
           <InputContainer>
-            <Label htmlFor="nick">Nickname</Label>
+            <Label htmlFor="nickname">Nickname</Label>
             <Field
               as={Input}
-              id="nick"
-              name="nick"
+              id="nickname"
+              name="nickname"
               type="text"
-              value={userInputs.nickname}
-              onChange={(e) =>
-                setUserInputs({ ...userInputs, nickname: e.target.value })
-              }
+              value={formik.values.nickname}
+              onChange={formik.handleChange}
             />
             {errors.nickname && <InputError>{errors.nickname}</InputError>}
           </InputContainer>
+
           <InputContainer>
             <Label htmlFor="first_name">First name</Label>
             <Field
@@ -96,13 +111,12 @@ const FormComponent = () => {
               id="first_name"
               name="first_name"
               type="text"
-              value={userInputs.first_name}
-              onChange={(e) =>
-                setUserInputs({ ...userInputs, first_name: e.target.value })
-              }
+              value={formik.values.first_name}
+              onChange={formik.handleChange}
             />
             {errors.first_name && <InputError>{errors.first_name}</InputError>}
           </InputContainer>
+
           <InputContainer>
             <Label htmlFor="last_name">Last name</Label>
             <Field
@@ -110,13 +124,12 @@ const FormComponent = () => {
               id="last_name"
               name="last_name"
               type="text"
-              value={userInputs.last_name}
-              onChange={(e) =>
-                setUserInputs({ ...userInputs, last_name: e.target.value })
-              }
+              value={formik.values.last_name}
+              onChange={formik.handleChange}
             />
             {errors.last_name && <InputError>{errors.last_name}</InputError>}
           </InputContainer>
+
           <InputContainer>
             <Label htmlFor="birth ">Birth</Label>
             <Field
@@ -124,13 +137,12 @@ const FormComponent = () => {
               id="birth "
               name="birth"
               type="date"
-              value={userInputs.birth}
-              onChange={(e) =>
-                setUserInputs({ ...userInputs, birth: e.target.value })
-              }
+              value={formik.values.birth}
+              onChange={formik.handleChange}
             />
             {errors.birth && <InputError>{errors.birth}</InputError>}
           </InputContainer>
+
           <InputContainer>
             <Label htmlFor="mail">E-mail</Label>
             <Field
@@ -138,13 +150,12 @@ const FormComponent = () => {
               id="mail"
               name="mail"
               type="text"
-              value={userInputs.mail}
-              onChange={(e) =>
-                setUserInputs({ ...userInputs, mail: e.target.value })
-              }
+              value={formik.values.mail}
+              onChange={formik.handleChange}
             />
             {errors.mail && <InputError>{errors.mail}</InputError>}
           </InputContainer>
+
           <InputContainer>
             <Label htmlFor="phone">Phone</Label>
             <Field
@@ -152,24 +163,20 @@ const FormComponent = () => {
               id="phone"
               name="phone"
               type="select"
-              value={userInputs.phone}
-              onChange={(e) =>
-                setUserInputs({ ...userInputs, phone: e.target.value })
-              }
-              options={"santos"}
+              value={formik.values.phone}
+              onChange={formik.handleChange}
             />
             {errors.phone && <InputError>{errors.phone}</InputError>}
           </InputContainer>
+
           <InputContainer>
             <Label htmlFor="city">City</Label>
             <Field
               id="city"
-              name="city"
               as={Select}
-              value={userInputs.city}
-              onChange={(e) =>
-                setUserInputs({ ...userInputs, city: e.target.value })
-              }
+              name="city"
+              value={formik.values.city}
+              onChange={formik.handleChange}
             >
               <option value="Guarujá">Guarujá</option>
               <option value="Santos">Santos</option>
@@ -186,30 +193,30 @@ const FormComponent = () => {
               id="password"
               name="password"
               type="password"
-              value={userInputs.password}
-              onChange={(e) =>
-                setUserInputs({ ...userInputs, password: e.target.value })
-              }
+              value={formik.values.password}
+              onChange={formik.handleChange}
             />
             {errors.password && <InputError>{errors.password}</InputError>}
           </InputContainer>
+
           <InputContainer>
-            <Label htmlFor="rePassword">confirm password</Label>
+            <Label htmlFor="confirm_password">confirm password</Label>
             <Field
               as={Input}
-              id="rePassword"
-              name="rePassword"
+              id="confirm_password"
+              name="confirm_password"
               type="password"
-              value={userInputs.rePassword}
-              onChange={(e) =>
-                setUserInputs({ ...userInputs, rePassword: e.target.value })
-              }
+              value={formik.values.confirm_password}
+              onChange={formik.handleChange}
             />
-            {errors.rePassword && <InputError>{errors.rePassword}</InputError>}
+            {errors.confirm_password && (
+              <InputError>{errors.confirm_password}</InputError>
+            )}
           </InputContainer>
+
           <InputContainer>
             <Button
-              onClick={() => console.log(userInputs)}
+              onClick={() => console.log(formik.values)}
               bg={"green"}
               type="submit"
             >
