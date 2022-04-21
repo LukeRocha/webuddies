@@ -1,15 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { AppProvider } from "./context";
-import Register from "./pages/Register";
-import App from "./components/Form/Dorm";
+import Form from "./components/Form/Form";
+import Modal from "./components/Modal/Modal";
 import "./styles.css";
+import Register from "./pages/Register";
 
 ReactDOM.render(
   <React.StrictMode>
     <AppProvider>
-      {/* <Register /> */}
-      <App />
+      <Register />
     </AppProvider>
   </React.StrictMode>,
   document.getElementById("root")

@@ -4,6 +4,7 @@ import styled from "styled-components";
 const StyledModal = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   width: 280px;
   margin: 0 auto;
 
