@@ -21,9 +21,4 @@ const registerSchema = yup.object().shape({
   confirm_password: yup.string().required("Password must match"),
 });
 
-const registerValidation = async (userInputs) => {
-  const isValid = await registerSchema.isValid(userInputs);
-  isValid ? console.log("yes") : console.log("no");
-};
-
 export { registerValidation, registerSchema };
