@@ -1,12 +1,11 @@
-import React from "react";
-import Input from "../Input/Input";
+import React, { useContext } from "react";
 import InputError from "../InputError/InputError";
 import Button from "../Button/Button";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "../../Validations/registerValidation";
-
+import { useGlobalContext } from "../../context";
 const FormComponent = styled.form`
   display: flex;
   flex-direction: column;
@@ -42,20 +41,18 @@ const Select = styled.select`
 `;
 
 const Form = () => {
+  const registerSubmitHandler = useGlobalContext();
   const initialValues = {
-    initialValues: {
-      nickname: "",
-      first_name: "",
-      last_name: "",
-      birth: "",
-      city: "",
-      mail: "",
-      phone: "",
-      password: "",
-      confirm_password: "",
-    },
+    nickname: "",
+    first_name: "",
+    last_name: "",
+    birth: "",
+    city: "",
+    mail: "",
+    phone: "",
+    password: "",
+    confirm_password: "",
   };
-
   const {
     register,
     handleSubmit,
@@ -63,8 +60,11 @@ const Form = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(registerSchema) });
 
-  const onSubmit = (data) => console.log(data);
-
+  const onSubmit = (data) => {
+    handleSubmit(data);
+    registerSubmitHandler(data);
+  };
+  console.log(onSubmit);
   return (
     <FormComponent onSubmit={handleSubmit(onSubmit)}>
       <InputContainer>
@@ -117,13 +117,13 @@ const Form = () => {
 
       <InputContainer>
         <Label>Password</Label>
-        <input {...register("password")} />
+        <input type="password" {...register("password")} />
         <InputError>{errors.password?.message}</InputError>
       </InputContainer>
 
       <InputContainer>
         <Label>Confirm password</Label>
-        <input {...register("confirm_password")} />
+        <input type="password" {...register("confirm_password")} />
         <InputError>{errors.confirm_password?.message}</InputError>
       </InputContainer>
       <Button bg={"green"} type="submit">

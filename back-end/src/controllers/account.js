@@ -15,13 +15,12 @@ const create = async (req, res) => {
     last_name: req.body.last_name,
     birth: req.body.birth,
     city: req.body.city,
-    country: req.body.country,
     mail: req.body.mail,
     phone: req.body.phone,
     password: req.body.password,
     profile_picture: req.body.profile_picture,
     user_status: req.body.user_status,
-    is_deleted: req.body.is_deleted,
+    is_deleted: 0,
   };
   try {
     const createNewUser = await db.knex

@@ -1,10 +1,15 @@
 import React, { useContext } from "react";
+import { postUser } from "./operations/operations";
+
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
-  const logger = (x) => console.log(x);
+  const registerUser = async (userInputs) => {
+    await postUser(userInputs);
+  };
+
   return (
-    <AppContext.Provider value={{ logger }}>{children}</AppContext.Provider>
+    <AppContext.Provider value={registerUser}>{children}</AppContext.Provider>
   );
 };
 
