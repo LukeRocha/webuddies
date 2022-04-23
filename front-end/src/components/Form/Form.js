@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import InputError from "../InputError/InputError";
 import Button from "../Button/Button";
-import Input from "../Input/Input";
 import styled from "styled-components";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "../../Validations/registerValidation";
 import { useGlobalContext } from "../../context";
@@ -43,17 +42,7 @@ const Select = styled.select`
 
 const Form = () => {
   const registerSubmitHandler = useGlobalContext();
-  const initialValues = {
-    nickname: "",
-    first_name: "",
-    last_name: "",
-    birth: "",
-    city: "",
-    mail: "",
-    phone: "",
-    password: "",
-    confirm_password: "",
-  };
+
   const {
     register,
     handleSubmit,
@@ -64,7 +53,7 @@ const Form = () => {
     handleSubmit(data);
     registerSubmitHandler(data);
   };
-  console.log(onSubmit);
+
   return (
     <FormComponent onSubmit={handleSubmit(onSubmit)}>
       <InputContainer>

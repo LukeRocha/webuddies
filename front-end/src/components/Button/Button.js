@@ -11,10 +11,7 @@ const StyledButton = styled.button`
   color: white;
   background-color: ${({ bg }) => (bg ? bg : "black")};
 `;
-const buttonBg = {
-  purple: "#A32FF",
-  green: "#6FB794",
-};
+
 const Button = ({ children, bg, ...props }) => {
   return (
     <>
