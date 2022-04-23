@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import InputError from "../InputError/InputError";
 import Button from "../Button/Button";
+import Input from "../Input/Input";
 import styled from "styled-components";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "../../Validations/registerValidation";
 import { useGlobalContext } from "../../context";
@@ -20,7 +21,7 @@ const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-content: center;
-  margin: 2px auto;
+  margin: 6px auto;
   align-self: center;
 `;
 
@@ -56,7 +57,6 @@ const Form = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm({ resolver: yupResolver(registerSchema) });
 
@@ -69,7 +69,7 @@ const Form = () => {
     <FormComponent onSubmit={handleSubmit(onSubmit)}>
       <InputContainer>
         <Label>Nickname</Label>
-        <input id="nickname" {...register("nickname")} />
+        <input {...register("nickname")} />
         <InputError>{errors.nickname?.message}</InputError>
       </InputContainer>
 
@@ -126,9 +126,11 @@ const Form = () => {
         <input type="password" {...register("confirm_password")} />
         <InputError>{errors.confirm_password?.message}</InputError>
       </InputContainer>
-      <Button bg={"green"} type="submit">
-        Send
-      </Button>
+      <InputContainer>
+        <Button bg={"#6FB794"} type="submit">
+          Send
+        </Button>
+      </InputContainer>
     </FormComponent>
   );
 };

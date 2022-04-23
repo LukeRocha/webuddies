@@ -21,4 +21,4 @@ const registerSchema = yup.object().shape({
   confirm_password: yup.string().required("Password must match"),
 });
 
-export { registerValidation, registerSchema };
+export { registerSchema };
