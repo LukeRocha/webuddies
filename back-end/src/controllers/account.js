@@ -22,6 +22,9 @@ const create = async (req, res) => {
     user_status: req.body.user_status,
     is_deleted: 0,
   };
+
+  const checkExistingData = async () => {};
+
   try {
     const createNewUser = await db.knex
       .insert(newUser)
