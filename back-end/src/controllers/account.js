@@ -16,7 +16,6 @@ const create = async (req, res) => {
     birth: req.body.birth,
     city: req.body.city,
     mail: req.body.mail,
-    phone: req.body.phone,
     password: req.body.password,
     profile_picture: req.body.profile_picture,
     user_status: req.body.user_status,
@@ -26,7 +25,6 @@ const create = async (req, res) => {
   const errorMesages = {
     nickname: "This nickname is already in use",
     mail: "This e-mail is already in use",
-    phone: "This phone is already in use",
   };
 
   const checkExistingData = async (column, data) => {
@@ -39,6 +37,7 @@ const create = async (req, res) => {
       .then((response) => {
         if (response.length === 0) {
           console.log(response);
+          ("");
         }
       });
   };
@@ -69,7 +68,6 @@ module.exports = { get, create };
 //   city: "Santos",
 //   country: "Brazil",
 //   mail: "master@mail.com",
-//   phone: "99999999999",
 //   password: "123456",
 //   profile_picture: "",
 //   user_status: "Master user",
