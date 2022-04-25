@@ -99,12 +99,6 @@ const Form = () => {
       </InputContainer>
 
       <InputContainer>
-        <Label>Phone number</Label>
-        <input type="number" {...register("phone")} />
-        <InputError>{errors.phone?.message}</InputError>
-      </InputContainer>
-
-      <InputContainer>
         <Label>Password</Label>
         <input type="password" {...register("password")} />
         <InputError>{errors.password?.message}</InputError>

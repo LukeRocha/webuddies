@@ -22,19 +22,38 @@ const create = async (req, res) => {
     user_status: req.body.user_status,
     is_deleted: 0,
   };
+  //levar função de verificar pro frontend
+  const errorMesages = {
+    nickname: "This nickname is already in use",
+    mail: "This e-mail is already in use",
+    phone: "This phone is already in use",
+  };
 
-  const checkExistingData = async () => {};
+  const checkExistingData = async (column, data) => {
+    const errors = [];
 
-  try {
-    const createNewUser = await db.knex
-      .insert(newUser)
-      .into("users")
+    const validityCheck = await db.knex
+      .select(column)
+      .from("users")
+      .where(column, data)
       .then((response) => {
-        console.log(`user registered ${newUser.nickname}`);
-      })
-      .catch((error) => {
-        console.log(error);
+        if (response.length === 0) {
+          console.log(response);
+        }
       });
+  };
+
+  checkExistingData("nickname", newUser.nickname);
+  try {
+    // const createNewUser = await db.knex
+    //   .insert(newUser)
+    //   .into("users")
+    //   .then((response) => {
+    //     console.log(`user registered ${newUser.nickname}`);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   } catch (error) {
     console.log(error);
   }
