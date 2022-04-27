@@ -2,6 +2,7 @@ import React from "react";
 import InputError from "../InputError/InputError";
 import Button from "../Button/Button";
 import styled from "styled-components";
+import Input from "../Input/Input";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "../../Validations/registerValidation";
@@ -49,64 +50,71 @@ const Form = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(registerSchema) });
 
-  const onSubmit = (data) => {
+  const onSubmit = (data, e) => {
+    console.log(data);
+    console.log(e);
+
     handleSubmit(data);
     registerSubmitHandler(data);
   };
+  console.log(errors);
+  const ref = React.createRef();
+  console.log(ref);
 
   return (
     <FormComponent onSubmit={handleSubmit(onSubmit)}>
       <InputContainer>
         <Label>Nickname</Label>
-        <input {...register("nickname")} />
+        <Input ref={ref} {...register("nickname")} />
         <InputError>{errors.nickname?.message}</InputError>
       </InputContainer>
+      {/* //input field com especificações de erro  */}
 
       <InputContainer>
         <Label>First name</Label>
-        <input {...register("first_name")} />
+        <Input ref={ref} {...register("first_name")} />
         <InputError>{errors.first_name?.message}</InputError>
       </InputContainer>
 
       <InputContainer>
         <Label>Last name</Label>
-        <input {...register("last_name")} />
+        <Input ref={ref} {...register("last_name")} />
         <InputError>{errors.last_name?.message}</InputError>
       </InputContainer>
 
       <InputContainer>
         <Label>Birthdate</Label>
-        <input type="date" {...register("birth")} />
+        <Input ref={ref} type="date" {...register("birth")} />
         <InputError>{errors.birth?.message}</InputError>
       </InputContainer>
 
       <InputContainer>
         <Label>City</Label>
-        <select placeholder="select city" {...register("city")}>
+        <Select ref={ref} placeholder="select city" {...register("city")}>
           <option value="Santos">Santos</option>
           <option value="Guarujá">Guarujá</option>
           <option value="São Vicente">São Vicente</option>
           <option value="São Paulo">São Paulo</option>
           <option value="Praia Grande">praia grande</option>
-        </select>
+        </Select>
         <InputError>{errors.city?.message}</InputError>
       </InputContainer>
 
       <InputContainer>
         <Label>E-mail</Label>
-        <input {...register("mail")} />
+        <Input ref={ref} {...register("mail")} />
         <InputError>{errors.mail?.message}</InputError>
       </InputContainer>
 
       <InputContainer>
         <Label>Password</Label>
-        <input type="password" {...register("password")} />
+        <Input ref={ref} type="password" {...register("password")} />
         <InputError>{errors.password?.message}</InputError>
       </InputContainer>
 
       <InputContainer>
         <Label>Confirm password</Label>
-        <input type="password" {...register("confirm_password")} />
+        <Input ref={ref} type="password" {...register("confirm_password")} />
         <InputError>{errors.confirm_password?.message}</InputError>
       </InputContainer>
       <InputContainer>

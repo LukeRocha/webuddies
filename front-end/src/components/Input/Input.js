@@ -12,8 +12,13 @@ const StyledInput = styled.input`
   border-radius: 4px;
 `;
 
-const Input = ({ children, ...props }) => {
-  return <StyledInput {...props}>{children}</StyledInput>;
-};
-
+const Input = React.forwardRef(({ children, ...props }, ref) => {
+  console.log(ref);
+  return (
+    <StyledInput ref={ref} {...props}>
+      {children}
+    </StyledInput>
+  );
+});
+Input.displayName = "<Input />";
 export default Input;

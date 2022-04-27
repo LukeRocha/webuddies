@@ -22,10 +22,7 @@ const create = async (req, res) => {
     is_deleted: 0,
   };
 
-  const errorMesages = {
-    nickname: "This nickname is already in use",
-    mail: "This e-mail is already in use",
-  };
+  const uniqueColumns = ["nickname", "mail"];
 
   const insertUser = async () => {
     try {
@@ -51,28 +48,15 @@ const create = async (req, res) => {
       .then((response) => {
         if (response.length === 0) {
           checkExistingData("mail", newUser.mail);
-          return insertUser();
-        } else {
+        } else if (response.length > 1) {
           console.log(`${column} already registered`);
+        } else {
+          return insertUser;
         }
       });
   };
 
-  checkExistingData("nickname", newUser.nickname);
+  return checkExistingData("nickname", newUser.nickname);
 };
 
 module.exports = { get, create };
-
-// const reqModel = {
-//   nickname: "master",
-//   first_name: "master",
-//   last_name: "adm",
-//   birth: "1990-01-01",
-//   city: "Santos",
-//   country: "Brazil",
-//   mail: "master@mail.com",
-//   password: "123456",
-//   profile_picture: "",
-//   user_status: "Master user",
-//   is_deleted: "0",
-// };

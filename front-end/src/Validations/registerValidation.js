@@ -7,12 +7,6 @@ const registerSchema = yup.object().shape({
   birth: yup.date().required("this field is required"),
   city: yup.string().required(),
   mail: yup.string().email().required("this field is required"),
-  phone: yup
-    .number()
-    .positive()
-    .integer()
-    .min(11)
-    .required("this field is required"),
   password: yup
     .string()
     .min(8)
