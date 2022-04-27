@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "../../Validations/registerValidation";
 import { useGlobalContext } from "../../context";
+
 const FormComponent = styled.form`
   display: flex;
   flex-direction: column;
