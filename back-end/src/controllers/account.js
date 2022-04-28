@@ -22,15 +22,14 @@ const create = async (req, res) => {
     is_deleted: 0,
   };
 
-  const uniqueColumns = ["nickname", "mail"];
-
-  const insertUser = async () => {
+  const insertUser = async (userInputs) => {
     try {
-      const createNewUser = await db.knex
-        .insert(newUser)
+      await db.knex
+        .insert(userInputs)
         .into("users")
         .then((response) => {
-          console.log(`user registered ${newUser.nickname}`);
+          console.log(response);
+          console.log(`user registered: ${userInputs.nickname}`);
         })
         .catch((error) => {
           console.log(error);
@@ -40,23 +39,31 @@ const create = async (req, res) => {
     }
   };
 
-  const checkExistingData = async (column, data) => {
-    await db.knex
-      .select(column)
-      .from("users")
-      .where(column, data)
-      .then((response) => {
-        if (response.length === 0) {
-          checkExistingData("mail", newUser.mail);
-        } else if (response.length > 1) {
-          console.log(`${column} already registered`);
-        } else {
-          return insertUser;
-        }
-      });
+  const uniqueColumns = ["nickname", "mail"];
+
+  const checkExistingData = async (uniqueColumns, userInputs) => {
+    for (let uniqueColumn of uniqueColumns) {
+      const columnCheck = await db.knex
+        .select(uniqueColumn)
+        .from("users")
+        .where(uniqueColumn, userInputs[uniqueColumn])
+        .then((response) => {
+          return response.length;
+        });
+
+      if (Boolean(columnCheck) == true) {
+        console.log(`this ${uniqueColumn} is already registered`);
+        break;
+      } else if (
+        uniqueColumns[1] === uniqueColumn &&
+        Boolean(columnCheck) == false
+      ) {
+        console.log("nao tem mais boi na linha");
+        return insertUser(userInputs);
+      }
+    }
   };
 
-  return checkExistingData("nickname", newUser.nickname);
+  checkExistingData(uniqueColumns, newUser);
 };
-
 module.exports = { get, create };

@@ -13,7 +13,6 @@ const StyledInput = styled.input`
 `;
 
 const Input = React.forwardRef(({ children, ...props }, ref) => {
-  console.log(ref);
   return (
     <StyledInput ref={ref} {...props}>
       {children}

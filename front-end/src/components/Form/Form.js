@@ -5,7 +5,7 @@ import styled from "styled-components";
 import Input from "../Input/Input";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { registerSchema } from "../../Validations/registerValidation";
+import { registerSchema } from "../../Validations/schemas";
 import { useGlobalContext } from "../../context";
 
 const FormComponent = styled.form`
@@ -53,14 +53,11 @@ const Form = () => {
 
   const onSubmit = (data, e) => {
     console.log(data);
-    console.log(e);
-
     handleSubmit(data);
     registerSubmitHandler(data);
   };
-  console.log(errors);
+
   const ref = React.createRef();
-  console.log(ref);
 
   return (
     <FormComponent onSubmit={handleSubmit(onSubmit)}>
