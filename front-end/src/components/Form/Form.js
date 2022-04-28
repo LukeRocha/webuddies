@@ -52,7 +52,6 @@ const Form = () => {
   } = useForm({ resolver: yupResolver(registerSchema) });
 
   const onSubmit = (data, e) => {
-    console.log(data);
     handleSubmit(data);
     registerSubmitHandler(data);
   };

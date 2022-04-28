@@ -28,42 +28,14 @@ const create = async (req, res) => {
         .insert(userInputs)
         .into("users")
         .then((response) => {
-          console.log(response);
           console.log(`user registered: ${userInputs.nickname}`);
-        })
-        .catch((error) => {
-          console.log(error);
         });
     } catch (error) {
-      console.log(error);
+      const err = await res.status(200).json(error.detail);
     }
   };
 
-  const uniqueColumns = ["nickname", "mail"];
-
-  const checkExistingData = async (uniqueColumns, userInputs) => {
-    for (let uniqueColumn of uniqueColumns) {
-      const columnCheck = await db.knex
-        .select(uniqueColumn)
-        .from("users")
-        .where(uniqueColumn, userInputs[uniqueColumn])
-        .then((response) => {
-          return response.length;
-        });
-
-      if (Boolean(columnCheck) == true) {
-        console.log(`this ${uniqueColumn} is already registered`);
-        break;
-      } else if (
-        uniqueColumns[1] === uniqueColumn &&
-        Boolean(columnCheck) == false
-      ) {
-        console.log("nao tem mais boi na linha");
-        return insertUser(userInputs);
-      }
-    }
-  };
-
-  checkExistingData(uniqueColumns, newUser);
+  insertUser(newUser);
 };
+
 module.exports = { get, create };
