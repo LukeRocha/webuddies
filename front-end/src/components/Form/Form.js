@@ -2,11 +2,11 @@ import React from "react";
 import InputError from "../InputError/InputError";
 import Button from "../Button/Button";
 import styled from "styled-components";
-import Input from "../Input/Input";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "../../Validations/schemas";
 import { useGlobalContext } from "../../context";
+import Input from "../Input/Input";
 
 const FormComponent = styled.form`
   display: flex;
@@ -26,11 +26,6 @@ const InputContainer = styled.div`
   align-self: center;
 `;
 
-const Label = styled.label`
-  color: white;
-  margin: 2px 12px;
-  text-align: left;
-`;
 const Select = styled.select`
   margin: 12px auto;
   padding: 12px;
@@ -42,6 +37,11 @@ const Select = styled.select`
   border-radius: 4px;
 `;
 
+const Label = styled.label`
+  color: white;
+  margin: 2px 12px;
+  text-align: left;
+`;
 const Form = () => {
   const registerSubmitHandler = useGlobalContext();
 
@@ -65,8 +65,6 @@ const Form = () => {
         <Input ref={ref} {...register("nickname")} />
         <InputError>{errors.nickname?.message}</InputError>
       </InputContainer>
-      {/* //input field com especificações de erro  */}
-
       <InputContainer>
         <Label>First name</Label>
         <Input ref={ref} {...register("first_name")} />
