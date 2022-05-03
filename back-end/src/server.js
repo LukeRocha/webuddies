@@ -13,6 +13,7 @@ app.options("*", cors());
 const router = express.Router();
 
 router.get("/api", accountController.get);
+router.post("/register", accountController.create);
 
 app.use(router);
 app.listen(port, () => {

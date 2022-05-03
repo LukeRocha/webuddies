@@ -1,15 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
-import Header from "./components/Header/Header.js";
-import BottomNav from "./components/BottomNav/BottomNav.js";
+import { AppProvider } from "./context";
 import "./styles.css";
+import Register from "./pages/Register";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Header />
-    <App />
-    <BottomNav />
+    <AppProvider>
+      <Register />
+    </AppProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
