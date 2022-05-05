@@ -5,13 +5,14 @@ import Button from "../../Button/Button";
 const UserContainer = styled.div`
   display: flex;
   flex-direction: column;
+  text-indent: 15px;
 `;
 
 const TopUserDiv = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  margin: 20px;
+  margin: 18px;
 `;
 
 const ImageContainer = styled.span`
@@ -34,9 +35,13 @@ const BottomUserDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: left;
+  align-itens: flex-start;
   color: white;
   padding: 20px;
+  margin: 12px 16px;
+  border-bottom: solid white 1px;
 `;
+
 const UserProfile = () => {
   //import json after login to render user data
 
