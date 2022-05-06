@@ -6,6 +6,8 @@ const UserContainer = styled.div`
   display: flex;
   flex-direction: column;
   text-indent: 15px;
+
+  margin-top: 30px;
 `;
 
 const TopUserDiv = styled.div`

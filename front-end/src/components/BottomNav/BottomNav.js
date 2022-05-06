@@ -10,9 +10,11 @@ import styled from "styled-components";
 
 const BottomNavBar = styled.footer`
   width: 100vw;
+  margin-top: 10px;
   bottom: 0;
   right: 0;
-  position: absolute;
+  position: fixed;
+
   background: #242424;
   margin: 0;
 `;
@@ -51,13 +53,13 @@ export default function BottomNav() {
         >
           <BottomNavigationAction
             sx={{ color: "white" }}
-            label="Friends"
-            icon={<PeopleAltIcon />}
+            label="Home"
+            icon={<HomeIcon />}
           />
           <BottomNavigationAction
             sx={{ color: "white" }}
-            label="Home"
-            icon={<HomeIcon />}
+            label="Friends"
+            icon={<PeopleAltIcon />}
           />
           <BottomNavigationAction
             sx={{ color: "white" }}
@@ -73,7 +75,7 @@ export default function BottomNav() {
               height: "34px",
             }}
             alt="Lucas Rocha"
-            src="https://steamuserimages-a.akamaihd.net/ugc/862858011067573132/D1081BC0AE64013D11483BE137676989279C88E9/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false"
+            src="https://img.elo7.com.br/product/original/2FFB539/adesivo-rock-heavy-metal-black-sabbath-26x10-cor-preta-angra.jpg"
           />
         </ProfileAvatar>
       </Box>

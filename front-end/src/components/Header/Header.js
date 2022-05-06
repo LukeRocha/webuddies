@@ -11,7 +11,9 @@ const StyledHeader = styled.header`
   justify-content: space-between;
   alignt-content: center;
   padding: 5px;
-
+  position: fixed;
+  width: 100vw;
+  z-index: 100;
   background-color: #242424;
 `;
 
@@ -20,7 +22,7 @@ const HeaderLogo = styled.h2`
   padding: 0;
   align-self: center;
   position: relative;
-  
+
   color: white;
 `;
 
