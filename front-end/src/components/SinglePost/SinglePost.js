@@ -7,7 +7,7 @@ const PostContainer = styled.article`
   justify-content: center;
   margin: 8px;
   padding: 12px;
-  background-color: #191a1c;
+  background-color: #242424;
   border-radius: 4px;
 `;
 
@@ -19,7 +19,7 @@ const User = styled.h3`
 const TimeStamp = styled.p`
   color: white;
   text-align: left;
-
+  font-size: small;
   margin-bottom: 8px;
 `;
 
@@ -40,7 +40,7 @@ const PostButtons = styled.nav`
 `;
 
 const InterfaceButton = styled.button`
-  border-radius: 50%;
+  border-radius: 4px;
   width: auto;
   color: purple;
   background: none;
