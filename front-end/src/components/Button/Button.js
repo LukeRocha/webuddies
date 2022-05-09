@@ -6,7 +6,7 @@ const StyledButton = styled.button`
   padding: 5px;
   margin: 0 auto;
   align-self: center;
-  border-radius: 4px;
+  border-radius: 6px;
   border: none;
   color: white;
   background-color: ${({ bg }) => (bg ? bg : "black")};

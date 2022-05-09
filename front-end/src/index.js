@@ -2,12 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { AppProvider } from "./context";
 import "./styles.css";
-import Register from "./pages/Register";
+import Login from "./pages/Login";
 
 ReactDOM.render(
   <React.StrictMode>
     <AppProvider>
-      <Register />
+      <Login></Login>
     </AppProvider>
   </React.StrictMode>,
   document.getElementById("root")

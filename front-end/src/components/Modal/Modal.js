@@ -8,7 +8,7 @@ const StyledModal = styled.div`
   width: 280px;
   margin: 0 auto;
 
-  padding: 8px;
+  padding: 12px;
   background-color: #242424;
   border-radius: 4px;
 `;
