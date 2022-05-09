@@ -30,7 +30,7 @@ const RegisterLink = styled.a`
 const BuddiesContainer = styled.div`
   display: flex;
   width: 100vw;
-
+  justify-content: center;
   margin: 0 auto;
   botttom: 0;
 `;
