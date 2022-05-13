@@ -5,7 +5,13 @@ import { postUser } from "./operations/operations";
 const AppContext = React.createContext();
 
 // the state needs to be separated on login and errors and so on
-const initialState = {};
+const initialState = {
+  loginState: {
+    userData: {},
+    errors: {},
+    //replace ()=() with string template
+  },
+};
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);

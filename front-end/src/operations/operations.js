@@ -7,12 +7,13 @@ export const postUser = async (userInputs) => {
   const postResult = await axios
     .post(urls.post, userInputs)
     .then((resp) => {
-      console.log(resp.data);
-      throw new Error(
-        resp.data.includes("nickname")
-          ? "This nickname is already in use"
-          : "This mail is already in use"
-      );
+      console.log(resp);
+
+      // throw new Error(
+      //   resp.data.includes("nickname")
+      //     ? "This nickname is already in use"
+      //     : "This mail is already in use"
+      // );
     })
     .catch((error) => {
       console.error(error);
