@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import InputError from "../InputError/InputError";
 import Button from "../Button/Button";
 import styled from "styled-components";
@@ -43,7 +43,7 @@ const Label = styled.label`
   text-align: left;
 `;
 const Form = () => {
-  const registerSubmitHandler = useGlobalContext();
+  const { registerSubmitHandler, state } = useGlobalContext();
 
   const {
     register,
@@ -57,18 +57,24 @@ const Form = () => {
   };
 
   const ref = React.createRef();
-
+  useEffect(() => {
+    console.log(state);
+  }, [state]);
   return (
     <FormComponent onSubmit={handleSubmit(onSubmit)}>
       <InputContainer>
         <Label>Nickname</Label>
         <Input ref={ref} {...register("nickname")} />
         <InputError>{errors.nickname?.message}</InputError>
+        {state.errorMessage.nickname && (
+          <InputError>{state.errorMessage.nickname}</InputError>
+        )}
       </InputContainer>
       <InputContainer>
         <Label>First name</Label>
         <Input ref={ref} {...register("first_name")} />
         <InputError>{errors.first_name?.message}</InputError>
+        <InputError></InputError>
       </InputContainer>
 
       <InputContainer>
@@ -99,6 +105,9 @@ const Form = () => {
         <Label>E-mail</Label>
         <Input ref={ref} {...register("mail")} />
         <InputError>{errors.mail?.message}</InputError>
+        {state.errorMessage.nickname && (
+          <InputError>{state.errorMessage.mail}</InputError>
+        )}
       </InputContainer>
 
       <InputContainer>

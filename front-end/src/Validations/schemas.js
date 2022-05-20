@@ -15,4 +15,15 @@ const registerSchema = yup.object().shape({
   confirm_password: yup.string().required("Password must match"),
 });
 
+// const requestModel = {
+// "nickname": "Master",
+// "first_name": "Lucas",
+// "last_name": "Rocha",
+// "birth": "09/08/1993",
+// "city": "Santos",
+// "mail": "lucas.ar93@gmail.com",
+// "password": "123456789",
+// "confirm_password": "123456"
+// };
+
 export { registerSchema };
