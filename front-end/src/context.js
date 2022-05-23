@@ -4,19 +4,24 @@ import { postUser } from "./operations/operations";
 
 const AppContext = React.createContext();
 
-// the state needs to be separated on login and errors and so on
-const initialState = {};
+const initialState = {
+  loginState: { userData: {} },
+  errorMessage: {},
+  messages: {},
+};
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const registerUser = async (userInputs) => {
+  const registerSubmitHandler = async (userInputs) => {
     const registeredUser = await postUser(userInputs);
     dispatch({ type: "REGISTER_USER", payload: registeredUser });
   };
 
   return (
-    <AppContext.Provider value={registerUser}>{children}</AppContext.Provider>
+    <AppContext.Provider value={{ state, registerSubmitHandler }}>
+      {children}
+    </AppContext.Provider>
   );
 };
 
