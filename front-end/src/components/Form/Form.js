@@ -92,6 +92,7 @@ const Form = () => {
       <InputContainer>
         <Label>City</Label>
         <Select ref={ref} placeholder="select city" {...register("city")}>
+          <option label=""></option>
           <option value="Santos">Santos</option>
           <option value="Guarujá">Guarujá</option>
           <option value="São Vicente">São Vicente</option>
