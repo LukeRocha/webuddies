@@ -5,7 +5,7 @@ const registerSchema = yup.object().shape({
   first_name: yup.string().required("this field is required"),
   last_name: yup.string().required("this field is required"),
   birth: yup.date().required("this field is required"),
-  city: yup.string().required(),
+  city: yup.string().required("This field is required"),
   mail: yup.string().email().required("this field is required"),
   password: yup
     .string()
@@ -14,16 +14,5 @@ const registerSchema = yup.object().shape({
     .required("Choose a password between 8 and 16 characters"),
   confirm_password: yup.string().required("Password must match"),
 });
-
-// const requestModel = {
-// "nickname": "Master",
-// "first_name": "Lucas",
-// "last_name": "Rocha",
-// "birth": "09/08/1993",
-// "city": "Santos",
-// "mail": "lucas.ar93@gmail.com",
-// "password": "123456789",
-// "confirm_password": "123456"
-// };
 
 export { registerSchema };
