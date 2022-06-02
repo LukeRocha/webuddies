@@ -15,22 +15,36 @@ const TopUserDiv = styled.div`
   flex-direction: row;
   justify-content: space-around;
   margin: 18px;
+
+  @media (min-width: 600px) {
+    justify-content: center;
+    flex-direction: column;
+  }
 `;
 
 const ImageContainer = styled.span`
   display: flex;
 
-  margin: 4px;
-  width: 20vw;
+  margin: 20px;
+  width: 130px;
   border-radius: 50%;
 `;
 
 const UserDataBlock = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end;
 
+  margin: 30px auto;
+  gap: 10px;
   color: white;
+
+  @media (min-width: 600px) {
+    gap: 20px;
+    margin: 0;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `;
 
 const BottomUserDiv = styled.div`
@@ -59,8 +73,8 @@ const UserProfile = () => {
           </ImageContainer>
           <UserDataBlock>
             <h2>Nickname</h2>
-            <Button style={{ width: "40vw", backgroundColor: "#A32FFF" }}>
-              add friend
+            <Button style={{ maxWidth: "40vw", backgroundColor: "#A32FFF" }}>
+              Follow
             </Button>
           </UserDataBlock>
         </TopUserDiv>
