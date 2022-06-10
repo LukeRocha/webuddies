@@ -1,4 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
+
 :root {
+  --dark-theme-background: #191a1c;
   --purple-button: #a32fff;
   --green-button: #6fb794;
   --inputs-background: #3a393e;
@@ -8,7 +11,7 @@
 * {
   box-sizing: border-box;
   margin: 0;
-  font-family: "Roboto";
+  font-family: "Poppins";
   overflow-x: hidden;
 }
 
