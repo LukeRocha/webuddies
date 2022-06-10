@@ -16,7 +16,7 @@ const PostsContainer = styled.section`
 
 const Title = styled.h2`
   margin: 8px auto;
-  width: 60px;
+  width: 70px;
   color: white;
   border-bottom: white 1px solid;
   text-align: center;

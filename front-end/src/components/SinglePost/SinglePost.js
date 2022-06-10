@@ -51,7 +51,7 @@ const SinglePost = () => {
   return (
     <>
       <PostContainer>
-        <User>{"User, has posted:"}</User>
+        <User>{"Username:"}</User>
         <TimeStamp>{'at "timestamp"'}</TimeStamp>
         <PostContent>
           {

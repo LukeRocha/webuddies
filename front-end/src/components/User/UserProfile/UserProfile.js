@@ -2,86 +2,96 @@ import React from "react";
 import styled from "styled-components";
 import Button from "../../Button/Button";
 
+//ANOTAR O QUE O CARINHA DISSE SOBRE MANTER TUDO NO MEIO
 const UserContainer = styled.div`
   display: flex;
   flex-direction: column;
-  text-indent: 15px;
-
   margin-top: 30px;
+
+  @media (min-width: 1000px) {
+    flex-direction: row;
+    justify-content: center;
+  }
 `;
 
-const TopUserDiv = styled.div`
+const UserDataContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin: 18px;
+  flex-direction: column;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  margin: 30px;
+  gap: 2px;
 
   @media (min-width: 600px) {
-    justify-content: center;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  @media (min-width: 1000px) {
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    gap: 100px;
+    margin: 100px auto;
   }
 `;
 
 const ImageContainer = styled.span`
   display: flex;
-
-  margin: 20px;
-  width: 130px;
+  margin: 15px auto 0 auto;
+  width: 6rem;
   border-radius: 50%;
-`;
 
-const UserDataBlock = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  @media (min-width: 620px) {
+    width: 170px;
+    margin: 1px;
+    left: 0;
+  }
 
-  margin: 30px auto;
-  gap: 10px;
-  color: white;
-
-  @media (min-width: 600px) {
-    gap: 20px;
-    margin: 0;
-    flex-direction: row;
-    justify-content: space-between;
+  @media (min-width: 1000px) {
+    margin: 0 auto;
   }
 `;
 
-const BottomUserDiv = styled.div`
+const UserData = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: left;
-  align-itens: flex-start;
+  align-items: left;
+`;
+const Status = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: center;
   color: white;
-  padding: 20px;
-  margin: 12px 16px;
-  border-bottom: solid white 1px;
+  margin: 10px;
 `;
 
 const UserProfile = () => {
-  //import json after login to render user data
-
   return (
     <>
       <UserContainer>
-        <TopUserDiv>
+        <UserDataContainer>
           <ImageContainer>
             <img
               alt="profile"
               src="https://img.elo7.com.br/product/original/2FFB539/adesivo-rock-heavy-metal-black-sabbath-26x10-cor-preta-angra.jpg"
             />
           </ImageContainer>
-          <UserDataBlock>
+          <UserData>
             <h2>Nickname</h2>
-            <Button style={{ maxWidth: "40vw", backgroundColor: "#A32FFF" }}>
+            <small>User name</small>
+            <Button
+              style={{
+                maxWidth: "40vw",
+                backgroundColor: "var(--purple-button)",
+              }}
+            >
               Follow
             </Button>
-          </UserDataBlock>
-        </TopUserDiv>
-        <BottomUserDiv>
-          <h2>User name</h2>
-          <p>user status message goes here</p>
-        </BottomUserDiv>
+            <Status>user status message goes here</Status>
+          </UserData>
+        </UserDataContainer>
       </UserContainer>
     </>
   );
