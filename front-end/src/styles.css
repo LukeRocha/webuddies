@@ -1,3 +1,10 @@
+:root {
+  --purple-button: #a32fff;
+  --green-button: #6fb794;
+  --inputs-background: #3a393e;
+  --modal-background: #242424;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;

@@ -12,7 +12,7 @@ const StyledInput = styled.input`
   border-radius: 4px;
 
   @media (min-width: 480px) {
-    width: 250px;
+    width: 230px;
   }
 `;
 
