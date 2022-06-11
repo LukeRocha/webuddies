@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Modal from "../components/Modal/Modal";
 import Input from "../components/Input/Input";
@@ -8,6 +8,10 @@ import buddies from "../assets/images/loginBuddies-mobile.png";
 const LoginContainer = styled.section`
   display: flex;
   flex-direction: column;
+
+  @media (min-width: 900px) {
+    flex-direction: row-reverse;
+  }
 `;
 
 const ModalContainer = styled.div`
@@ -16,6 +20,10 @@ const ModalContainer = styled.div`
   justify-content: center;
   align-content: center;
   gap: 20px;
+
+  @media (min-width: 600px) {
+    margin: 0 auto;
+  }
 `;
 
 const Title = styled.h1`
@@ -40,8 +48,9 @@ const BuddiesContainer = styled.div`
   botttom: 0;
 `;
 const Login = () => {
+  const [windowWidth, setWindowWidth] = useState(true);
   return (
-    <>
+    <LoginContainer>
       <ModalContainer>
         <Title>we Buddies</Title>
         <Modal>
@@ -53,9 +62,9 @@ const Login = () => {
         <Button bg={"var(--purple-button)"}>Become a buddy!</Button>
       </ModalContainer>
       <BuddiesContainer>
-        <img src={buddies} alt="buddies" />
+        {window.innerWidth < "900px" && <img src={buddies} alt="buddies" />}
       </BuddiesContainer>
-    </>
+    </LoginContainer>
   );
 };
 

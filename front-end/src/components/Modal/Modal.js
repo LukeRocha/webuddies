@@ -12,12 +12,12 @@ const StyledModal = styled.div`
   background-color: #242424;
   border-radius: 4px;
 
-  @media (min-width: 480px) {
-    width: 440px;
+  @media (min-width: 600px) {
+    max-width: 50vw;
   }
 
-  @media (min-width: 800px) {
-    width: 820px;
+  @media (min-width: 1200px) {
+    width: 70vw;
   }
 `;
 
