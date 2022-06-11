@@ -26,6 +26,7 @@ const UserDataContainer = styled.div`
   @media (min-width: 600px) {
     flex-direction: row;
     justify-content: space-around;
+    align-items: center;
   }
 
   @media (min-width: 1000px) {
@@ -43,7 +44,7 @@ const ImageContainer = styled.span`
   width: 6rem;
   border-radius: 50%;
 
-  @media (min-width: 620px) {
+  @media (min-width: 600px) {
     width: 170px;
     margin: 1px;
     left: 0;
@@ -80,10 +81,10 @@ const UserProfile = () => {
           </ImageContainer>
           <UserData>
             <h2>Nickname</h2>
-            <small>User name</small>
+            <p>User name</p>
+            <small>288 buddies</small>
             <Button
               style={{
-                maxWidth: "40vw",
                 backgroundColor: "var(--purple-button)",
               }}
             >

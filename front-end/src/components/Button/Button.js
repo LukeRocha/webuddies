@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledButton = styled.button`
-  width: 220px;
+  min-width: 220px;
+  max-width: 40vw;
   padding: 5px;
   margin: 0 auto;
   align-self: center;
@@ -11,6 +12,8 @@ const StyledButton = styled.button`
   color: #fff;
   background-color: ${({ bg }) => (bg ? bg : "#000")};
 `;
+
+//add larger button properties
 
 const Button = ({ children, bg, ...props }) => {
   return (

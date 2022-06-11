@@ -9,6 +9,7 @@ const PostContainer = styled.article`
   padding: 12px;
   background-color: #242424;
   border-radius: 4px;
+  width: auto;
 `;
 
 const User = styled.h3`
@@ -16,17 +17,16 @@ const User = styled.h3`
   text-align: left;
 `;
 
-const TimeStamp = styled.p`
+const TimeStamp = styled.small`
   color: white;
   text-align: left;
-  font-size: small;
   margin-bottom: 8px;
 `;
 
 const PostContent = styled.span`
   display: flex;
   text-align: left;
-  text-indentation: 8px;
+  text-indent: 8px;
   color: white;
 `;
 const PostButtons = styled.nav`
