@@ -29,7 +29,6 @@ const Title = styled.h2`
 const PostsContainer = () => {
   return (
     <PostContainer>
-      {/* map of post, as it get data from database */}
       <SinglePost />
       <SinglePost />
       <SinglePost />
