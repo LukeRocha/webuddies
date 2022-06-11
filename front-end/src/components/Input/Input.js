@@ -10,6 +10,10 @@ const StyledInput = styled.input`
   background-color: #3a393e;
   border: 1px solid black;
   border-radius: 4px;
+
+  @media (min-width: 480px) {
+    width: 230px;
+  }
 `;
 
 const Input = React.forwardRef(({ children, ...props }, ref) => {

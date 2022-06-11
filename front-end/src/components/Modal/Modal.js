@@ -11,6 +11,14 @@ const StyledModal = styled.div`
   padding: 8px;
   background-color: #242424;
   border-radius: 4px;
+
+  @media (min-width: 480px) {
+    width: 440px;
+  }
+
+  @media (min-width: 800px) {
+    width: 820px;
+  }
 `;
 
 const Modal = ({ children, ...props }) => {

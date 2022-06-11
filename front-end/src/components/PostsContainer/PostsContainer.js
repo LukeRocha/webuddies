@@ -2,40 +2,38 @@ import React from "react";
 import styled from "styled-components";
 import SinglePost from "../SinglePost/SinglePost";
 
-const PostsContainer = styled.section`
+const PostContainer = styled.section`
   display: flex;
   width: 95vw;
-  heigth: 100vw;
+
   position: relative;
   margin: 10px auto 80px auto;
   background-color: #3a393e;
   flex-flow: column nowrap;
   justify-content: center;
   border-radius: 10px;
+
+  @media (min-width: 600px) {
+    width: 80vw;
+  }
 `;
 
 const Title = styled.h2`
   margin: 8px auto;
-  width: 60px;
+  max-width: 50vw;
   color: white;
   border-bottom: white 1px solid;
   text-align: center;
 `;
 
-const Posts = () => {
+const PostsContainer = () => {
   return (
-    <>
-      <Title>Posts</Title>
-      <PostsContainer>
-        <SinglePost />
-        <SinglePost />
-        <SinglePost />
-        <SinglePost />
-        <SinglePost />
-        <SinglePost />
-      </PostsContainer>
-    </>
+    <PostContainer>
+      <SinglePost />
+      <SinglePost />
+      <SinglePost />
+    </PostContainer>
   );
 };
 
-export default Posts;
+export default PostsContainer;

@@ -16,6 +16,13 @@ const FormComponent = styled.form`
   align-self: center;
   margin: 0 auto;
   padding: 12px;
+
+  @media (min-width: 800px) {
+    width: 780px;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
 `;
 
 const InputContainer = styled.div`
@@ -24,6 +31,20 @@ const InputContainer = styled.div`
   align-content: center;
   margin: 6px auto;
   align-self: center;
+  align-content: center;
+
+  @media (min-width: 480px) {
+    align-items: left;
+    width: 260px;
+    margin: 20px;
+    padding: 12px;
+  }
+
+  @media (min-width: 800px) {
+    align-items: center;
+    width: 280px;
+    margin: 20px auto;
+  }
 `;
 
 const Select = styled.select`
@@ -35,6 +56,10 @@ const Select = styled.select`
   background-color: #3a393e;
   border: 1px solid black;
   border-radius: 4px;
+
+  @media (min-width: 480px) {
+    width: 230px;
+  }
 `;
 
 const Label = styled.label`
@@ -92,6 +117,7 @@ const Form = () => {
       <InputContainer>
         <Label>City</Label>
         <Select ref={ref} placeholder="select city" {...register("city")}>
+          <option label=""></option>
           <option value="Santos">Santos</option>
           <option value="Guarujá">Guarujá</option>
           <option value="São Vicente">São Vicente</option>
