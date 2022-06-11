@@ -22,20 +22,39 @@ const create = async (req, res) => {
     is_deleted: 0,
   };
 
+  const searchDbColumn = async (column) => {
+    const dbCheck = await db.knex
+      .select(column)
+      .from("users")
+      .where(column, req.body[column]);
+
+    return dbCheck.length;
+  };
+
   const insertUser = async (userInputs) => {
-    try {
+    const uniqueColumns = ["nickname", "mail"];
+    let errors = {};
+
+    for (column of uniqueColumns) {
+      if (await searchDbColumn(column)) {
+        errors[column] = `this ${column} already exists`;
+      }
+    }
+
+    if (errors.length == 0) {
       await db.knex
         .insert(userInputs)
         .into("users")
-        .then((response) => {
-          console.log(`user registered: ${userInputs.nickname}`);
-        });
-    } catch (error) {
-      const err = await res.status(200).json(error.detail);
+        .then((resp) =>
+          console.log(`user has been created: ${userInputs.nickname}`)
+        );
+      res.send(`Account has been created: ${userInputs.nickname}`);
+    }
+    if (Object.keys(errors).length > 0) {
+      res.send(errors);
     }
   };
-
-  insertUser(newUser);
+  return insertUser(newUser);
 };
 
 module.exports = { get, create };
