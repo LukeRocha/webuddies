@@ -17,7 +17,8 @@ const StyledModal = styled.div`
   }
 
   @media (min-width: 1200px) {
-    width: 70vw;
+    justify-content: center;
+    max-width: 70vw;
   }
 `;
 

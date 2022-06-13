@@ -43,8 +43,7 @@ const InputContainer = styled.div`
     padding: 12px;
   }
 
-  @media (min-width: 1200px) {
-    align-items: center;
+  @media (min-width: 900px) {
     margin: 20px auto;
   }
 `;
