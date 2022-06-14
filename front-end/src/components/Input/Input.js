@@ -11,9 +11,15 @@ const StyledInput = styled.input`
   border: 1px solid black;
   border-radius: 4px;
 
-  @media (min-width: 480px) {
-    width: 230px;
+  @media (min-width: 600px) {
+    max-width: 60vw;
   }
+
+  @media (min-width: 1200px) {
+    max-width: 70vw;
+
+    align-self: center;
+  } ;
 `;
 
 const Input = React.forwardRef(({ children, ...props }, ref) => {

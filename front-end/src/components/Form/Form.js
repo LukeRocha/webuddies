@@ -17,9 +17,13 @@ const FormComponent = styled.form`
   margin: 0 auto;
   padding: 12px;
 
-  @media (min-width: 800px) {
-    width: 780px;
+  @media (min-width: 900px) {
+  }
+
+  @media (min-width: 1200px) {
+    width: 50vw;
     justify-content: center;
+    padding: 50px;
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
@@ -33,16 +37,13 @@ const InputContainer = styled.div`
   align-self: center;
   align-content: center;
 
-  @media (min-width: 480px) {
-    align-items: left;
-    width: 260px;
-    margin: 20px;
+  @media (min-width: 600px) {
+    text-align: left;
+    align-items: center;
     padding: 12px;
   }
 
-  @media (min-width: 800px) {
-    align-items: center;
-    width: 280px;
+  @media (min-width: 900px) {
     margin: 20px auto;
   }
 `;
