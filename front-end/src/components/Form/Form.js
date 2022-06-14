@@ -7,6 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "../../Validations/schemas";
 import { useGlobalContext } from "../../context";
 import Input from "../Input/Input";
+import { Link } from "react-router-dom";
 
 const FormComponent = styled.form`
   display: flex;
@@ -151,6 +152,9 @@ const Form = () => {
       <InputContainer>
         <Button bg={"#6FB794"} type="submit">
           Send
+        </Button>
+        <Button bg={"red"} type="submit">
+          <Link to="/">cancel</Link>
         </Button>
       </InputContainer>
     </FormComponent>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Modal from "../components/Modal/Modal";
 import Input from "../components/Input/Input";
@@ -86,11 +87,15 @@ const Login = () => {
             <Input placeholder="username"></Input>
             <Input type="password" placeholder="password"></Input>
             <RegisterLink>{"Forgot my password"}</RegisterLink>
-            <Button bg={"var(--green-button)"}>Login</Button>
+            <Button bg={"var(--green-button)"}>
+              <Link to="profile">Login</Link>
+            </Button>
           </ModalWrapper>
         </Modal>
 
-        <Button bg={"var(--purple-button)"}>Become a buddy!</Button>
+        <Button bg={"var(--purple-button)"}>
+          <Link to="/register">Become a buddy!</Link>
+        </Button>
       </ModalContainer>
       <BuddiesContainer>
         <img src={size < 1200 ? buddies : desktopBuddies} alt="buddies" />

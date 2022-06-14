@@ -10,6 +10,7 @@ const StyledButton = styled.button`
   border-radius: 4px;
   border: none;
   color: #fff;
+
   background-color: ${({ bg }) => (bg ? bg : "#000")};
 `;
 
