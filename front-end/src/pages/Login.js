@@ -40,7 +40,7 @@ const Title = styled.h1`
   width: 350px;
   color: #a32fff;
   font-size: 5em;
-  margin: 0 auto;
+  margin: 12px auto;
 `;
 
 const RegisterLink = styled.a`
@@ -89,6 +89,7 @@ const Login = () => {
             <Button bg={"var(--green-button)"}>Login</Button>
           </ModalWrapper>
         </Modal>
+
         <Button bg={"var(--purple-button)"}>Become a buddy!</Button>
       </ModalContainer>
       <BuddiesContainer>

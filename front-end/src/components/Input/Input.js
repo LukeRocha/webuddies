@@ -16,7 +16,7 @@ const StyledInput = styled.input`
   }
 
   @media (min-width: 1200px) {
-    width: auto;
+    max-width: 70vw;
 
     align-self: center;
   } ;
