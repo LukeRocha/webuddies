@@ -1,10 +1,12 @@
+const { default: knex } = require("knex");
 const db = require("../database/db");
 
 const get = async (req, res) => {
+  const userData = await db.knex.select().from("users").where("id", "1");
   try {
-    await res.send("Api setup");
+    res.send(userData);
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
 };
 
