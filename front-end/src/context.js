@@ -5,7 +5,7 @@ import { postUser, getUser } from "./operations/operations";
 const AppContext = React.createContext();
 
 const initialState = {
-  loginState: { userData: {} },
+  userData: {},
   errorMessage: {},
   messages: {},
 };
@@ -14,7 +14,7 @@ const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const loginUser = async () => {
-    const dataFromDb = await getUser;
+    const dataFromDb = await getUser();
     dispatch({ type: "LOGIN_USER", payload: dataFromDb });
   };
   const registerSubmitHandler = async (userInputs) => {

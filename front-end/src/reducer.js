@@ -5,6 +5,13 @@ const reducer = (state, action) => {
       errorMessage: action.payload.data,
     };
   }
+
+  if (action.type === "LOGIN_USER") {
+    return {
+      ...state,
+      userData: action.payload,
+    };
+  }
 };
 
 export default reducer;

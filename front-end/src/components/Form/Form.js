@@ -87,77 +87,80 @@ const Form = () => {
   useEffect(() => {
     console.log(state);
   }, [state]);
+
   return (
-    <FormComponent onSubmit={handleSubmit(onSubmit)}>
-      <InputContainer>
-        <Label>Nickname</Label>
-        <Input ref={ref} {...register("nickname")} />
-        <InputError>{errors.nickname?.message}</InputError>
-        {state.errorMessage.nickname && (
-          <InputError>{state.errorMessage.nickname}</InputError>
-        )}
-      </InputContainer>
-      <InputContainer>
-        <Label>First name</Label>
-        <Input ref={ref} {...register("first_name")} />
-        <InputError>{errors.first_name?.message}</InputError>
-        <InputError></InputError>
-      </InputContainer>
+    <>
+      <FormComponent onSubmit={handleSubmit(onSubmit)}>
+        <InputContainer>
+          <Label>Nickname</Label>
+          <Input ref={ref} {...register("nickname")} />
+          <InputError>{errors.nickname?.message}</InputError>
+          {state.errorMessage.nickname && (
+            <InputError>{state.errorMessage.nickname}</InputError>
+          )}
+        </InputContainer>
+        <InputContainer>
+          <Label>First name</Label>
+          <Input ref={ref} {...register("first_name")} />
+          <InputError>{errors.first_name?.message}</InputError>
+          <InputError></InputError>
+        </InputContainer>
 
-      <InputContainer>
-        <Label>Last name</Label>
-        <Input ref={ref} {...register("last_name")} />
-        <InputError>{errors.last_name?.message}</InputError>
-      </InputContainer>
+        <InputContainer>
+          <Label>Last name</Label>
+          <Input ref={ref} {...register("last_name")} />
+          <InputError>{errors.last_name?.message}</InputError>
+        </InputContainer>
 
-      <InputContainer>
-        <Label>Birthdate</Label>
-        <Input ref={ref} type="date" {...register("birth")} />
-        <InputError>{errors.birth?.message}</InputError>
-      </InputContainer>
+        <InputContainer>
+          <Label>Birthdate</Label>
+          <Input ref={ref} type="date" {...register("birth")} />
+          <InputError>{errors.birth?.message}</InputError>
+        </InputContainer>
 
-      <InputContainer>
-        <Label>City</Label>
-        <Select ref={ref} placeholder="select city" {...register("city")}>
-          <option label=""></option>
-          <option value="Santos">Santos</option>
-          <option value="Guarujá">Guarujá</option>
-          <option value="São Vicente">São Vicente</option>
-          <option value="São Paulo">São Paulo</option>
-          <option value="Praia Grande">praia grande</option>
-        </Select>
-        <InputError>{errors.city?.message}</InputError>
-      </InputContainer>
+        <InputContainer>
+          <Label>City</Label>
+          <Select ref={ref} placeholder="select city" {...register("city")}>
+            <option label=""></option>
+            <option value="Santos">Santos</option>
+            <option value="Guarujá">Guarujá</option>
+            <option value="São Vicente">São Vicente</option>
+            <option value="São Paulo">São Paulo</option>
+            <option value="Praia Grande">praia grande</option>
+          </Select>
+          <InputError>{errors.city?.message}</InputError>
+        </InputContainer>
 
-      <InputContainer>
-        <Label>E-mail</Label>
-        <Input ref={ref} {...register("mail")} />
-        <InputError>{errors.mail?.message}</InputError>
-        {state.errorMessage.nickname && (
-          <InputError>{state.errorMessage.mail}</InputError>
-        )}
-      </InputContainer>
+        <InputContainer>
+          <Label>E-mail</Label>
+          <Input ref={ref} {...register("mail")} />
+          <InputError>{errors.mail?.message}</InputError>
+          {state.errorMessage.nickname && (
+            <InputError>{state.errorMessage.mail}</InputError>
+          )}
+        </InputContainer>
 
-      <InputContainer>
-        <Label>Password</Label>
-        <Input ref={ref} type="password" {...register("password")} />
-        <InputError>{errors.password?.message}</InputError>
-      </InputContainer>
+        <InputContainer>
+          <Label>Password</Label>
+          <Input ref={ref} type="password" {...register("password")} />
+          <InputError>{errors.password?.message}</InputError>
+        </InputContainer>
 
-      <InputContainer>
-        <Label>Confirm password</Label>
-        <Input ref={ref} type="password" {...register("confirm_password")} />
-        <InputError>{errors.confirm_password?.message}</InputError>
-      </InputContainer>
-      <InputContainer>
-        <Button bg={"#6FB794"} type="submit">
-          Send
-        </Button>
-        <Button bg={"red"} type="submit">
-          <Link to="/">cancel</Link>
-        </Button>
-      </InputContainer>
-    </FormComponent>
+        <InputContainer>
+          <Label>Confirm password</Label>
+          <Input ref={ref} type="password" {...register("confirm_password")} />
+          <InputError>{errors.confirm_password?.message}</InputError>
+        </InputContainer>
+        <InputContainer>
+          <Button bg={"#6FB794"} type="submit">
+            Send
+          </Button>
+          <Button bg={"red"} type="button">
+            <Link to="/">cancel</Link>
+          </Button>
+        </InputContainer>
+      </FormComponent>
+    </>
   );
 };
 
