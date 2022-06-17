@@ -1,10 +1,12 @@
+const { default: knex } = require("knex");
 const db = require("../database/db");
 
 const get = async (req, res) => {
+  const userData = await db.knex.select().from("users").where("id", "1");
   try {
-    await res.send("Api setup");
+    res.send(userData);
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
 };
 
@@ -34,6 +36,7 @@ const create = async (req, res) => {
   const insertUser = async (userInputs) => {
     const uniqueColumns = ["nickname", "mail"];
     let errors = {};
+    const objectErrorsCounter = Object.keys(errors).length;
 
     for (column of uniqueColumns) {
       if (await searchDbColumn(column)) {
@@ -41,12 +44,13 @@ const create = async (req, res) => {
       }
     }
 
-    if (errors.length == 0) {
+    if (objectErrorsCounter === 0) {
+      console.log("porra");
       await db.knex
         .insert(userInputs)
         .into("users")
         .then((resp) =>
-          console.log(`user has been created: ${userInputs.nickname}`)
+          console.log(`Account has been created: ${userInputs.nickname}`)
         );
       res.send(`Account has been created: ${userInputs.nickname}`);
     }

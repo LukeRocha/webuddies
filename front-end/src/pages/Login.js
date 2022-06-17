@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useGlobalContext } from "../context";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Modal from "../components/Modal/Modal";
@@ -65,6 +66,7 @@ const ModalWrapper = styled.div`
 `;
 
 const Login = () => {
+  const { loginUser } = useGlobalContext();
   const [size, setSize] = useState(window.innerWidth);
 
   const checkWindowSize = () => {
@@ -87,7 +89,10 @@ const Login = () => {
             <Input placeholder="username"></Input>
             <Input type="password" placeholder="password"></Input>
             <RegisterLink>{"Forgot my password"}</RegisterLink>
-            <Button bg={"var(--green-button)"}>
+            <Button
+              bg={"var(--green-button)"}
+              onClick={async () => await loginUser()}
+            >
               <Link to="profile">Login</Link>
             </Button>
           </ModalWrapper>

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useGlobalContext } from "../../../context";
 import Button from "../../Button/Button";
 
 //ANOTAR O QUE O CARINHA DISSE SOBRE MANTER TUDO NO MEIO
@@ -69,6 +70,8 @@ const Status = styled.div`
 `;
 
 const UserProfile = () => {
+  const { ...state } = useGlobalContext();
+  console.log(state.state.userData);
   return (
     <>
       <UserContainer>
@@ -80,8 +83,8 @@ const UserProfile = () => {
             />
           </ImageContainer>
           <UserData>
-            <h2>Nickname</h2>
-            <p>User name</p>
+            <h2>{state.state.userData.nickname}</h2>
+            <p>{`${state.state.userData.first_name} ${state.state.userData.last_name}`}</p>
             <small>288 buddies</small>
             <Button
               style={{
