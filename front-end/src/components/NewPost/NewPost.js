@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Button from "../Button/Button";
 
@@ -54,6 +54,8 @@ const ButtonsWrapper = styled.div`
 `;
 
 const PostArea = ({ children }) => {
+  const [postContent, setPostContent] = useState("");
+
   return (
     <NewPostContainer>
       <TextareaWrapper>
@@ -72,7 +74,9 @@ const PostArea = ({ children }) => {
       </TextareaWrapper>
       <ButtonsWrapper>
         <>
-          <Button bg={"var(--green-button)"}>Share</Button>
+          <Button bg={"var(--green-button)"} onClick={() => {}}>
+            Share
+          </Button>
         </>
       </ButtonsWrapper>
     </NewPostContainer>

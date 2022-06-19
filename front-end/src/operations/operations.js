@@ -1,7 +1,8 @@
 import axios from "axios";
 const urls = {
-  post: "http://localhost:3700/register",
+  postNewUser: "http://localhost:3700/register",
   login: "http://localhost:3700/login",
+  createNewPost: "http://localhost:3700/profile",
 };
 
 export const getUser = async () => {
@@ -19,7 +20,7 @@ export const getUser = async () => {
 
 export const postUser = async (userInputs) => {
   const postResult = await axios
-    .post(urls.post, userInputs)
+    .post(urls.postNewUser, userInputs)
     .then((resp) => {
       return resp;
     })
@@ -28,4 +29,15 @@ export const postUser = async (userInputs) => {
     });
 
   return postResult;
+};
+
+export const createNewPost = async (newPostData) => {
+  const postContent = await axios
+    .post(urls.createNewPost, newPostData)
+    .then((resp) => {
+      return resp;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 };
