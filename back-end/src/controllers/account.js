@@ -36,7 +36,6 @@ const create = async (req, res) => {
   const insertUser = async (userInputs) => {
     const uniqueColumns = ["nickname", "mail"];
     let errors = {};
-    const objectErrorsCounter = Object.keys(errors).length;
 
     for (column of uniqueColumns) {
       if (await searchDbColumn(column)) {
