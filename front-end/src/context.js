@@ -9,20 +9,20 @@ const initialState = {
     userData: {},
     userPosts: {},
   },
-  errorMessage: {},
-  messages: {},
+  serverMessages: {},
 };
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  const registerSubmitHandler = async (userInputs) => {
+    const registeredUser = await postUser(userInputs);
+    dispatch({ type: "REGISTER_USER", payload: registeredUser.data });
+  };
+
   const loginUser = async () => {
     const dataFromDb = await getUser();
     dispatch({ type: "LOGIN_USER", payload: dataFromDb });
-  };
-  const registerSubmitHandler = async (userInputs) => {
-    const registeredUser = await postUser(userInputs);
-    dispatch({ type: "REGISTER_USER", payload: registeredUser });
   };
 
   return (

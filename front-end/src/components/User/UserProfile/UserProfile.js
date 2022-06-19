@@ -70,8 +70,7 @@ const Status = styled.div`
 
 const UserProfile = () => {
   const { state } = useGlobalContext();
-  console.log(state.userState.userData);
-  console.log(state);
+
   return (
     <>
       <UserContainer>

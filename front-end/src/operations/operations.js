@@ -13,7 +13,7 @@ export const getUser = async () => {
     .catch((error) => {
       console.log(error);
     });
-  // console.log(retrieveData);
+
   return retrieveData;
 };
 
@@ -21,11 +21,10 @@ export const postUser = async (userInputs) => {
   const postResult = await axios
     .post(urls.post, userInputs)
     .then((resp) => {
-      console.log(resp);
       return resp;
     })
     .catch((error) => {
-      console.error(error);
+      console.log(error);
     });
 
   return postResult;

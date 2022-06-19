@@ -84,6 +84,7 @@ const Form = () => {
   };
 
   const ref = React.createRef();
+
   useEffect(() => {}, [state]);
 
   return (
@@ -93,15 +94,14 @@ const Form = () => {
           <Label>Nickname</Label>
           <Input ref={ref} {...register("nickname")} />
           <InputError>{errors.nickname?.message}</InputError>
-          {state.messages.nickname && (
-            <InputError>{state.messages.nickname}</InputError>
+          {state.serverMessages.nickname && (
+            <InputError>{state.serverMessages.nickname}</InputError>
           )}
         </InputContainer>
         <InputContainer>
           <Label>First name</Label>
           <Input ref={ref} {...register("first_name")} />
           <InputError>{errors.first_name?.message}</InputError>
-          <InputError></InputError>
         </InputContainer>
 
         <InputContainer>
@@ -133,8 +133,8 @@ const Form = () => {
           <Label>E-mail</Label>
           <Input ref={ref} {...register("mail")} />
           <InputError>{errors.mail?.message}</InputError>
-          {state.messages.nickname && (
-            <InputError>{state.messages.mail}</InputError>
+          {state.serverMessages.mail && (
+            <InputError>{state.serverMessages.mail}</InputError>
           )}
         </InputContainer>
 

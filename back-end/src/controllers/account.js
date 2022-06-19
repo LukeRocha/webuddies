@@ -44,7 +44,7 @@ const create = async (req, res) => {
       }
     }
 
-    if (objectErrorsCounter === 0) {
+    if (Object.keys(errors).length === 0) {
       console.log("porra");
       await db.knex
         .insert(userInputs)
