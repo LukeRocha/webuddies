@@ -40,4 +40,6 @@ export const createNewPost = async (newPostData) => {
     .catch((error) => {
       console.log(error);
     });
+
+  return postContent;
 };

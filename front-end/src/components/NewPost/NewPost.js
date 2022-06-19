@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Button from "../Button/Button";
-
+import { useGlobalContext } from "../../context";
+import { createNewPost } from "../../operations/operations";
 const NewPostContainer = styled.section`
   display: flex;
   flex-direction: column;
@@ -54,8 +55,14 @@ const ButtonsWrapper = styled.div`
 `;
 
 const PostArea = ({ children }) => {
-  const [postContent, setPostContent] = useState("");
-
+  const { state } = useGlobalContext();
+  const [postContent, setPostContent] = useState({
+    user_id: state.userState.userData.id,
+    content: "",
+  });
+  useEffect(() => {
+    console.log(postContent);
+  }, [postContent]);
   return (
     <NewPostContainer>
       <TextareaWrapper>
@@ -68,13 +75,21 @@ const PostArea = ({ children }) => {
         <PostContent
           maxLength={200}
           placeholder="Share something with buddies..."
+          onChange={(e) =>
+            setPostContent({ ...postContent, content: e.target.value })
+          }
         >
           {children}
         </PostContent>
       </TextareaWrapper>
       <ButtonsWrapper>
         <>
-          <Button bg={"var(--green-button)"} onClick={() => {}}>
+          <Button
+            bg={"var(--green-button)"}
+            onClick={() => {
+              createNewPost(postContent);
+            }}
+          >
             Share
           </Button>
         </>

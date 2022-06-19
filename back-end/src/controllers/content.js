@@ -15,13 +15,13 @@ const getPosts = async (req, res) => {
 const newPost = (req, res) => {
   const post = {
     user_id: req.body.user_id,
-    postContent: req.body.postContent,
+    post_content: req.body.content,
   };
 
   const createPost = async (postContent) => {
     await db.knex
       .insert(postContent)
-      .into(posts)
+      .into("posts")
       .then((resp) => {
         res.send("Content posted!");
       });
