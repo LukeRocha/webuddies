@@ -70,8 +70,8 @@ const Status = styled.div`
 `;
 
 const UserProfile = () => {
-  const { ...state } = useGlobalContext();
-  console.log(state.state.userData);
+  const { state } = useGlobalContext();
+  console.log(state);
   return (
     <>
       <UserContainer>
@@ -83,8 +83,8 @@ const UserProfile = () => {
             />
           </ImageContainer>
           <UserData>
-            <h2>{state.state.userData.nickname}</h2>
-            <p>{`${state.state.userData.first_name} ${state.state.userData.last_name}`}</p>
+            <h2>{state.userData.nickname}</h2>
+            <p>{`${state.userData.first_name} ${state.userData.last_name}`}</p>
             <small>288 buddies</small>
             <Button
               style={{

@@ -8,7 +8,6 @@ export const getUser = async () => {
   const retrieveData = await axios
     .get(urls.login)
     .then((resp) => {
-      console.log(resp.data[0]);
       return resp.data[0];
     })
     .catch((error) => {
