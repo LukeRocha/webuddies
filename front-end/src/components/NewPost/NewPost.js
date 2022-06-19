@@ -21,7 +21,7 @@ const TextareaWrapper = styled.div`
   flex-direction: row;
 
   margin: 20px auto 5px auto;
-  padding: 12px;
+  padding: 8px;
   width: 75vw;
   gap: 18px;
   border-bottom: 1px solid #333;
@@ -72,7 +72,6 @@ const PostArea = ({ children }) => {
       </TextareaWrapper>
       <ButtonsWrapper>
         <>
-          <Button bg={"palevioletred"}>cancel</Button>
           <Button bg={"var(--green-button)"}>Share</Button>
         </>
       </ButtonsWrapper>

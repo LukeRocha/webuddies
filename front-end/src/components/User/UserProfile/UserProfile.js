@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { useGlobalContext } from "../../../context";
 import Button from "../../Button/Button";
 
-//ANOTAR O QUE O CARINHA DISSE SOBRE MANTER TUDO NO MEIO
 const UserContainer = styled.div`
   display: flex;
   flex-direction: column;
