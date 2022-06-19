@@ -13,7 +13,7 @@ export const getUser = async () => {
     .catch((error) => {
       console.log(error);
     });
-  console.log(retrieveData);
+  // console.log(retrieveData);
   return retrieveData;
 };
 

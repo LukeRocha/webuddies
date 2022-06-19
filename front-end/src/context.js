@@ -5,7 +5,10 @@ import { postUser, getUser } from "./operations/operations";
 const AppContext = React.createContext();
 
 const initialState = {
-  userData: {},
+  userState: {
+    userData: {},
+    userPosts: {},
+  },
   errorMessage: {},
   messages: {},
 };

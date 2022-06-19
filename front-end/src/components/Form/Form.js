@@ -93,8 +93,8 @@ const Form = () => {
           <Label>Nickname</Label>
           <Input ref={ref} {...register("nickname")} />
           <InputError>{errors.nickname?.message}</InputError>
-          {state.errorMessage.nickname && (
-            <InputError>{state.errorMessage.nickname}</InputError>
+          {state.messages.nickname && (
+            <InputError>{state.messages.nickname}</InputError>
           )}
         </InputContainer>
         <InputContainer>
@@ -133,8 +133,8 @@ const Form = () => {
           <Label>E-mail</Label>
           <Input ref={ref} {...register("mail")} />
           <InputError>{errors.mail?.message}</InputError>
-          {state.errorMessage.nickname && (
-            <InputError>{state.errorMessage.mail}</InputError>
+          {state.messages.nickname && (
+            <InputError>{state.messages.mail}</InputError>
           )}
         </InputContainer>
 
