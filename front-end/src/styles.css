@@ -4,6 +4,7 @@
   --dark-theme-background: #191a1c;
   --purple-button: #a32fff;
   --green-button: #6fb794;
+  --red-button: #c54a4a;
   --inputs-background: #3a393e;
   --modal-background: #242424;
 }
@@ -17,6 +18,11 @@
 
 a {
   text-decoration: none;
+  margin: 0 auto;
+}
+
+.button-Link {
+  color: white;
 }
 body {
   width: 100vw;

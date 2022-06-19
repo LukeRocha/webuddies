@@ -84,9 +84,7 @@ const Form = () => {
   };
 
   const ref = React.createRef();
-  useEffect(() => {
-    console.log(state);
-  }, [state]);
+  useEffect(() => {}, [state]);
 
   return (
     <>
@@ -152,12 +150,18 @@ const Form = () => {
           <InputError>{errors.confirm_password?.message}</InputError>
         </InputContainer>
         <InputContainer>
-          <Button bg={"#6FB794"} type="submit">
+          <Button bg={"var(--green-button)"} type="submit">
             Send
           </Button>
-          <Button bg={"red"} type="button">
-            <Link to="/">cancel</Link>
-          </Button>
+          <Link to="/">
+            <Button
+              className="button-Link"
+              bg={"var(--red-button)"}
+              type="button"
+            >
+              cancel
+            </Button>
+          </Link>
         </InputContainer>
       </FormComponent>
     </>

@@ -11,6 +11,7 @@ import desktopBuddies from "../assets/images/desktop-login-buddies.png";
 const LoginContainer = styled.section`
   display: flex;
   flex-direction: column;
+  align-items: center;
 
   @media (min-width: 1200px) {
     flex-direction: row-reverse;
@@ -89,18 +90,22 @@ const Login = () => {
             <Input placeholder="username"></Input>
             <Input type="password" placeholder="password"></Input>
             <RegisterLink>{"Forgot my password"}</RegisterLink>
-            <Button
-              bg={"var(--green-button)"}
-              onClick={async () => await loginUser()}
-            >
-              <Link to="profile">Login</Link>
-            </Button>
+            <Link to="profile">
+              <Button
+                bg={"var(--green-button)"}
+                onClick={async () => await loginUser()}
+              >
+                Login
+              </Button>
+            </Link>
           </ModalWrapper>
         </Modal>
 
-        <Button bg={"var(--purple-button)"}>
-          <Link to="/register">Become a buddy!</Link>
-        </Button>
+        <Link to="/register">
+          <Button className="button-Link" bg={"var(--purple-button)"}>
+            Become a buddy!
+          </Button>
+        </Link>
       </ModalContainer>
       <BuddiesContainer>
         <img src={size < 1200 ? buddies : desktopBuddies} alt="buddies" />
