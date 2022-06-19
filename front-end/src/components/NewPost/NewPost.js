@@ -57,12 +57,12 @@ const ButtonsWrapper = styled.div`
 const PostArea = ({ children }) => {
   const { state } = useGlobalContext();
   const [postContent, setPostContent] = useState({
-    user_id: state.userState.userData.id,
+    user_id: "",
     content: "",
   });
   useEffect(() => {
-    console.log(postContent);
-  }, [postContent]);
+    setPostContent({ ...postContent, user_id: state.userState.userData.id });
+  }, [state]);
   return (
     <NewPostContainer>
       <TextareaWrapper>
@@ -78,6 +78,7 @@ const PostArea = ({ children }) => {
           onChange={(e) =>
             setPostContent({ ...postContent, content: e.target.value })
           }
+          value={postContent.content}
         >
           {children}
         </PostContent>
@@ -88,6 +89,7 @@ const PostArea = ({ children }) => {
             bg={"var(--green-button)"}
             onClick={() => {
               createNewPost(postContent);
+              setPostContent({ ...postContent, content: "" });
             }}
           >
             Share

@@ -16,6 +16,7 @@ const newPost = (req, res) => {
   const post = {
     user_id: req.body.user_id,
     post_content: req.body.content,
+    timestamp: req.body.timestamp,
   };
 
   const createPost = async (postContent) => {
