@@ -93,7 +93,9 @@ const Login = () => {
             <Link to="profile">
               <Button
                 bg={"var(--green-button)"}
-                onClick={async () => await loginUser()}
+                onClick={async () => {
+                  await loginUser();
+                }}
               >
                 Login
               </Button>

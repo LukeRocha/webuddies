@@ -9,7 +9,10 @@ const reducer = (state, action) => {
   if (action.type === "LOGIN_USER") {
     return {
       ...state,
-      userState: { userData: action.payload },
+      userState: {
+        userData: action.userPayload[0],
+        userPosts: action.postsPayload,
+      },
     };
   }
 };

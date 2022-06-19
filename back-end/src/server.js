@@ -13,7 +13,8 @@ app.options("*", cors());
 
 const router = express.Router();
 
-router.get("/login", accountController.get, contentController.getPosts);
+router.get("/login", accountController.get);
+router.get("/profile", contentController.getPosts);
 router.post("/register", accountController.create);
 router.post("/profile", contentController.newPost);
 app.use(router);

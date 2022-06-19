@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import SinglePost from "../SinglePost/SinglePost";
+import { useGlobalContext } from "../../context";
 
 const PostContainer = styled.section`
   display: flex;
@@ -18,12 +19,15 @@ const PostContainer = styled.section`
   }
 `;
 
-const PostsContainer = () => {
+const PostsContainer = ({ children }) => {
+  const { state } = useGlobalContext();
+  const userPosts = [state.userState.userPosts];
+
   return (
     <PostContainer>
-      <SinglePost />
-      <SinglePost />
-      <SinglePost />
+      {userPosts.map((post, index) => {
+        <SinglePost />;
+      })}
     </PostContainer>
   );
 };
