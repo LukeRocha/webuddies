@@ -12,7 +12,7 @@ const get = async (req, res) => {
 
 const create = async (req, res) => {
   const newUser = {
-    nickname: req.body.nickname,
+    nickname: req.body.nickname.toLowerCase(),
     first_name: req.body.first_name,
     last_name: req.body.last_name,
     birth: req.body.birth,

@@ -18,14 +18,6 @@ const PostContainer = styled.section`
   }
 `;
 
-const Title = styled.h2`
-  margin: 8px auto;
-  max-width: 50vw;
-  color: white;
-  border-bottom: white 1px solid;
-  text-align: center;
-`;
-
 const PostsContainer = () => {
   return (
     <PostContainer>

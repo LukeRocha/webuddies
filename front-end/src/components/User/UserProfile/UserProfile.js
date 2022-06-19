@@ -58,8 +58,12 @@ const ImageContainer = styled.span`
 const UserData = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: left;
+
+  @media (min-width: 600px) {
+    align-items: flex-start;
+  }
 `;
+
 const Status = styled.div`
   display: flex;
   flex-direction: column;
@@ -83,8 +87,15 @@ const UserProfile = () => {
           </ImageContainer>
           <UserData>
             <h2>{state.userState.userData.nickname}</h2>
-            <p>{`${state.userState.userData.first_name} ${state.userState.userData.last_name}`}</p>
-            <small>288 buddies</small>
+            <p>
+              {`${state.userState.userData.first_name}
+             ${state.userState.userData.last_name}`}
+            </p>
+            <small>288 buddies`find in database`</small>
+            <Status>
+              {`user status message goes here, ${state.userState.userData.status}
+              `}
+            </Status>
             <Button
               style={{
                 backgroundColor: "var(--purple-button)",
@@ -92,7 +103,6 @@ const UserProfile = () => {
             >
               Follow
             </Button>
-            <Status>user status message goes here</Status>
           </UserData>
         </UserDataContainer>
       </UserContainer>
