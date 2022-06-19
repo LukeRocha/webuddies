@@ -5,6 +5,7 @@ const getPosts = async (req, res) => {
   const userPosts = await db.knex.select().from("posts").where("user_id", "1");
 
   try {
+    console.log(userPosts);
     res.send(userPosts);
   } catch (error) {
     console.log(error);

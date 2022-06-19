@@ -47,17 +47,13 @@ const InterfaceButton = styled.button`
   border: none;
 `;
 
-const SinglePost = () => {
+const SinglePost = ({ children }) => {
   return (
     <>
       <PostContainer>
         <User>{"Username:"}</User>
         <TimeStamp>{'at "timestamp"'}</TimeStamp>
-        <PostContent>
-          {
-            "here goes the user's post content, it can be a link or a single text"
-          }
-        </PostContent>
+        <PostContent>{children}</PostContent>
         <PostButtons>
           <InterfaceButton
             role="img"

@@ -22,5 +22,6 @@ CREATE TABLE IF NOT EXISTS friendships (
 CREATE TABLE IF NOT EXISTS posts (
   id SERIAL PRIMARY KEY,
   user_id INTEGER REFERENCES users (id),
-  post_content VARCHAR(210)
+  post_content VARCHAR(210),
+  timestamp TIMESTAMP
 )
