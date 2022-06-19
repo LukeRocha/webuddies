@@ -56,7 +56,7 @@ const BuddiesContainer = styled.div`
   width: 100vw;
   justify-content: center;
   margin: 0 auto;
-  botttom: 0;
+  bottom: 0;
 `;
 
 const ModalWrapper = styled.div`

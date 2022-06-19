@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledButton = styled.button`
-  min-width: 220px;
+  min-width: 120px;
   max-width: 40vw;
   padding: 5px;
   align-self: center;

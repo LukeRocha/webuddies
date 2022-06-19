@@ -20,11 +20,11 @@ const TextareaWrapper = styled.div`
   display: flex;
   flex-direction: row;
 
-  margin: 0 auto;
+  margin: 20px auto 5px auto;
   padding: 12px;
   width: 75vw;
   gap: 18px;
-  border-bottom: 1px solid #555;
+  border-bottom: 1px solid #333;
 `;
 
 const ImageContainer = styled.span`
@@ -37,7 +37,7 @@ const ImageContainer = styled.span`
 
 const PostContent = styled.textarea`
   width: 70vw;
-  background-color: var(--input-background);
+  background-color: var(--inputs-background);
   color: white;
   border-radius: 10px;
   outline: none;
@@ -47,9 +47,10 @@ const ButtonsWrapper = styled.div`
   width: 75vw;
   margin: 0 auto;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   justify-content: flex-end;
-  padding: 20px;
+  gap: 10px;
+  padding: 10px;
 `;
 
 const PostArea = ({ children }) => {
@@ -71,7 +72,8 @@ const PostArea = ({ children }) => {
       </TextareaWrapper>
       <ButtonsWrapper>
         <>
-          <Button bg={"var(--purple-button)"}>Share</Button>
+          <Button bg={"palevioletred"}>cancel</Button>
+          <Button bg={"var(--green-button)"}>Share</Button>
         </>
       </ButtonsWrapper>
     </NewPostContainer>
