@@ -8,6 +8,7 @@ const initialState = {
   userState: {
     userData: {},
     userPosts: {},
+    userFriendships: {},
   },
   serverMessages: {},
 };

@@ -19,15 +19,16 @@ const PostContainer = styled.section`
   }
 `;
 
-const PostsContainer = ({ children }) => {
+const PostsContainer = () => {
   const { state } = useGlobalContext();
   const userPosts = [state.userState.userPosts];
 
   return (
     <PostContainer>
-      {userPosts.map((post, index) => {
-        <SinglePost />;
-      })}
+      {userPosts &&
+        userPosts.map((post) => {
+          return <SinglePost key={post.id} id={post.id} post={post} />;
+        })}
     </PostContainer>
   );
 };

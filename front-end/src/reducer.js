@@ -10,7 +10,7 @@ const reducer = (state, action) => {
     return {
       ...state,
       userState: {
-        userData: action.userPayload[0],
+        userData: action.userPayload,
         userPosts: action.postsPayload,
       },
     };

@@ -23,5 +23,5 @@ CREATE TABLE IF NOT EXISTS posts (
   id SERIAL PRIMARY KEY,
   user_id INTEGER REFERENCES users (id),
   post_content VARCHAR(210),
-  timestamp TIMESTAMP
+  timestamp timestamp default current_timestamp
 )

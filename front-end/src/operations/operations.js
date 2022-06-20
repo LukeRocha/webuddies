@@ -7,30 +7,31 @@ const urls = {
 };
 
 export const getUser = async () => {
-  const retrieveData = await axios
+  const requestUserData = await axios
     .get(urls.login)
     .then((resp) => {
-      return resp.data;
+      const result = resp.data;
+
+      return result;
     })
     .catch((error) => {
       console.log(error);
     });
 
-  return retrieveData;
+  return requestUserData;
 };
 
 export const getUserPosts = async () => {
-  const retrievePosts = await axios
+  const requestPosts = await axios
     .get(urls.getPosts)
     .then((resp) => {
-      console.log(resp.data);
       return resp.data;
     })
     .catch((error) => {
       console.log(error);
     });
 
-  return retrievePosts;
+  return requestPosts;
 };
 export const postUser = async (userInputs) => {
   const postResult = await axios
@@ -46,7 +47,7 @@ export const postUser = async (userInputs) => {
 };
 
 export const createNewPost = async (newPostData) => {
-  const postContent = await axios
+  const postResult = await axios
     .post(urls.createNewPost, newPostData)
     .then((resp) => {
       return resp;
@@ -55,5 +56,5 @@ export const createNewPost = async (newPostData) => {
       console.log(error);
     });
 
-  return postContent;
+  return postResult;
 };
