@@ -23,7 +23,6 @@ const PostsContainer = () => {
   const { state } = useGlobalContext();
   const [userPosts, setUserPosts] = useState(state.userState.userPosts);
 
-  console.log(userPosts);
   useEffect(() => {
     setUserPosts(state.userState.userPosts);
   }, [state]);

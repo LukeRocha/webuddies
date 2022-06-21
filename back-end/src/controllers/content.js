@@ -2,7 +2,11 @@ const { default: knex } = require("knex");
 const db = require("../database/db");
 
 const getPosts = async (req, res, next) => {
-  const userPosts = await db.knex.select().from("posts").where("user_id", "1");
+  const userPosts = await db.knex
+    .select()
+    .from("posts")
+    .where("user_id", "1")
+    .orderBy("id", "desc");
   console.log(...userPosts);
   try {
     res.send(userPosts);
