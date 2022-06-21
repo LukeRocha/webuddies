@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import SinglePost from "../SinglePost/SinglePost";
 import { useGlobalContext } from "../../context";
+import { getUserPosts } from "../../operations/operations";
 
 const PostContainer = styled.section`
   display: flex;
