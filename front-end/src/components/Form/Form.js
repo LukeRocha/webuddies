@@ -84,9 +84,8 @@ const Form = () => {
   };
 
   const ref = React.createRef();
-  useEffect(() => {
-    console.log(state);
-  }, [state]);
+
+  useEffect(() => {}, [state]);
 
   return (
     <>
@@ -95,15 +94,14 @@ const Form = () => {
           <Label>Nickname</Label>
           <Input ref={ref} {...register("nickname")} />
           <InputError>{errors.nickname?.message}</InputError>
-          {state.errorMessage.nickname && (
-            <InputError>{state.errorMessage.nickname}</InputError>
+          {state.serverMessages.nickname && (
+            <InputError>{state.serverMessages.nickname}</InputError>
           )}
         </InputContainer>
         <InputContainer>
           <Label>First name</Label>
           <Input ref={ref} {...register("first_name")} />
           <InputError>{errors.first_name?.message}</InputError>
-          <InputError></InputError>
         </InputContainer>
 
         <InputContainer>
@@ -135,8 +133,8 @@ const Form = () => {
           <Label>E-mail</Label>
           <Input ref={ref} {...register("mail")} />
           <InputError>{errors.mail?.message}</InputError>
-          {state.errorMessage.nickname && (
-            <InputError>{state.errorMessage.mail}</InputError>
+          {state.serverMessages.mail && (
+            <InputError>{state.serverMessages.mail}</InputError>
           )}
         </InputContainer>
 
@@ -152,12 +150,18 @@ const Form = () => {
           <InputError>{errors.confirm_password?.message}</InputError>
         </InputContainer>
         <InputContainer>
-          <Button bg={"#6FB794"} type="submit">
+          <Button bg={"var(--green-button)"} type="submit">
             Send
           </Button>
-          <Button bg={"red"} type="button">
-            <Link to="/">cancel</Link>
-          </Button>
+          <Link to="/">
+            <Button
+              className="button-Link"
+              bg={"var(--red-button)"}
+              type="button"
+            >
+              cancel
+            </Button>
+          </Link>
         </InputContainer>
       </FormComponent>
     </>

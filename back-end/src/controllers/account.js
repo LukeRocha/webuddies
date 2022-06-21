@@ -1,10 +1,10 @@
 const { default: knex } = require("knex");
 const db = require("../database/db");
 
-const get = async (req, res) => {
+const get = async (req, res, next) => {
   const userData = await db.knex.select().from("users").where("id", "1");
   try {
-    res.send(userData);
+    res.send(...userData);
   } catch (error) {
     console.log(error);
   }
@@ -12,7 +12,7 @@ const get = async (req, res) => {
 
 const create = async (req, res) => {
   const newUser = {
-    nickname: req.body.nickname,
+    nickname: req.body.nickname.toLowerCase(),
     first_name: req.body.first_name,
     last_name: req.body.last_name,
     birth: req.body.birth,
@@ -36,7 +36,6 @@ const create = async (req, res) => {
   const insertUser = async (userInputs) => {
     const uniqueColumns = ["nickname", "mail"];
     let errors = {};
-    const objectErrorsCounter = Object.keys(errors).length;
 
     for (column of uniqueColumns) {
       if (await searchDbColumn(column)) {
@@ -44,7 +43,7 @@ const create = async (req, res) => {
       }
     }
 
-    if (objectErrorsCounter === 0) {
+    if (Object.keys(errors).length === 0) {
       console.log("porra");
       await db.knex
         .insert(userInputs)

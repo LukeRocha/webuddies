@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { useGlobalContext } from "../../../context";
 import Button from "../../Button/Button";
 
-//ANOTAR O QUE O CARINHA DISSE SOBRE MANTER TUDO NO MEIO
 const UserContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -59,8 +58,12 @@ const ImageContainer = styled.span`
 const UserData = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: left;
+
+  @media (min-width: 600px) {
+    align-items: flex-start;
+  }
 `;
+
 const Status = styled.div`
   display: flex;
   flex-direction: column;
@@ -70,8 +73,8 @@ const Status = styled.div`
 `;
 
 const UserProfile = () => {
-  const { ...state } = useGlobalContext();
-  console.log(state.state.userData);
+  const { state } = useGlobalContext();
+
   return (
     <>
       <UserContainer>
@@ -83,9 +86,16 @@ const UserProfile = () => {
             />
           </ImageContainer>
           <UserData>
-            <h2>{state.state.userData.nickname}</h2>
-            <p>{`${state.state.userData.first_name} ${state.state.userData.last_name}`}</p>
-            <small>288 buddies</small>
+            <h2>{state.userState.userData.nickname}</h2>
+            <p>
+              {`${state.userState.userData.first_name}
+             ${state.userState.userData.last_name}`}
+            </p>
+            <small>288 buddies`find in database`</small>
+            <Status>
+              {`user status message goes here, ${state.userState.userData.status}
+              `}
+            </Status>
             <Button
               style={{
                 backgroundColor: "var(--purple-button)",
@@ -93,7 +103,6 @@ const UserProfile = () => {
             >
               Follow
             </Button>
-            <Status>user status message goes here</Status>
           </UserData>
         </UserDataContainer>
       </UserContainer>

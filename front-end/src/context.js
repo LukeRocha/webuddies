@@ -1,25 +1,33 @@
 import React, { useContext, useReducer } from "react";
 import reducer from "./reducer";
-import { postUser, getUser } from "./operations/operations";
+import { postUser, getUser, getUserPosts } from "./operations/operations";
 
 const AppContext = React.createContext();
 
 const initialState = {
-  userData: {},
-  errorMessage: {},
-  messages: {},
+  userState: {
+    userData: {},
+    userPosts: [],
+  },
+  serverMessages: {},
 };
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const loginUser = async () => {
-    const dataFromDb = await getUser();
-    dispatch({ type: "LOGIN_USER", payload: dataFromDb });
-  };
   const registerSubmitHandler = async (userInputs) => {
     const registeredUser = await postUser(userInputs);
-    dispatch({ type: "REGISTER_USER", payload: registeredUser });
+    dispatch({ type: "REGISTER_USER", payload: registeredUser.data });
+  };
+
+  const loginUser = async () => {
+    const userDataFromDb = await getUser();
+    const postsDataFromDb = await getUserPosts();
+    dispatch({
+      type: "LOGIN_USER",
+      userPayload: userDataFromDb,
+      postsPayload: postsDataFromDb,
+    });
   };
 
   return (

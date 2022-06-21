@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import SinglePost from "../SinglePost/SinglePost";
+import { useGlobalContext } from "../../context";
+import { getUserPosts } from "../../operations/operations";
 
 const PostContainer = styled.section`
   display: flex;
@@ -18,20 +20,19 @@ const PostContainer = styled.section`
   }
 `;
 
-const Title = styled.h2`
-  margin: 8px auto;
-  max-width: 50vw;
-  color: white;
-  border-bottom: white 1px solid;
-  text-align: center;
-`;
-
 const PostsContainer = () => {
+  const { state } = useGlobalContext();
+  const [userPosts, setUserPosts] = useState(state.userState.userPosts);
+
+  useEffect(() => {
+    setUserPosts(state.userState.userPosts);
+  }, [state]);
+
   return (
     <PostContainer>
-      <SinglePost />
-      <SinglePost />
-      <SinglePost />
+      {userPosts.map((post, index) => {
+        return <SinglePost key={index} id={post.id} post={post} />;
+      })}
     </PostContainer>
   );
 };
