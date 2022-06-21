@@ -1,9 +1,5 @@
 import React from "react";
-import styled from "styled-components";
-const Span = styled.span`
-  color: red;
-  text-align: center;
-`;
+import { Span } from "./styles";
 const InputError = ({ children }) => {
   return <Span>{children}</Span>;
 };
