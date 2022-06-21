@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import SinglePost from "../SinglePost/SinglePost";
 import { useGlobalContext } from "../../context";
@@ -21,14 +21,18 @@ const PostContainer = styled.section`
 
 const PostsContainer = () => {
   const { state } = useGlobalContext();
-  const userPosts = [state.userState.userPosts];
+  const [userPosts, setUserPosts] = useState(state.userState.userPosts);
+
+  console.log(userPosts);
+  useEffect(() => {
+    setUserPosts(state.userState.userPosts);
+  }, [state]);
 
   return (
     <PostContainer>
-      {userPosts &&
-        userPosts.map((post) => {
-          return <SinglePost key={post.id} id={post.id} post={post} />;
-        })}
+      {userPosts.map((post, index) => {
+        return <SinglePost key={index} id={post.id} post={post} />;
+      })}
     </PostContainer>
   );
 };

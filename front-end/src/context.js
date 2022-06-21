@@ -7,8 +7,7 @@ const AppContext = React.createContext();
 const initialState = {
   userState: {
     userData: {},
-    userPosts: {},
-    userFriendships: {},
+    userPosts: [],
   },
   serverMessages: {},
 };

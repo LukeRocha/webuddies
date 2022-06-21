@@ -52,7 +52,7 @@ const SinglePost = ({ post, id }) => {
     <>
       <PostContainer id={id}>
         <User>Lucas</User>
-        <TimeStamp>{`at `}</TimeStamp>
+        <TimeStamp>{`at ${post.timestamp}`}</TimeStamp>
         <PostContent>{`${post.post_content}`}</PostContent>
         <PostButtons>
           <InterfaceButton

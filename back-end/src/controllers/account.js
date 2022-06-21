@@ -4,7 +4,7 @@ const db = require("../database/db");
 const get = async (req, res, next) => {
   const userData = await db.knex.select().from("users").where("id", "1");
   try {
-    res.send(userData);
+    res.send(...userData);
   } catch (error) {
     console.log(error);
   }

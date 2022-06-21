@@ -3,10 +3,9 @@ const db = require("../database/db");
 
 const getPosts = async (req, res, next) => {
   const userPosts = await db.knex.select().from("posts").where("user_id", "1");
-
+  console.log(...userPosts);
   try {
-    console.log(...userPosts);
-    res.send(...userPosts);
+    res.send(userPosts);
   } catch (error) {
     console.log(error);
   }
