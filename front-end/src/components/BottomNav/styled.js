@@ -10,12 +10,3 @@ export const BottomNavBar = styled.footer`
   background: #242424;
   margin: 0;
 `;
-
-export const ProfileAvatar = styled.span`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 0.5;
-  padding: 5px;
-  right: 0;
-`;

@@ -48,17 +48,6 @@ export default function BottomNav() {
             icon={<PersonSearchIcon />}
           />
         </BottomNavigation>
-        <ProfileAvatar>
-          <Avatar
-            sx={{
-              alignSelf: "center",
-              width: "34px",
-              height: "34px",
-            }}
-            alt="Lucas Rocha"
-            src="https://img.elo7.com.br/product/original/2FFB539/adesivo-rock-heavy-metal-black-sabbath-26x10-cor-preta-angra.jpg"
-          />
-        </ProfileAvatar>
       </Box>
     </BottomNavBar>
   );
