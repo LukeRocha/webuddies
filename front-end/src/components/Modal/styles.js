@@ -8,7 +8,7 @@ export const StyledModal = styled.div`
   margin: 0 auto;
 
   padding: 8px;
-  background-color: #242424;
+  background-color: var(--modal-background);
   border-radius: 4px;
 
   @media (min-width: 600px) {

@@ -9,7 +9,7 @@ export const StyledHeader = styled.header`
   position: fixed;
   width: 100vw;
   z-index: 100;
-  background-color: #242424;
+  background-color: var(--modal-background);
 `;
 
 export const HeaderLogo = styled.h2`

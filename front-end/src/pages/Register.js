@@ -18,13 +18,13 @@ const RegisterHeader = styled.header`
 `;
 
 const Logo = styled.h1`
-  color: #a32fff;
+  color: var(--purple-button);
   font-size: 2.8em;
   margin: 0px auto;
 `;
 
 const RegisterQuote = styled.p`
-  color: white;
+  color: #fff;
 `;
 
 const Register = () => {

@@ -27,7 +27,7 @@ export default function Header() {
           aria-expanded={open ? "true" : undefined}
           onClick={handleClick}
           sx={{
-            color: "white",
+            color: "#fff",
             position: "absolute",
             right: "0",
             alignSelf: "center",

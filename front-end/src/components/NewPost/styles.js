@@ -22,7 +22,7 @@ export const TextareaWrapper = styled.div`
   padding: 8px;
   width: 75vw;
   gap: 18px;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid var(--inputs-background);
 `;
 
 export const ImageContainer = styled.span`
@@ -36,7 +36,7 @@ export const ImageContainer = styled.span`
 export const PostContent = styled.textarea`
   width: 70vw;
   background-color: var(--inputs-background);
-  color: white;
+  color: #fff;
   border-radius: 10px;
   outline: none;
 `;

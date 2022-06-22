@@ -5,9 +5,8 @@ import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import HomeIcon from "@mui/icons-material/Home";
 import PersonSearchIcon from "@mui/icons-material/PersonSearch";
-import Avatar from "@mui/material/Avatar";
 
-import { BottomNavBar, ProfileAvatar } from "./styled";
+import { BottomNavBar } from "./styled";
 
 export default function BottomNav() {
   const [value, setValue] = React.useState(0);
@@ -24,41 +23,30 @@ export default function BottomNav() {
           showLabels
           value={value}
           sx={{
-            backgroundColor: "#242424",
-            color: "white",
+            backgroundColor: "var(--modal-background)",
+            color: "#fff",
             flex: "3",
           }}
-          onChange={(event, newValue) => {
+          onChange={(newValue) => {
             setValue(newValue);
           }}
         >
           <BottomNavigationAction
-            sx={{ color: "white" }}
+            sx={{ color: "#fff" }}
             label="Home"
             icon={<HomeIcon />}
           />
           <BottomNavigationAction
-            sx={{ color: "white" }}
+            sx={{ color: "#fff" }}
             label="Friends"
             icon={<PeopleAltIcon />}
           />
           <BottomNavigationAction
-            sx={{ color: "white" }}
+            sx={{ color: "#fff" }}
             label="Search"
             icon={<PersonSearchIcon />}
           />
         </BottomNavigation>
-        <ProfileAvatar>
-          <Avatar
-            sx={{
-              alignSelf: "center",
-              width: "34px",
-              height: "34px",
-            }}
-            alt="Lucas Rocha"
-            src="https://img.elo7.com.br/product/original/2FFB539/adesivo-rock-heavy-metal-black-sabbath-26x10-cor-preta-angra.jpg"
-          />
-        </ProfileAvatar>
       </Box>
     </BottomNavBar>
   );

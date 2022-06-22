@@ -45,9 +45,9 @@ export const Select = styled.select`
   padding: 12px;
   width: 220px;
 
-  color: white;
-  background-color: #3a393e;
-  border: 1px solid black;
+  color: #fff;
+  background-color: var(--inputs-background);
+  border: 1px solid #000;
   border-radius: 4px;
 
   @media (min-width: 480px) {
@@ -56,7 +56,7 @@ export const Select = styled.select`
 `;
 
 export const Label = styled.label`
-  color: white;
+  color: #fff;
   margin: 2px 12px;
   text-align: left;
 `;

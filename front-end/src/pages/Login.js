@@ -41,13 +41,13 @@ const ModalContainer = styled.div`
 const Title = styled.h1`
   display: flex;
   width: 350px;
-  color: #a32fff;
+  color: var(--purple-button);
   font-size: 5em;
   margin: 12px auto;
 `;
 
 const RegisterLink = styled.a`
-  color: white;
+  color: #fff;
   text-align: center;
   margin: 10px;
 `;

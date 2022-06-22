@@ -6,18 +6,18 @@ export const PostContainer = styled.article`
   justify-content: center;
   margin: 8px;
   padding: 12px;
-  background-color: #242424;
+  background-color: var(--modal-background);
   border-radius: 4px;
   width: auto;
 `;
 
 export const User = styled.h3`
-  color: white;
+  color: #fff;
   text-align: left;
 `;
 
 export const TimeStamp = styled.small`
-  color: white;
+  color: #fff;
   text-align: left;
   margin-bottom: 8px;
 `;
@@ -26,7 +26,7 @@ export const PostContent = styled.span`
   display: flex;
   text-align: left;
   text-indent: 8px;
-  color: white;
+  color: #fff;
 `;
 export const PostButtons = styled.nav`
   display: flex;
@@ -35,13 +35,13 @@ export const PostButtons = styled.nav`
   margin-top: 6px;
   justify-content: left;
   gap: 12px;
-  color: purple;
+  color: var(--purple-button);
 `;
 
 export const InterfaceButton = styled.button`
   border-radius: 4px;
   width: auto;
-  color: purple;
+  color: var(--purple-button);
   background: none;
   border: none;
 `;

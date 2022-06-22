@@ -6,7 +6,7 @@ export const PostContainer = styled.section`
 
   position: relative;
   margin: 10px auto 80px auto;
-  background-color: #3a393e;
+  background-color: var(--inputs-background);
   flex-flow: column nowrap;
   justify-content: center;
   border-radius: 10px;

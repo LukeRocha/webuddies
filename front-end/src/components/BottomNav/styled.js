@@ -7,15 +7,6 @@ export const BottomNavBar = styled.footer`
   right: 0;
   position: fixed;
 
-  background: #242424;
+  background: var(--modal-background);
   margin: 0;
-`;
-
-export const ProfileAvatar = styled.span`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 0.5;
-  padding: 5px;
-  right: 0;
 `;
