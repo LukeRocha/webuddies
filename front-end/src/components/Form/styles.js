@@ -8,16 +8,17 @@ export const FormComponent = styled.form`
   align-self: center;
   margin: 0 auto;
   padding: 12px;
-
+  background-color: var(--modal-background);
   @media (min-width: 900px) {
   }
 
   @media (min-width: 1200px) {
-    width: 50vw;
+    width: 40vw;
     justify-content: center;
-    padding: 50px;
+    padding: 30px;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 20px;
   }
 `;
 

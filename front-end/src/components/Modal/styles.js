@@ -4,19 +4,20 @@ export const StyledModal = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 280px;
+  align-content: center;
+  width: 80vw;
   margin: 0 auto;
 
-  padding: 8px;
+  padding: 12px;
   background-color: var(--modal-background);
   border-radius: 4px;
 
   @media (min-width: 600px) {
-    max-width: 50vw;
+    width: 40vw;
+    max-width: 350px;
   }
 
   @media (min-width: 1200px) {
-    justify-content: center;
-    max-width: 70vw;
+    width: 600px;
   }
 `;

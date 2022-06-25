@@ -16,7 +16,7 @@ const LoginContainer = styled.section`
   @media (min-width: 1200px) {
     flex-direction: row-reverse;
 
-    padding: 50px;
+    padding: 30px;
   }
 `;
 
@@ -31,10 +31,7 @@ const ModalContainer = styled.div`
     margin: 0 auto;
   }
   @media (min-width: 1200px) {
-    align-items: center;
-    align-content: center;
     width: 70vw;
-    margin: 0 auto;
   } ;
 `;
 
@@ -64,6 +61,10 @@ const ModalWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @media (min-width: 1200px) {
+    align-items: center;
+  }
 `;
 
 const Login = () => {

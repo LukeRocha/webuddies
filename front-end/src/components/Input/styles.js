@@ -15,8 +15,6 @@ export const StyledInput = styled.input`
   }
 
   @media (min-width: 1200px) {
-    max-width: 70vw;
-
     align-self: center;
   } ;
 `;
