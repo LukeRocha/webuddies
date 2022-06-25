@@ -39,9 +39,8 @@ const Register = () => {
           </Logo>
           <RegisterQuote>{"Create your account, it's easy :D"}</RegisterQuote>
         </RegisterHeader>
-        <Modal>
-          <Form />
-        </Modal>
+
+        <Form />
       </MainContainer>
     </>
   );
