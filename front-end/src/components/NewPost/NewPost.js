@@ -19,7 +19,7 @@ const PostArea = ({ children }) => {
 
   useEffect(() => {
     setPostContent({ ...postContent, user_id: state.userState.userData.id });
-  }, [state]);
+  }, []);
 
   return (
     <NewPostContainer>
@@ -47,7 +47,6 @@ const PostArea = ({ children }) => {
             bg={"var(--green-button)"}
             onClick={() => {
               createNewPost(postContent);
-
               setPostContent({ ...postContent, content: "" });
             }}
           >
