@@ -30,7 +30,7 @@ const create = async (req, res) => {
     is_deleted: 0,
   };
 
-  const searchDbColumn = async (column) => {
+  const searchExistingDataInDbColumn = async (column) => {
     const dbCheck = await db.knex
       .select(column)
       .from("users")
@@ -39,12 +39,12 @@ const create = async (req, res) => {
     return dbCheck.length;
   };
 
-  const insertUser = async (userInputs) => {
+  const insertUserInDb = async (userInputs) => {
     const uniqueColumns = ["nickname", "mail"];
     let errors = {};
 
     for (column of uniqueColumns) {
-      if (await searchDbColumn(column)) {
+      if (await searchExistingDataInDbColumn(column)) {
         errors[column] = `this ${column} already exists`;
       }
     }
@@ -63,7 +63,7 @@ const create = async (req, res) => {
       res.send(errors);
     }
   };
-  return insertUser(newUser);
+  return insertUserInDb(newUser);
 };
 
 module.exports = { get, create };
