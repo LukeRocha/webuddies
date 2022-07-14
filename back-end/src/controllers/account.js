@@ -12,7 +12,7 @@ const get = async (req, res, next) => {
 };
 
 const create = async (req, res) => {
-  const createHashPassword = (password) => {
+  const createHashPassword = async (password) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     return hashedPassword;
   };
@@ -24,7 +24,7 @@ const create = async (req, res) => {
     birth: req.body.birth,
     city: req.body.city,
     mail: req.body.mail,
-    password: req.body.password,
+    password: await createHashPassword(req.body.password),
     profile_picture: req.body.profile_picture,
     user_status: req.body.user_status,
     is_deleted: 0,
