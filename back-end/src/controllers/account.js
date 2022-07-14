@@ -1,5 +1,6 @@
 const { default: knex } = require("knex");
 const db = require("../database/db");
+const bcrypt = require("bcrypt");
 
 const get = async (req, res, next) => {
   const userData = await db.knex.select().from("users").where("id", "1");
@@ -11,6 +12,11 @@ const get = async (req, res, next) => {
 };
 
 const create = async (req, res) => {
+  const createHashPassword = (password) => {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    return hashedPassword;
+  };
+
   const newUser = {
     nickname: req.body.nickname.toLowerCase(),
     first_name: req.body.first_name,
