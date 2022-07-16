@@ -88,19 +88,21 @@ const Login = () => {
         <Title>we Buddies</Title>
         <Modal>
           <ModalWrapper>
-            <Input placeholder="username"></Input>
-            <Input type="password" placeholder="password"></Input>
-            <RegisterLink>{"Forgot my password"}</RegisterLink>
-            <Link to="profile">
-              <Button
-                bg={"var(--green-button)"}
-                onClick={async () => {
-                  await loginUser();
-                }}
-              >
-                Login
-              </Button>
-            </Link>
+            <form>
+              <Input placeholder="username"></Input>
+              <Input type="password" placeholder="password"></Input>
+              <RegisterLink>{"Forgot my password"}</RegisterLink>
+              <Link to="profile">
+                <Button
+                  bg={"var(--green-button)"}
+                  onClick={async () => {
+                    await loginUser();
+                  }}
+                >
+                  Login
+                </Button>
+              </Link>
+            </form>
           </ModalWrapper>
         </Modal>
 
