@@ -10,7 +10,7 @@ const PostsContainer = () => {
   useEffect(() => {
     setUserPosts(state.userState.userPosts);
     loginUser();
-  }, [state]);
+  }, []);
 
   return (
     <PostContainer>
