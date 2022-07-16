@@ -80,7 +80,7 @@ const logIn = async (req, res) => {
 
   try {
     if (await bcrypt.compare(req.body.password, userDbData[0].password)) {
-      response.userData = userDbData;
+      response.userData = userDbData[0];
       response.message = "Success";
       res.status(201).send(response);
       console.log("funcionou");
