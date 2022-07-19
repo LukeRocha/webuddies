@@ -4,12 +4,11 @@ import { useGlobalContext } from "../../context";
 import { PostContainer } from "./styles";
 
 const PostsContainer = () => {
-  const { state, loginUser } = useGlobalContext();
+  const { state } = useGlobalContext();
   const [userPosts, setUserPosts] = useState(state.userState.userPosts);
 
   useEffect(() => {
     setUserPosts(state.userState.userPosts);
-    loginUser();
   }, []);
 
   return (

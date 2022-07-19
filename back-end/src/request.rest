@@ -6,6 +6,3 @@ Content-Type: application/json
   "nickname":"lukerocha",
   "password":"as3dydu73"
 }
-
-//$2b$10$g7cNf35YBnATTwO9BTv5AOZCeCE1Ixr7tgbiP8BGA29ooasA1CLfa
-//as3dydu73

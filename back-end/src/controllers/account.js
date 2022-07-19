@@ -50,7 +50,6 @@ const create = async (req, res) => {
     }
 
     if (Object.keys(errors).length === 0) {
-      console.log("porra");
       await db.knex
         .insert(userInputs)
         .into("users")
@@ -66,29 +65,30 @@ const create = async (req, res) => {
   return insertUserInDb(newUser);
 };
 
-const logIn = async (req, res) => {
+const authUser = async (req, res) => {
   const response = {};
+
   const userDbData = await db.knex
     .select()
     .from("users")
     .where("nickname", req.body.nickname);
 
-  if (userDbData.length == 0) {
+  if (!userDbData[0]) {
     response.message = "User has not found or password is wrong, try again";
     res.status(401).send(response);
+    return response;
   }
 
-  try {
-    if (await bcrypt.compare(req.body.password, userDbData[0].password)) {
-      response.userData = userDbData[0];
-      response.message = "Success";
-      res.status(201).send(response);
-      console.log("funcionou");
-    }
-  } catch (error) {
-    response.message = "Not allowed";
+  if (await bcrypt.compare(req.body.password, userDbData[0].password)) {
+    response.userData = userDbData[0]; //array like data
+    res.status(201).send(response);
+    console.log("logged in!");
+  } else {
+    response.message = "Password is not correct";
     res.status(401).send(response);
   }
+  console.log(response);
+  return response;
 };
 
-module.exports = { get, create, logIn };
+module.exports = { get, create, authUser };

@@ -4,6 +4,7 @@ const urls = {
   login: "http://localhost:3700/login",
   createNewPost: "http://localhost:3700/profile",
   getPosts: "http://localhost:3700/profile",
+  authUser: "http://localhost:3700/users/login",
 };
 
 export const getUser = async () => {
@@ -28,7 +29,7 @@ export const getUserPosts = async () => {
       return resp.data;
     })
     .catch((error) => {
-      console.log(error);
+      // console.log(error);
     });
 
   return requestPosts;
@@ -57,4 +58,18 @@ export const createNewPost = async (newPostData) => {
     });
 
   return postResult;
+};
+
+export const authUser = async (userCredentials) => {
+  const logInResult = await axios
+    .post(urls.authUser, userCredentials)
+    .then((resp) => {
+      console.log(resp);
+      return resp;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  console.log("data", logInResult);
+  return logInResult;
 };

@@ -68,15 +68,19 @@ const ModalWrapper = styled.div`
 `;
 
 const Login = () => {
-  const { loginUser } = useGlobalContext();
+  const { authUserCredentials } = useGlobalContext();
   const [size, setSize] = useState(window.innerWidth);
-
+  const [userCredentials, setUserCredentials] = useState({
+    nickname: "",
+    password: "",
+  });
   const checkWindowSize = () => {
     setSize(window.innerWidth);
   };
 
   useEffect(() => {
     window.addEventListener("resize", checkWindowSize);
+
     return () => {
       window.removeEventListener("resize", checkWindowSize);
     };
@@ -88,15 +92,40 @@ const Login = () => {
         <Title>we Buddies</Title>
         <Modal>
           <ModalWrapper>
-            <form>
-              <Input placeholder="username"></Input>
-              <Input type="password" placeholder="password"></Input>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                authUserCredentials(userCredentials);
+              }}
+            >
+              <Input
+                placeholder="nickname"
+                onChange={(e) =>
+                  setUserCredentials({
+                    ...userCredentials,
+                    nickname: e.target.value,
+                  })
+                }
+                value={userCredentials.nickname}
+              ></Input>
+              <Input
+                type="password"
+                placeholder="password"
+                onChange={(e) => {
+                  setUserCredentials({
+                    ...userCredentials,
+                    password: e.target.value,
+                  });
+                }}
+                value={userCredentials.password}
+              ></Input>
               <RegisterLink>{"Forgot my password"}</RegisterLink>
               <Link to="profile">
                 <Button
                   bg={"var(--green-button)"}
+                  type="submit"
                   onClick={async () => {
-                    await loginUser();
+                    await authUserCredentials(userCredentials);
                   }}
                 >
                   Login

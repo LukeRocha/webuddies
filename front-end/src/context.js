@@ -1,6 +1,6 @@
 import React, { useContext, useReducer } from "react";
 import reducer from "./reducer";
-import { postUser, getUser, getUserPosts } from "./operations/operations";
+import { postUser, getUserPosts, authUser } from "./operations/operations";
 
 const AppContext = React.createContext();
 
@@ -9,7 +9,7 @@ const initialState = {
     userData: {},
     userPosts: [],
   },
-  serverMessages: {},
+  message: "",
 };
 
 const AppProvider = ({ children }) => {
@@ -20,18 +20,21 @@ const AppProvider = ({ children }) => {
     dispatch({ type: "REGISTER_USER", payload: registeredUser.data });
   };
 
-  const loginUser = async () => {
-    const userDataFromDb = await getUser();
+  const authUserCredentials = async (userCredentials) => {
+    const userDataFromDb = await authUser(userCredentials);
     const postsDataFromDb = await getUserPosts();
+    console.log("aqui", userDataFromDb);
     dispatch({
       type: "LOGIN_USER",
-      userPayload: userDataFromDb,
+      userPayload: userDataFromDb.data.userData,
       postsPayload: postsDataFromDb,
     });
   };
 
   return (
-    <AppContext.Provider value={{ state, registerSubmitHandler, loginUser }}>
+    <AppContext.Provider
+      value={{ state, registerSubmitHandler, authUserCredentials }}
+    >
       {children}
     </AppContext.Provider>
   );

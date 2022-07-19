@@ -12,7 +12,7 @@ app.use(cors({ origin: /http:\/\/localhost/ }));
 app.options("*", cors());
 
 const router = express.Router();
-router.post("/users/login", accountController.logIn);
+router.post("/users/login", accountController.authUser);
 router.get("/login", accountController.get);
 router.get("/profile", contentController.getPosts);
 router.post("/register", accountController.create);
