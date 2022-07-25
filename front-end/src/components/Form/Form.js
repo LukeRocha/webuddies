@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import InputError from "../InputError/InputError";
 import Button from "../Button/Button";
 import { FormComponent, InputContainer, Select, Label } from "./styles";

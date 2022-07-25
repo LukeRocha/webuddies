@@ -23,18 +23,26 @@ const AppProvider = ({ children }) => {
 
   const authUserCredentials = async (userCredentials) => {
     const userDataFromDb = await authUser(userCredentials);
-    const postsDataFromDb = await getUserPosts();
     console.log("aqui", userDataFromDb);
     dispatch({
       type: "LOGIN_USER",
-      userPayload: userDataFromDb.data.userData,
-      postsPayload: postsDataFromDb,
+      payload: userDataFromDb.data.userData,
     });
+  };
+
+  const getUserPostsData = async (userData) => {
+    const postsDataFromDb = await getUserPosts(userData.id);
+    dispatch({ type: "FETCH_USER_POSTS", payload: postsDataFromDb });
   };
 
   return (
     <AppContext.Provider
-      value={{ state, registerSubmitHandler, authUserCredentials }}
+      value={{
+        state,
+        registerSubmitHandler,
+        authUserCredentials,
+        getUserPostsData,
+      }}
     >
       {children}
     </AppContext.Provider>

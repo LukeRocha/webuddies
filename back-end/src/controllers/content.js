@@ -2,10 +2,14 @@ const { default: knex } = require("knex");
 const db = require("../database/db");
 
 const getPosts = async (req, res, next) => {
+  const user = {
+    nickname: req.body.nickname,
+  };
+
   const userPosts = await db.knex
     .select()
     .from("posts")
-    .where("user_id", "1")
+    .where("user_id", 1)
     .orderBy("id", "desc");
   console.log(...userPosts);
   try {
@@ -27,6 +31,7 @@ const newPost = (req, res) => {
       .insert(postContent)
       .into("posts")
       .then((resp) => {
+        console.log(resp);
         res.send("Content posted!");
       });
   };

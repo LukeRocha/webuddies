@@ -10,8 +10,16 @@ const reducer = (state, action) => {
     return {
       ...state,
       userState: {
-        userData: action.userPayload,
-        userPosts: action.postsPayload,
+        userData: action.payload,
+      },
+    };
+  }
+
+  if (action.type === "FETCH_USER_POSTS") {
+    return {
+      ...state,
+      userState: {
+        userPosts: action.payload,
       },
     };
   }

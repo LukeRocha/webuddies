@@ -15,8 +15,8 @@ CREATE TABLE IF NOT EXISTS users(
 )
 
 CREATE TABLE IF NOT EXISTS friendships (
-  main_user_id REFERENCES users (id),
-  target_friend_id REFERENCES users (id)
+  main_user_id INTEGER REFERENCES users (id),
+  target_friend_id INTEGER REFERENCES users (id)
 )
 
 CREATE TABLE IF NOT EXISTS posts (
