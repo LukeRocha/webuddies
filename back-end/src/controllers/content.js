@@ -3,13 +3,13 @@ const db = require("../database/db");
 
 const getPosts = async (req, res, next) => {
   const user = {
-    nickname: req.body.nickname,
+    id: req.body.id,
   };
 
   const userPosts = await db.knex
     .select()
     .from("posts")
-    .where("user_id", 1)
+    .where("user_id", user.id)
     .orderBy("id", "desc");
   console.log(...userPosts);
   try {

@@ -9,8 +9,9 @@ const initialState = {
     userData: {},
     userPosts: [],
   },
-  message: "",
+  message: {},
   serverMessages: {},
+  tokens: [],
 };
 
 const AppProvider = ({ children }) => {
@@ -23,15 +24,15 @@ const AppProvider = ({ children }) => {
 
   const authUserCredentials = async (userCredentials) => {
     const userDataFromDb = await authUser(userCredentials);
-    console.log("aqui", userDataFromDb);
     dispatch({
       type: "LOGIN_USER",
-      payload: userDataFromDb.data.userData,
+      payload: userDataFromDb,
     });
   };
 
   const getUserPostsData = async (userData) => {
     const postsDataFromDb = await getUserPosts(userData.id);
+    console.log(postsDataFromDb);
     dispatch({ type: "FETCH_USER_POSTS", payload: postsDataFromDb });
   };
 

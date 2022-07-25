@@ -22,9 +22,10 @@ export const getUser = async () => {
   return requestUserData;
 };
 
-export const getUserPosts = async () => {
+export const getUserPosts = async (id) => {
+  id = 1;
   const requestPosts = await axios
-    .get(urls.getPosts)
+    .get(urls.getPosts, id)
     .then((resp) => {
       return resp.data;
     })
@@ -34,6 +35,7 @@ export const getUserPosts = async () => {
 
   return requestPosts;
 };
+
 export const postUser = async (userInputs) => {
   const postResult = await axios
     .post(urls.postNewUser, userInputs)

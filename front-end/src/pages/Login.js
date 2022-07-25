@@ -67,6 +67,14 @@ const ModalWrapper = styled.div`
   }
 `;
 
+const FormContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 18px;
+`;
+
 const Login = () => {
   const { authUserCredentials } = useGlobalContext();
   const [size, setSize] = useState(window.innerWidth);
@@ -98,39 +106,41 @@ const Login = () => {
                 authUserCredentials(userCredentials);
               }}
             >
-              <Input
-                placeholder="nickname"
-                onChange={(e) =>
-                  setUserCredentials({
-                    ...userCredentials,
-                    nickname: e.target.value,
-                  })
-                }
-                value={userCredentials.nickname}
-              ></Input>
-              <Input
-                type="password"
-                placeholder="password"
-                onChange={(e) => {
-                  setUserCredentials({
-                    ...userCredentials,
-                    password: e.target.value,
-                  });
-                }}
-                value={userCredentials.password}
-              ></Input>
-              <RegisterLink>{"Forgot my password"}</RegisterLink>
-              <Link to="profile">
-                <Button
-                  bg={"var(--green-button)"}
-                  type="submit"
-                  onClick={async () => {
-                    await authUserCredentials(userCredentials);
+              <FormContainer>
+                <Input
+                  placeholder="nickname"
+                  onChange={(e) =>
+                    setUserCredentials({
+                      ...userCredentials,
+                      nickname: e.target.value,
+                    })
+                  }
+                  value={userCredentials.nickname}
+                ></Input>
+                <Input
+                  type="password"
+                  placeholder="password"
+                  onChange={(e) => {
+                    setUserCredentials({
+                      ...userCredentials,
+                      password: e.target.value,
+                    });
                   }}
-                >
-                  Login
-                </Button>
-              </Link>
+                  value={userCredentials.password}
+                ></Input>
+                <RegisterLink>{"Forgot my password"}</RegisterLink>
+                <Link to="profile">
+                  <Button
+                    bg={"var(--green-button)"}
+                    type="submit"
+                    onClick={async () => {
+                      await authUserCredentials(userCredentials);
+                    }}
+                  >
+                    Login
+                  </Button>
+                </Link>
+              </FormContainer>
             </form>
           </ModalWrapper>
         </Modal>

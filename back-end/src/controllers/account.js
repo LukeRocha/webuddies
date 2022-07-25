@@ -1,6 +1,7 @@
 const { default: knex } = require("knex");
 const db = require("../database/db");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const get = async (req, res, next) => {
   const userData = await db.knex.select().from("users").where("id", "1");
@@ -80,7 +81,7 @@ const authUser = async (req, res) => {
   }
 
   if (await bcrypt.compare(req.body.password, userDbData[0].password)) {
-    response.userData = userDbData[0]; //array like data
+    response.userData = userDbData[0];
     res.status(201).send(response);
     console.log("logged in!");
   } else {
