@@ -10,6 +10,7 @@ const initialState = {
     userPosts: [],
   },
   message: "",
+  serverMessages: {},
 };
 
 const AppProvider = ({ children }) => {

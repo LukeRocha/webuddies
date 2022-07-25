@@ -25,8 +25,6 @@ const Form = () => {
 
   const ref = React.createRef();
 
-  useEffect(() => {}, [state]);
-
   return (
     <>
       <FormComponent onSubmit={handleSubmit(onSubmit)}>
