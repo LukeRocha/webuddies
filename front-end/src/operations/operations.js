@@ -1,40 +1,24 @@
 import axios from "axios";
 const urls = {
   postNewUser: "http://localhost:3700/register",
-  login: "http://localhost:3700/login",
   createNewPost: "http://localhost:3700/profile",
   getPosts: "http://localhost:3700/profile",
   authUser: "http://localhost:3700/users/login",
 };
 
-export const getUser = async () => {
-  const requestUserData = await axios
-    .get(urls.login)
-    .then((resp) => {
-      const result = resp.data;
+// export const getUserPosts = async (id) => {
+//   id = 1;
+//   const requestPosts = await axios
+//     .get(urls.getPosts, id)
+//     .then((resp) => {
+//       return resp.data;
+//     })
+//     .catch((error) => {
+//       // console.log(error);
+//     });
 
-      return result;
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-
-  return requestUserData;
-};
-
-export const getUserPosts = async (id) => {
-  id = 1;
-  const requestPosts = await axios
-    .get(urls.getPosts, id)
-    .then((resp) => {
-      return resp.data;
-    })
-    .catch((error) => {
-      // console.log(error);
-    });
-
-  return requestPosts;
-};
+//   return requestPosts;
+// };
 
 export const postUser = async (userInputs) => {
   const postResult = await axios
@@ -72,6 +56,6 @@ export const authUser = async (userCredentials) => {
     .catch((error) => {
       console.error(error);
     });
-  console.log("data", logInResult);
+
   return logInResult;
 };

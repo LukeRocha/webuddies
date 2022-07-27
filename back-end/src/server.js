@@ -1,8 +1,10 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const accountController = require("./controllers/account");
 const contentController = require("./controllers/content");
+const authenticateController = require("./controllers/authenticate");
 const port = process.env.port || process.env.PORT || 3700;
 const app = express();
 
@@ -13,8 +15,7 @@ app.options("*", cors());
 
 //User account routes
 const router = express.Router();
-router.post("/users/login", accountController.authUser);
-router.get("/login", accountController.get);
+router.post("/users/login", authenticateController.authUser);
 router.post("/register", accountController.create);
 
 // Account content routes

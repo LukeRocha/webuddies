@@ -11,7 +11,6 @@ const getPosts = async (req, res, next) => {
     .from("posts")
     .where("user_id", user.id)
     .orderBy("id", "desc");
-  console.log(...userPosts);
   try {
     res.send(userPosts);
   } catch (error) {
@@ -31,7 +30,6 @@ const newPost = (req, res) => {
       .insert(postContent)
       .into("posts")
       .then((resp) => {
-        console.log(resp);
         res.send("Content posted!");
       });
   };

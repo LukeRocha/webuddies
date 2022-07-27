@@ -8,16 +8,16 @@ const PostsContainer = () => {
   const { state } = useGlobalContext();
   const [userPosts, setUserPosts] = useState(state.userState.userPosts);
 
-  useEffect(() => {
-    getUserPosts(1);
-    setUserPosts(state.userState.userPosts);
-  }, []);
+  // useEffect(() => {
+  //   getUserPosts(1);
+  //   setUserPosts(state.userState.userPosts);
+  // }, []);
 
   return (
     <PostContainer>
-      {userPosts.map((post, index) => {
+      {/* {userPosts.map((post, index) => {
         return <SinglePost key={index} id={post.id} post={post} />;
-      })}
+      })} */}
     </PostContainer>
   );
 };

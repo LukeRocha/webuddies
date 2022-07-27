@@ -1,6 +1,6 @@
 import React, { useContext, useReducer } from "react";
 import reducer from "./reducer";
-import { postUser, getUserPosts, authUser } from "./operations/operations";
+import { postUser, authUser } from "./operations/operations";
 
 const AppContext = React.createContext();
 
@@ -30,11 +30,11 @@ const AppProvider = ({ children }) => {
     });
   };
 
-  const getUserPostsData = async (userData) => {
-    const postsDataFromDb = await getUserPosts(userData.id);
-    console.log(postsDataFromDb);
-    dispatch({ type: "FETCH_USER_POSTS", payload: postsDataFromDb });
-  };
+  // const getUserPostsData = async (userData) => {
+  //   const postsDataFromDb = await getUserPosts(userData.id);
+  //   console.log(postsDataFromDb);
+  //   dispatch({ type: "FETCH_USER_POSTS", payload: postsDataFromDb });
+  // };
 
   return (
     <AppContext.Provider
@@ -42,7 +42,7 @@ const AppProvider = ({ children }) => {
         state,
         registerSubmitHandler,
         authUserCredentials,
-        getUserPostsData,
+        // getUserPostsData,
       }}
     >
       {children}

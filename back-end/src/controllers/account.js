@@ -90,8 +90,7 @@ const authUser = async (req, res) => {
     response.message = "Password is not correct";
     res.status(401).send(response);
   }
-  console.log(response);
   return response;
 };
 
-module.exports = { get, create, authUser };
+module.exports = { get, create };

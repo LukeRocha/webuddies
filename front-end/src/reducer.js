@@ -10,8 +10,9 @@ const reducer = (state, action) => {
     return {
       ...state,
       userState: {
-        userData: action.payload,
+        userData: action.payload.data.userData,
       },
+      tokens: action.payload.data.tokens,
     };
   }
 
