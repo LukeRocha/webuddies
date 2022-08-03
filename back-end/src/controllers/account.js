@@ -3,12 +3,24 @@ require("dotenv").config();
 const { default: knex } = require("knex");
 const db = require("../database/db");
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 
-const get = async (req, res, next) => {
-  const userData = await db.knex.select().from("users").where("id", "1");
+const get = async (credentials) => {
+  const userData = await db.knex
+    .select(
+      "id",
+      "nickname",
+      "first_name",
+      "last_name",
+      "mail",
+      "profile_picture",
+      "user_status"
+    )
+    .from("users")
+    .where("nickname", credentials.nickname);
   try {
-    res.send(...userData);
+    const result = userData[0];
+    console.log("aqui", result);
+    return result;
   } catch (error) {
     console.log(error);
   }
@@ -66,31 +78,6 @@ const create = async (req, res) => {
     }
   };
   return insertUserInDb(newUser);
-};
-
-const authUser = async (req, res) => {
-  const response = {};
-
-  const userDbData = await db.knex
-    .select()
-    .from("users")
-    .where("nickname", req.body.nickname);
-
-  if (!userDbData[0]) {
-    response.message = "User has not found or password is wrong, try again";
-    res.status(401).send(response);
-    return response;
-  }
-
-  if (await bcrypt.compare(req.body.password, userDbData[0].password)) {
-    response.userData = userDbData[0];
-    res.status(201).send(response);
-    console.log("logged in!");
-  } else {
-    response.message = "Password is not correct";
-    res.status(401).send(response);
-  }
-  return response;
 };
 
 module.exports = { get, create };

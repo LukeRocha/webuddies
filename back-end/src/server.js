@@ -5,6 +5,8 @@ const bodyParser = require("body-parser");
 const accountController = require("./controllers/account");
 const contentController = require("./controllers/content");
 const authenticateController = require("./controllers/authenticate");
+
+const auther = require("./controllers/auth");
 const port = process.env.port || process.env.PORT || 3700;
 const app = express();
 
@@ -15,11 +17,10 @@ app.options("*", cors());
 
 //User account routes
 const router = express.Router();
-router.post("/users/login", authenticateController.authUser);
+router.post("/users/login", auther.jwtAuthenticate);
 router.post("/register", accountController.create);
-
 // Account content routes
-router.get("/profile", contentController.getPosts);
+// router.get("/profile", contentController.get);
 router.post("/profile", contentController.newPost);
 
 app.use(router);

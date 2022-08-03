@@ -1,6 +1,6 @@
 import React, { useContext, useReducer } from "react";
 import reducer from "./reducer";
-import { postUser, authUser } from "./operations/operations";
+import { registerNewUser, authUser } from "./operations/operations";
 
 const AppContext = React.createContext();
 
@@ -18,7 +18,7 @@ const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const registerSubmitHandler = async (userInputs) => {
-    const registeredUser = await postUser(userInputs);
+    const registeredUser = await registerNewUser(userInputs);
     dispatch({ type: "REGISTER_USER", payload: registeredUser.data });
   };
 
@@ -42,7 +42,6 @@ const AppProvider = ({ children }) => {
         state,
         registerSubmitHandler,
         authUserCredentials,
-        // getUserPostsData,
       }}
     >
       {children}

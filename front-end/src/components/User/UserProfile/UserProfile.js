@@ -21,7 +21,11 @@ const UserProfile = () => {
           <ImageContainer>
             <img
               alt="profile"
-              src="https://img.elo7.com.br/product/original/2FFB539/adesivo-rock-heavy-metal-black-sabbath-26x10-cor-preta-angra.jpg"
+              src={
+                state.userState.profilePicture
+                  ? state.userState.profilePicture
+                  : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8czzbrLzXJ9R_uhKyMiwj1iGxKhJtH7pwlQ&usqp=CAU"
+              }
             />
           </ImageContainer>
           <UserData>
