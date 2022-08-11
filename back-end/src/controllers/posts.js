@@ -19,6 +19,8 @@ const getPosts = async (req, res, next) => {
 };
 
 const newPost = (req, res) => {
+  // insert token authentication
+
   const post = {
     user_id: req.body.user_id,
     post_content: req.body.content,

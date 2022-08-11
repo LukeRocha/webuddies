@@ -3,6 +3,10 @@ POST http://localhost:3700/users/login
 Content-Type: application/json
 
 {
-  "nickname":"lucasrocha",
-  "password":"as3dydu73"
+  "nickname":"guest",
+  "password":"12345678"
 }
+
+###
+GET http://localhost:3700/testing
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6Imd1ZXN0IiwicGFzc3N3b3JkIjoiMTIzNDU2NzgiLCJpYXQiOjE2NTk1Mzk5NzUsImV4cCI6MTY1OTU0MDAxNX0.ol1WBOLzSx4etOG-6sYH7YdEpmvjk0zWgTBadU3jaJE

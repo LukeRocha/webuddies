@@ -1,10 +1,9 @@
 require("dotenv").config();
-
 const { default: knex } = require("knex");
 const db = require("../database/db");
 const bcrypt = require("bcrypt");
 
-const get = async (credentials) => {
+const getAccountData = async (userCredentials) => {
   const userData = await db.knex
     .select(
       "id",
@@ -16,13 +15,13 @@ const get = async (credentials) => {
       "user_status"
     )
     .from("users")
-    .where("nickname", credentials.nickname);
+    .where("nickname", userCredentials.nickname);
+
   try {
-    const result = userData[0];
-    console.log("aqui", result);
-    return result;
+    const accountData = userData[0];
+    return accountData;
   } catch (error) {
-    console.log(error);
+    res.sendStatus(401);
   }
 };
 
@@ -80,4 +79,4 @@ const create = async (req, res) => {
   return insertUserInDb(newUser);
 };
 
-module.exports = { get, create };
+module.exports = { getAccountData, create };

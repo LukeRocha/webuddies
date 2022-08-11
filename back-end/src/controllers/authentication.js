@@ -9,53 +9,6 @@ function generateAccessToken(user) {
   return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "30d" });
 }
 
-const jwtAuthenticate = async (req, res) => {
-  const response = {};
-  const { nickname, password } = req.body;
-
-  const databaseCredentials = await db.knex
-    .select("nickname", "password")
-    .from("users")
-    .where("nickname", nickname);
-
-  if (!databaseCredentials[0]) {
-    response.ServerMessage =
-      "User has not found or password is wrong, try again";
-    res.status(401).send(response);
-    return response;
-  }
-
-  if (await bcrypt.compare(password, databaseCredentials[0].password)) {
-    const accessToken = generateAccessToken(nickname);
-    const refreshToken = jwt.sign(nickname, process.env.REFRESH_TOKEN_SECRET);
-
-    response.accessToken = accessToken;
-    response.refreshToken = refreshToken;
-    res.status(201).send(response);
-  }
-};
-
-function verifyTokenValidation(req, res, next) {
-  const response = {};
-  const authHeader = req.headers["authorization"];
-
-  const token = authHeader && authHeader.split(" ")[1];
-  if (token === null) {
-    response.message = "Invalid Token";
-    return res.status(401).send(response);
-  }
-
-  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-    if (err) {
-      response.message("Invalid Token");
-      return res.status(403).send(response);
-    }
-
-    req.user = user;
-    next();
-  });
-}
-
 async function authenticateUser(req, res) {
   const response = {};
   const { nickname, password } = req.body;
@@ -95,4 +48,18 @@ async function authenticateUser(req, res) {
   }
 }
 
-module.exports = { authenticateUser };
+const requestWithToken = async (req, res) => {
+  const authHeader = req.headers.authorization;
+
+  if (!authHeader || !authHeader.startsWith("Bearer")) {
+    return res.sendStatus(400);
+  }
+
+  const data = {
+    name: "lucas",
+  };
+
+  res.status(201).json(data);
+};
+
+module.exports = { authenticateUser, requestWithToken };
