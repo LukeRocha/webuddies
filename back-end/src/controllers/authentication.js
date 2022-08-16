@@ -50,16 +50,23 @@ async function authenticateUser(req, res) {
 
 const requestWithToken = async (req, res) => {
   const authHeader = req.headers.authorization;
-
   if (!authHeader || !authHeader.startsWith("Bearer")) {
     return res.sendStatus(400);
   }
+
+  const token = authHeader.split(" ")[1];
 
   const data = {
     name: "lucas",
   };
 
-  res.status(201).json(data);
+  try {
+    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    res.status(200).json(`${decoded.nickname} iai man`);
+  } catch (error) {
+    res.json(error);
+  }
 };
 
+const authenticationMiddleware = async (req, res, next) => {};
 module.exports = { authenticateUser, requestWithToken };
