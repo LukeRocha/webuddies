@@ -5,8 +5,9 @@ const bodyParser = require("body-parser");
 
 // Controllers
 const accountController = require("./controllers/account");
-const contentController = require("./controllers/posts");
+const postsController = require("./controllers/posts");
 const authenticationController = require("./controllers/authentication");
+const tokenMiddleware = require("./middleware/token-check");
 
 const port = process.env.port || process.env.PORT || 3700;
 const app = express();
@@ -20,8 +21,9 @@ app.options("*", cors());
 const router = express.Router();
 router.post("/users/login", authenticationController.authenticateUser);
 router.post("/create", accountController.create);
-router.post("/users/new-post", contentController.newPost);
+router.post("/users/new-post", postsController.newPost);
 
+router.get("/tryThis", tokenMiddleware.tokenCheck, accountController.tokenTest);
 router.get("/jwt", authenticationController.requestWithToken);
 
 app.use(router);

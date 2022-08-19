@@ -68,5 +68,4 @@ const requestWithToken = async (req, res) => {
   }
 };
 
-const authenticationMiddleware = async (req, res, next) => {};
 module.exports = { authenticateUser, requestWithToken };

@@ -79,4 +79,9 @@ const create = async (req, res) => {
   return insertUserInDb(newUser);
 };
 
-module.exports = { getAccountData, create };
+const tokenTest = async (req, res) => {
+  console.log("function has worked, here is your token validation");
+  console.log(req.headers.authorization);
+};
+
+module.exports = { getAccountData, create, tokenTest };
