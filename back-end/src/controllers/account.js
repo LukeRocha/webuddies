@@ -1,16 +1,14 @@
+require("dotenv").config();
 const { default: knex } = require("knex");
 const db = require("../database/db");
-
-const get = async (req, res, next) => {
-  const userData = await db.knex.select().from("users").where("id", "1");
-  try {
-    res.send(...userData);
-  } catch (error) {
-    console.log(error);
-  }
-};
+const bcrypt = require("bcrypt");
 
 const create = async (req, res) => {
+  const createHashPassword = async (password) => {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    return hashedPassword;
+  };
+
   const newUser = {
     nickname: req.body.nickname.toLowerCase(),
     first_name: req.body.first_name,
@@ -18,13 +16,13 @@ const create = async (req, res) => {
     birth: req.body.birth,
     city: req.body.city,
     mail: req.body.mail,
-    password: req.body.password,
+    password: await createHashPassword(req.body.password),
     profile_picture: req.body.profile_picture,
     user_status: req.body.user_status,
     is_deleted: 0,
   };
 
-  const searchDbColumn = async (column) => {
+  const searchExistingDataInDbColumn = async (column) => {
     const dbCheck = await db.knex
       .select(column)
       .from("users")
@@ -33,18 +31,17 @@ const create = async (req, res) => {
     return dbCheck.length;
   };
 
-  const insertUser = async (userInputs) => {
+  const insertUserInDb = async (userInputs) => {
     const uniqueColumns = ["nickname", "mail"];
     let errors = {};
 
     for (column of uniqueColumns) {
-      if (await searchDbColumn(column)) {
+      if (await searchExistingDataInDbColumn(column)) {
         errors[column] = `this ${column} already exists`;
       }
     }
 
     if (Object.keys(errors).length === 0) {
-      console.log("porra");
       await db.knex
         .insert(userInputs)
         .into("users")
@@ -57,7 +54,12 @@ const create = async (req, res) => {
       res.send(errors);
     }
   };
-  return insertUser(newUser);
+  return insertUserInDb(newUser);
 };
 
-module.exports = { get, create };
+const tokenTest = async (req, res) => {
+  console.log("function has worked, here is your token validation");
+  console.log(req.headers.authorization);
+};
+
+module.exports = { create, tokenTest };

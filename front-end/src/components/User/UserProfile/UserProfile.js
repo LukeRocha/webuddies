@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   UserContainer,
   UserDataContainer,
@@ -11,7 +11,9 @@ import Button from "../../Button/Button";
 
 const UserProfile = () => {
   const { state } = useGlobalContext();
-
+  useEffect(() => {
+    console.log(state);
+  }, [state]);
   return (
     <>
       <UserContainer>
@@ -19,7 +21,11 @@ const UserProfile = () => {
           <ImageContainer>
             <img
               alt="profile"
-              src="https://img.elo7.com.br/product/original/2FFB539/adesivo-rock-heavy-metal-black-sabbath-26x10-cor-preta-angra.jpg"
+              src={
+                state.userState.profilePicture
+                  ? state.userState.profilePicture
+                  : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8czzbrLzXJ9R_uhKyMiwj1iGxKhJtH7pwlQ&usqp=CAU"
+              }
             />
           </ImageContainer>
           <UserData>

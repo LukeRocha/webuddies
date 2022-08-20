@@ -67,16 +67,28 @@ const ModalWrapper = styled.div`
   }
 `;
 
-const Login = () => {
-  const { loginUser } = useGlobalContext();
-  const [size, setSize] = useState(window.innerWidth);
+const FormContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
+  padding: 18px;
+`;
+
+const Login = () => {
+  const { authUserCredentials } = useGlobalContext();
+  const [size, setSize] = useState(window.innerWidth);
+  const [userCredentials, setUserCredentials] = useState({
+    nickname: "",
+    password: "",
+  });
   const checkWindowSize = () => {
     setSize(window.innerWidth);
   };
 
   useEffect(() => {
     window.addEventListener("resize", checkWindowSize);
+
     return () => {
       window.removeEventListener("resize", checkWindowSize);
     };
@@ -88,19 +100,48 @@ const Login = () => {
         <Title>we Buddies</Title>
         <Modal>
           <ModalWrapper>
-            <Input placeholder="username"></Input>
-            <Input type="password" placeholder="password"></Input>
-            <RegisterLink>{"Forgot my password"}</RegisterLink>
-            <Link to="profile">
-              <Button
-                bg={"var(--green-button)"}
-                onClick={async () => {
-                  await loginUser();
-                }}
-              >
-                Login
-              </Button>
-            </Link>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                authUserCredentials(userCredentials);
+              }}
+            >
+              <FormContainer>
+                <Input
+                  placeholder="nickname"
+                  onChange={(e) =>
+                    setUserCredentials({
+                      ...userCredentials,
+                      nickname: e.target.value,
+                    })
+                  }
+                  value={userCredentials.nickname}
+                ></Input>
+                <Input
+                  type="password"
+                  placeholder="password"
+                  onChange={(e) => {
+                    setUserCredentials({
+                      ...userCredentials,
+                      password: e.target.value,
+                    });
+                  }}
+                  value={userCredentials.password}
+                ></Input>
+                <RegisterLink>{"Forgot my password"}</RegisterLink>
+                <Link to="profile">
+                  <Button
+                    bg={"var(--green-button)"}
+                    type="submit"
+                    onClick={async () => {
+                      await authUserCredentials(userCredentials);
+                    }}
+                  >
+                    Login
+                  </Button>
+                </Link>
+              </FormContainer>
+            </form>
           </ModalWrapper>
         </Modal>
 

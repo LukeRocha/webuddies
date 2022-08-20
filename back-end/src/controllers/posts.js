@@ -1,17 +1,17 @@
 const { default: knex } = require("knex");
 const db = require("../database/db");
 
-const getPosts = async (req, res, next) => {
+const getPosts = async (req, res) => {
   const userPosts = await db.knex
-    .select()
+    .select("id", "post_content", "timestamp")
     .from("posts")
-    .where("user_id", "1")
-    .orderBy("id", "desc");
-  console.log(...userPosts);
+    .where("user_id", req.user.userId)
+    .orderBy("timestamp", "desc");
   try {
+    console.log(userPosts);
     res.send(userPosts);
   } catch (error) {
-    console.log(error);
+    res.json(error);
   }
 };
 
@@ -33,4 +33,5 @@ const newPost = (req, res) => {
 
   return createPost(post);
 };
+
 module.exports = { getPosts, newPost };
