@@ -3,28 +3,6 @@ const { default: knex } = require("knex");
 const db = require("../database/db");
 const bcrypt = require("bcrypt");
 
-const getAccountData = async (userCredentials) => {
-  const userData = await db.knex
-    .select(
-      "id",
-      "nickname",
-      "first_name",
-      "last_name",
-      "mail",
-      "profile_picture",
-      "user_status"
-    )
-    .from("users")
-    .where("nickname", userCredentials.nickname);
-
-  try {
-    const accountData = userData[0];
-    return accountData;
-  } catch (error) {
-    res.sendStatus(401);
-  }
-};
-
 const create = async (req, res) => {
   const createHashPassword = async (password) => {
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -84,4 +62,4 @@ const tokenTest = async (req, res) => {
   console.log(req.headers.authorization);
 };
 
-module.exports = { getAccountData, create, tokenTest };
+module.exports = { create, tokenTest };

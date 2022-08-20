@@ -1,26 +1,21 @@
 const { default: knex } = require("knex");
 const db = require("../database/db");
 
-const getPosts = async (req, res, next) => {
-  const user = {
-    id: req.body.id,
-  };
-
+const getPosts = async (req, res) => {
   const userPosts = await db.knex
-    .select()
+    .select("id", "post_content", "timestamp")
     .from("posts")
-    .where("user_id", user.id)
-    .orderBy("id", "desc");
+    .where("user_id", req.user.userId)
+    .orderBy("timestamp", "desc");
   try {
+    console.log(userPosts);
     res.send(userPosts);
   } catch (error) {
-    console.log(error);
+    res.json(error);
   }
 };
 
 const newPost = (req, res) => {
-  // insert token authentication
-
   const post = {
     user_id: req.body.user_id,
     post_content: req.body.content,
@@ -38,4 +33,5 @@ const newPost = (req, res) => {
 
   return createPost(post);
 };
+
 module.exports = { getPosts, newPost };

@@ -8,10 +8,6 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3700/jwt
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsIm5pY2tuYW1lIjoiZ3Vlc3QiLCJpYXQiOjE2NjAzNTkyNTcsImV4cCI6MTY2Mjk1MTI1N30.bsjk_rdDMexKtRHzc7IW5rFyF0FToMVXpco5ed0XP9g
+GET http://localhost:3700/users/get-posts-data
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsIm5pY2tuYW1lIjoiZ3Vlc3QiLCJpYXQiOjE2NjA5NjI2ODksImV4cCI6MTY2MzU1NDY4OX0.uHDS9-VapXXmqBznUs_39QUCglZxcw5VsRgFUs6WOeE
 
-
-###
-GET http://localhost:3700/tryThis
-Authorization: Bearer eaaaayJhbGciOiJasdIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsIm5pY2tuYW1lIjoiZ3Vlc3QiLCJpYXQiOjE2NjA4Nzk3ODYsImV4cCI6MTY2MzQ3MTc4Nn0.h3XVwDZBTgeOAByX8zBfb8k_mGjBXFynOa-VBw5QcsI
