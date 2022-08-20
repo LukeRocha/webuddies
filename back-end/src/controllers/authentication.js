@@ -3,7 +3,6 @@ const { default: knex } = require("knex");
 const db = require("../database/db");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { get } = require("./account");
 
 function generateAccessToken(user) {
   return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "30d" });
