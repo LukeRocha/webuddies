@@ -3,7 +3,6 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
-// Controllers
 const accountController = require("./controllers/account");
 const postsController = require("./controllers/posts");
 const authenticationController = require("./controllers/authentication");
@@ -17,7 +16,6 @@ app.use(bodyParser.json());
 app.use(cors({ origin: /http:\/\/localhost/ }));
 app.options("*", cors());
 
-//User account routes
 const router = express.Router();
 router.post("/users/login", authenticationController.authenticateUser);
 router.get(
@@ -26,10 +24,10 @@ router.get(
   postsController.getPosts
 );
 
-router.post("/create", accountController.create);
+router.post("/create-account", accountController.create);
 router.post("/users/new-post", postsController.newPost);
 
 app.use(router);
 app.listen(port, () => {
-  console.log("Server is running...");
+  console.log("Server is running on port 3700...");
 });

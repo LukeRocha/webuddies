@@ -1,9 +1,9 @@
 import axios from "axios";
 const urls = {
-  registerUser: "http://localhost:3700/register",
-  createNewPost: "http://localhost:3700/profile",
-  getPosts: "http://localhost:3700/profile",
-  authUser: "http://localhost:3700/users/login",
+  registerUser: "http://localhost:3700/create-account",
+  createNewPost: "http://localhost:3700/users/new-post",
+  getPosts: "http://localhost:3700//users/get-posts-data",
+  authUser: "http://localhost:3700//users/login",
 };
 
 export const authUser = async (userCredentials) => {
