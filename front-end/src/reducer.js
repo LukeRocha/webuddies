@@ -6,13 +6,13 @@ const reducer = (state, action) => {
     };
   }
 
-  if (action.type === "LOGIN_USER") {
+  if (action.type === "AUTH_USER") {
     return {
       ...state,
       userState: {
-        userData: action.payload.data.userData,
+        userData: action.payload.userData,
       },
-      tokens: action.payload.data.tokens,
+      accesToken: action.payload.token,
     };
   }
 

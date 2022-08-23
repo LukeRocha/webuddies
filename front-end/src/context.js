@@ -11,7 +11,7 @@ const initialState = {
   },
   message: {},
   serverMessages: {},
-  tokens: [],
+  accessToken: "",
 };
 
 const AppProvider = ({ children }) => {
@@ -24,8 +24,9 @@ const AppProvider = ({ children }) => {
 
   const authUserCredentials = async (userCredentials) => {
     const userDataFromDb = await authUser(userCredentials);
+    console.log(userDataFromDb);
     dispatch({
-      type: "LOGIN_USER",
+      type: "AUTH_USER",
       payload: userDataFromDb,
     });
   };
