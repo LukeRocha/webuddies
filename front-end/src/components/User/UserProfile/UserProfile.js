@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   UserContainer,
   UserDataContainer,
@@ -11,9 +11,7 @@ import Button from "../../Button/Button";
 
 const UserProfile = () => {
   const { state } = useGlobalContext();
-  useEffect(() => {
-    console.log(state);
-  }, [state]);
+  console.log(state);
   return (
     <>
       <UserContainer>

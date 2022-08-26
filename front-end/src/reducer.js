@@ -12,7 +12,7 @@ const reducer = (state, action) => {
       userState: {
         userData: action.payload.userData,
       },
-      accesToken: action.payload.token,
+      accessToken: action.payload.token,
     };
   }
 

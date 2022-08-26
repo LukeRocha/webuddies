@@ -12,7 +12,7 @@ const Profile = () => {
       <Header />
       <UserProfile />
       <NewPost />
-      <PostsContainer />
+      {<UserProfile /> && <PostsContainer />}
       <BottomNav />
     </>
   );

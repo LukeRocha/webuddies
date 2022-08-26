@@ -1,4 +1,5 @@
 import axios from "axios";
+
 const urls = {
   registerUser: "http://localhost:3700/create-account",
   createNewPost: "http://localhost:3700/users/new-post",
@@ -10,7 +11,6 @@ export const authUser = async (userCredentials) => {
   const authRequestResult = await axios
     .post(urls.authUser, userCredentials)
     .then((resp) => {
-      console.log(resp);
       return resp;
     })
     .catch((error) => {
@@ -25,19 +25,23 @@ export const authUser = async (userCredentials) => {
   return authorizedUser;
 };
 
-// export const getUserPosts = async (id) => {
-//   id = 1;
-//   const requestPosts = await axios
-//     .get(urls.getPosts, id)
-//     .then((resp) => {
-//       return resp.data;
-//     })
-//     .catch((error) => {
-//       // console.log(error);
-//     });
+export const getUserPosts = async (id, token) => {
+  const requestPosts = await axios
+    .get(urls.getPosts, id, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    })
+    .then((resp) => {
+      console.log(resp);
+      return resp.data;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 
-//   return requestPosts;
-// };
+  return requestPosts;
+};
 
 export const registerNewUser = async (userInputs) => {
   const postResult = await axios
