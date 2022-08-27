@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   UserContainer,
   UserDataContainer,
@@ -11,9 +11,9 @@ import Button from "../../Button/Button";
 
 const UserProfile = () => {
   const { state } = useGlobalContext();
-  useEffect(() => {
-    console.log(state);
-  }, [state]);
+  const { nickname, first_name, last_name, user_status, profile_picture } =
+    state.userState.userData;
+
   return (
     <>
       <UserContainer>
@@ -22,23 +22,17 @@ const UserProfile = () => {
             <img
               alt="profile"
               src={
-                state.userState.profilePicture
-                  ? state.userState.profilePicture
+                profile_picture
+                  ? profile_picture
                   : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8czzbrLzXJ9R_uhKyMiwj1iGxKhJtH7pwlQ&usqp=CAU"
               }
             />
           </ImageContainer>
           <UserData>
-            <h2>{state.userState.userData.nickname}</h2>
-            <p>
-              {`${state.userState.userData.first_name}
-             ${state.userState.userData.last_name}`}
-            </p>
-            <small>288 buddies`find in database`</small>
-            <Status>
-              {`user status message goes here, ${state.userState.userData.status}
-              `}
-            </Status>
+            <h2>{nickname}</h2>
+            <p>{`${first_name} ${last_name}`}</p>
+            <small>288 buddies</small>
+            <Status>{`here is my ${user_status}`}</Status>
             <Button
               style={{
                 backgroundColor: "var(--purple-button)",

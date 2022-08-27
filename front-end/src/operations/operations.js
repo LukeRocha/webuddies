@@ -1,38 +1,46 @@
 import axios from "axios";
+
 const urls = {
   registerUser: "http://localhost:3700/create-account",
   createNewPost: "http://localhost:3700/users/new-post",
-  getPosts: "http://localhost:3700//users/get-posts-data",
-  authUser: "http://localhost:3700//users/login",
+  getPosts: "http://localhost:3700/users/get-posts-data",
+  authUser: "http://localhost:3700/users/login",
 };
 
 export const authUser = async (userCredentials) => {
-  const logInResult = await axios
+  const authRequestResult = await axios
     .post(urls.authUser, userCredentials)
     .then((resp) => {
-      console.log(resp);
       return resp;
     })
     .catch((error) => {
       console.error(error);
     });
 
-  return logInResult;
+  const authorizedUser = {
+    token: authRequestResult.data.accessToken,
+    userData: authRequestResult.data.dbUserData[0],
+  };
+
+  return authorizedUser;
 };
 
-// export const getUserPosts = async (id) => {
-//   id = 1;
-//   const requestPosts = await axios
-//     .get(urls.getPosts, id)
-//     .then((resp) => {
-//       return resp.data;
-//     })
-//     .catch((error) => {
-//       // console.log(error);
-//     });
+export const getUserPosts = async (id, token) => {
+  const requestPosts = await axios
+    .get(urls.getPosts, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    })
+    .then((resp) => {
+      return resp;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 
-//   return requestPosts;
-// };
+  return requestPosts.data;
+};
 
 export const registerNewUser = async (userInputs) => {
   const postResult = await axios

@@ -36,10 +36,8 @@ async function authenticateUser(req, res) {
   if (await bcrypt.compare(password, dbUserData[0].password)) {
     const userId = dbUserData[0].id;
     const accessToken = generateAccessToken({ userId, nickname });
-    const refreshToken = jwt.sign(nickname, process.env.REFRESH_TOKEN_SECRET);
 
     response.accessToken = accessToken;
-    response.refreshToken = refreshToken;
     delete dbUserData[0].password;
     response.dbUserData = dbUserData;
 

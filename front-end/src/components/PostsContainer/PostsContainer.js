@@ -6,18 +6,21 @@ import { getUserPosts } from "../../operations/operations";
 
 const PostsContainer = () => {
   const { state } = useGlobalContext();
-  const [userPosts, setUserPosts] = useState(state.userState.userPosts);
+  const [userPosts, setUserPosts] = useState([]);
 
-  // useEffect(() => {
-  //   getUserPosts(1);
-  //   setUserPosts(state.userState.userPosts);
-  // }, []);
+  useEffect(() => {
+    if (state.accessToken) {
+      getUserPosts(state.userState.userData.id, state.accessToken);
+    }
+    setUserPosts(state.userState.userPosts);
+  }, [state]);
 
   return (
     <PostContainer>
-      {/* {userPosts.map((post, index) => {
-        return <SinglePost key={index} id={post.id} post={post} />;
-      })} */}
+      {userPosts &&
+        userPosts.map((post, index) => {
+          return <SinglePost key={index} id={post.id} post={post} />;
+        })}
     </PostContainer>
   );
 };

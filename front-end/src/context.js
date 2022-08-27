@@ -1,6 +1,10 @@
 import React, { useContext, useReducer } from "react";
 import reducer from "./reducer";
-import { registerNewUser, authUser } from "./operations/operations";
+import {
+  registerNewUser,
+  authUser,
+  getUserPosts,
+} from "./operations/operations";
 
 const AppContext = React.createContext();
 
@@ -11,7 +15,7 @@ const initialState = {
   },
   message: {},
   serverMessages: {},
-  tokens: [],
+  accessToken: false,
 };
 
 const AppProvider = ({ children }) => {
@@ -25,16 +29,16 @@ const AppProvider = ({ children }) => {
   const authUserCredentials = async (userCredentials) => {
     const userDataFromDb = await authUser(userCredentials);
     dispatch({
-      type: "LOGIN_USER",
+      type: "AUTH_USER",
       payload: userDataFromDb,
     });
   };
 
-  // const getUserPostsData = async (userData) => {
-  //   const postsDataFromDb = await getUserPosts(userData.id);
-  //   console.log(postsDataFromDb);
-  //   dispatch({ type: "FETCH_USER_POSTS", payload: postsDataFromDb });
-  // };
+  const getUserPostsData = async (userData, token) => {
+    const postsDataFromDb = await getUserPosts(userData.id, token);
+    console.log("ola", postsDataFromDb);
+    dispatch({ type: "FETCH_USER_POSTS", payload: postsDataFromDb });
+  };
 
   return (
     <AppContext.Provider
@@ -42,6 +46,7 @@ const AppProvider = ({ children }) => {
         state,
         registerSubmitHandler,
         authUserCredentials,
+        getUserPostsData,
       }}
     >
       {children}
