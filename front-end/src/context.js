@@ -36,7 +36,7 @@ const AppProvider = ({ children }) => {
 
   const getUserPostsData = async (userData, token) => {
     const postsDataFromDb = await getUserPosts(userData.id, token);
-    console.log(postsDataFromDb);
+    console.log("ola", postsDataFromDb);
     dispatch({ type: "FETCH_USER_POSTS", payload: postsDataFromDb });
   };
 

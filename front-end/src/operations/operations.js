@@ -27,20 +27,19 @@ export const authUser = async (userCredentials) => {
 
 export const getUserPosts = async (id, token) => {
   const requestPosts = await axios
-    .get(urls.getPosts, id, {
+    .get(urls.getPosts, {
       headers: {
         authorization: `Bearer ${token}`,
       },
     })
     .then((resp) => {
-      console.log(resp);
-      return resp.data;
+      return resp;
     })
     .catch((error) => {
       console.log(error);
     });
 
-  return requestPosts;
+  return requestPosts.data;
 };
 
 export const registerNewUser = async (userInputs) => {

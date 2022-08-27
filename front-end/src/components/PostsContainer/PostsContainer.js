@@ -9,20 +9,18 @@ const PostsContainer = () => {
   const [userPosts, setUserPosts] = useState([]);
 
   useEffect(() => {
-    console.log(state);
     if (state.accessToken) {
-      () => getUserPosts(state.userState.userData.id, state.accessToken);
+      getUserPosts(state.userState.userData.id, state.accessToken);
     }
-  }, [state.accessToken]);
+    setUserPosts(state.userState.userPosts);
+  }, [state]);
 
-  if (!state.accessToken) {
-    return <div>{"nope"}</div>;
-  }
   return (
     <PostContainer>
-      {userPosts.map((post, index) => {
-        return <SinglePost key={index} id={post.id} post={post} />;
-      })}
+      {userPosts &&
+        userPosts.map((post, index) => {
+          return <SinglePost key={index} id={post.id} post={post} />;
+        })}
     </PostContainer>
   );
 };

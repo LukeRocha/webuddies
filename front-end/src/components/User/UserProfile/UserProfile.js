@@ -13,7 +13,7 @@ const UserProfile = () => {
   const { state } = useGlobalContext();
   const { nickname, first_name, last_name, user_status, profile_picture } =
     state.userState.userData;
-  console.log(state);
+
   return (
     <>
       <UserContainer>
@@ -32,7 +32,7 @@ const UserProfile = () => {
             <h2>{nickname}</h2>
             <p>{`${first_name} ${last_name}`}</p>
             <small>288 buddies</small>
-            <Status>{`here is my ${status}`}</Status>
+            <Status>{`here is my ${user_status}`}</Status>
             <Button
               style={{
                 backgroundColor: "var(--purple-button)",

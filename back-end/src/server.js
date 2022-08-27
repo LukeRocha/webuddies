@@ -25,7 +25,11 @@ router.get(
 );
 
 router.post("/create-account", accountController.create);
-router.post("/users/new-post", postsController.newPost);
+router.post(
+  "/users/new-post",
+  tokenMiddleware.tokenCheck,
+  postsController.newPost
+);
 
 app.use(router);
 app.listen(port, () => {
