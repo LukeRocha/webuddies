@@ -46,7 +46,7 @@ const PostArea = ({ children }) => {
           <Button
             bg={"var(--green-button)"}
             onClick={() => {
-              createNewPost(postContent);
+              createNewPost(postContent, state.accessToken);
               setPostContent({ ...postContent, content: "" });
             }}
           >

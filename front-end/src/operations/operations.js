@@ -32,9 +32,8 @@ export const authUser = async (userCredentials) => {
 
 export const getUserPosts = async (id, token) => {
   const requestPosts = await axios
-    .get(urls.getPosts, authorizationHeader(token))
+    .get(urls.getPosts, { headers: { authorization: `Bearer ${token}` } })
     .then((resp) => {
-      console.log(resp);
       return resp;
     })
     .catch((error) => {
@@ -57,9 +56,9 @@ export const registerNewUser = async (userInputs) => {
   return postResult;
 };
 
-export const createNewPost = async (newPostData) => {
-  const postResult = await axios
-    .post(urls.createNewPost, newPostData)
+export const createNewPost = async (newPostData, token) => {
+  await axios
+    .post(urls.createNewPost, newPostData, authorizationHeader(token))
     .then((resp) => {
       return resp;
     })
@@ -67,5 +66,5 @@ export const createNewPost = async (newPostData) => {
       console.log(error);
     });
 
-  return postResult;
+  getUserPosts(newPostData.user_id, token);
 };
