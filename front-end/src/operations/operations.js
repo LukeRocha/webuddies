@@ -7,6 +7,11 @@ const urls = {
   authUser: "http://localhost:3700/users/login",
 };
 
+const authorizationHeader = (token) => {
+  const header = { headers: { authorization: `Bearer ${token}` } };
+  return header;
+};
+
 export const authUser = async (userCredentials) => {
   const authRequestResult = await axios
     .post(urls.authUser, userCredentials)
@@ -27,12 +32,9 @@ export const authUser = async (userCredentials) => {
 
 export const getUserPosts = async (id, token) => {
   const requestPosts = await axios
-    .get(urls.getPosts, {
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
-    })
+    .get(urls.getPosts, authorizationHeader(token))
     .then((resp) => {
+      console.log(resp);
       return resp;
     })
     .catch((error) => {
