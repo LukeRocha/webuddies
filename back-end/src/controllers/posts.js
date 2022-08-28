@@ -27,7 +27,7 @@ const newPost = (req, res) => {
     const insertPost = await db.knex
       .insert(postContent)
       .into("posts")
-      .where("user_id", post.user_id)
+      .where("user_id", "=", post.user_id)
       .then((resp) => {
         res.send(`Content posted! id:${post.user_id}`);
       });

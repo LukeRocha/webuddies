@@ -19,7 +19,8 @@ const PostArea = ({ children }) => {
 
   useEffect(() => {
     setPostContent({ ...postContent, user_id: state.userState.userData.id });
-  }, []);
+    console.log(postContent);
+  }, [postContent.content]);
 
   return (
     <NewPostContainer>

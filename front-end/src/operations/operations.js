@@ -35,6 +35,7 @@ export const getUserPosts = async (id, token) => {
   const requestPosts = await axios
     .get(urls.getPosts, { headers: { authorization: `Bearer ${token}` } })
     .then((resp) => {
+      console.log(resp);
       return resp;
     })
     .catch((error) => {
