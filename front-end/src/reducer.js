@@ -20,6 +20,7 @@ const reducer = (state, action) => {
     return {
       ...state,
       userState: {
+        userData: state.userState.userData,
         userPosts: action.payload,
       },
     };

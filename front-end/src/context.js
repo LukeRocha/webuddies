@@ -33,9 +33,8 @@ const AppProvider = ({ children }) => {
     });
   };
 
-  const getUserPostsData = async (userData, token) => {
-    const postsDataFromDb = await getUserPosts(userData.id, token);
-    console.log("ola", postsDataFromDb);
+  const getUserPostsData = async (token) => {
+    const postsDataFromDb = await getUserPosts(token);
     dispatch({ type: "FETCH_USER_POSTS", payload: postsDataFromDb });
   };
 

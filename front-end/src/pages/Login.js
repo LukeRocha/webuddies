@@ -89,7 +89,6 @@ const Login = () => {
   useEffect(() => {
     window.addEventListener("resize", checkWindowSize);
 
-    console.log(state);
     return () => {
       window.removeEventListener("resize", checkWindowSize);
     };

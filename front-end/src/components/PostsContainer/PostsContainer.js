@@ -5,21 +5,22 @@ import { PostContainer } from "./styles";
 import { getUserPosts } from "../../operations/operations";
 
 const PostsContainer = () => {
-  const { state } = useGlobalContext();
+  const { state, getUserPostsData } = useGlobalContext();
   const [userPosts, setUserPosts] = useState([]);
 
   useEffect(() => {
-    if (state.accessToken) {
-      getUserPosts(state.userState.userData.id, state.accessToken);
-    }
+    getUserPostsData(state.accessToken);
+    console.log(state.userState.userPosts);
     setUserPosts(state.userState.userPosts);
-  }, [state.accessToken]);
+    console.log(userPosts);
+  }, [userPosts]);
 
   return (
     <PostContainer>
       {userPosts &&
-        userPosts.map((post, index) => {
-          return <SinglePost key={index} id={post.id} post={post} />;
+        userPosts.map((post) => {
+          console.log(post);
+          return <SinglePost key={post.id} id={post.id} post={post} />;
         })}
     </PostContainer>
   );
