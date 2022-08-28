@@ -53,7 +53,7 @@ const AppProvider = ({ children }) => {
   return (
     <AppContext.Provider
       value={{
-        state,
+        ...state,
         registerSubmitHandler,
         authUserCredentials,
         getUserPostsData,

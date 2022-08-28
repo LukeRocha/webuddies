@@ -11,15 +11,15 @@ import { useGlobalContext } from "../../context";
 import { createNewPost } from "../../operations/operations";
 
 const PostArea = ({ children }) => {
-  const { state } = useGlobalContext();
+  const { userState, accessToken } = useGlobalContext();
   const [postContent, setPostContent] = useState({
-    user_id: state.userState.userData.id,
+    user_id: userState.userData.id,
     content: "",
   });
 
   useEffect(() => {
-    setPostContent({ ...postContent, user_id: state.userState.userData.id });
-  }, []);
+    setPostContent({ ...postContent, user_id: userState.userData.id });
+  }, [postContent.content]);
 
   return (
     <NewPostContainer>
@@ -46,7 +46,8 @@ const PostArea = ({ children }) => {
           <Button
             bg={"var(--green-button)"}
             onClick={() => {
-              createNewPost(postContent, state.accessToken);
+              createNewPost(postContent, accessToken);
+              console.log(postContent);
               setPostContent({ ...postContent, content: "" });
             }}
           >

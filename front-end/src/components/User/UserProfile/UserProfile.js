@@ -10,9 +10,10 @@ import { useGlobalContext } from "../../../context";
 import Button from "../../Button/Button";
 
 const UserProfile = () => {
-  const { state } = useGlobalContext();
+  const { userState } = useGlobalContext();
   const { nickname, first_name, last_name, user_status, profile_picture } =
-    state.userState.userData;
+    userState.userData;
+
   return (
     <>
       <UserContainer>
@@ -31,7 +32,7 @@ const UserProfile = () => {
             <h2>{nickname}</h2>
             <p>{`${first_name} ${last_name}`}</p>
             <small>288 buddies</small>
-            <Status>{`here is my ${user_status}`}</Status>
+            <Status>{`${user_status}`}</Status>
             <Button
               style={{
                 backgroundColor: "var(--purple-button)",

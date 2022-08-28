@@ -9,7 +9,6 @@ const getPosts = async (req, res) => {
     .orderBy("timestamp", "desc");
 
   try {
-    console.log(userPosts);
     res.send(userPosts);
   } catch (error) {
     res.json(error);

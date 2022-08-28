@@ -1,25 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import SinglePost from "../SinglePost/SinglePost";
 import { useGlobalContext } from "../../context";
 import { PostContainer } from "./styles";
-import { getUserPosts } from "../../operations/operations";
 
 const PostsContainer = () => {
-  const { state, getUserPostsData } = useGlobalContext();
-  const [userPosts, setUserPosts] = useState([]);
+  const { accessToken, userState, getUserPostsData } = useGlobalContext();
 
   useEffect(() => {
-    getUserPostsData(state.accessToken);
-    console.log(state.userState.userPosts);
-    setUserPosts(state.userState.userPosts);
-    console.log(userPosts);
-  }, [userPosts]);
+    accessToken && getUserPostsData(accessToken);
+    console.log(accessToken);
+    // ;
+  }, [accessToken]);
 
+  useEffect(() => {
+    console.log(123);
+  }, [userState.userPosts]);
   return (
     <PostContainer>
-      {userPosts &&
-        userPosts.map((post) => {
-          console.log(post);
+      {userState.userPosts &&
+        userState.userPosts.map((post) => {
           return <SinglePost key={post.id} id={post.id} post={post} />;
         })}
     </PostContainer>

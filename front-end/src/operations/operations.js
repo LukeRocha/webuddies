@@ -35,13 +35,13 @@ export const getUserPosts = async (token) => {
   const requestPosts = await axios
     .get(urls.getPosts, { headers: { authorization: `Bearer ${token}` } })
     .then((resp) => {
-      return resp;
+      return resp.data;
     })
     .catch((error) => {
-      console.log(error);
+      console.log("error:", error);
     });
-
-  return requestPosts.data;
+  console.log(requestPosts);
+  return requestPosts;
 };
 
 export const registerNewUser = async (userInputs) => {
@@ -53,7 +53,6 @@ export const registerNewUser = async (userInputs) => {
     .catch((error) => {
       console.log(error);
     });
-
   return postResult;
 };
 
@@ -67,5 +66,5 @@ export const createNewPost = async (newPostData, token) => {
       console.log(error);
     });
 
-  getUserPosts(newPostData.user_id, token);
+  // getUserPosts(token);
 };
