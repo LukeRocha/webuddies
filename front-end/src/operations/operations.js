@@ -5,6 +5,7 @@ const urls = {
   createNewPost: "http://localhost:3700/users/new-post",
   getPosts: "http://localhost:3700/users/get-posts-data",
   authUser: "http://localhost:3700/users/login",
+  logout: "http://localhost:3700/users/logout",
 };
 
 const authorizationHeader = (token) => {

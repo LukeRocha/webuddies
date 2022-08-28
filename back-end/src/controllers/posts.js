@@ -8,8 +8,8 @@ const getPosts = async (req, res) => {
     .where("user_id", "=", req.user.userId)
     .orderBy("timestamp", "desc");
 
-  console.log("oi", userPosts);
   try {
+    console.log(userPosts);
     res.send(userPosts);
   } catch (error) {
     res.json(error);

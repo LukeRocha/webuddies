@@ -13,7 +13,6 @@ const initialState = {
     userData: {},
     userPosts: [],
   },
-  message: {},
   serverMessages: {},
   accessToken: false,
 };
@@ -40,6 +39,18 @@ const AppProvider = ({ children }) => {
     dispatch({ type: "FETCH_USER_POSTS", payload: postsDataFromDb });
   };
 
+  const userLogout = () => {
+    const emptyState = {
+      ...state,
+      userState: {
+        userData: "",
+        userPosts: "",
+      },
+      accessToken: false,
+    };
+    dispatch({ type: "USER_LOGOUT", payload: emptyState });
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -47,6 +58,7 @@ const AppProvider = ({ children }) => {
         registerSubmitHandler,
         authUserCredentials,
         getUserPostsData,
+        userLogout,
       }}
     >
       {children}

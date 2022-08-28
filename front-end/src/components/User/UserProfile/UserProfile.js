@@ -14,6 +14,7 @@ const UserProfile = () => {
   const { nickname, first_name, last_name, user_status, profile_picture } =
     state.userState.userData;
 
+  console.log("state in component", state);
   return (
     <>
       <UserContainer>

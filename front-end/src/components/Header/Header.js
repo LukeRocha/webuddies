@@ -5,6 +5,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import DensityMediumIcon from "@mui/icons-material/DensityMedium";
 import { StyledHeader, HeaderLogo } from "./styles";
+import { useGlobalContext } from "../../context";
 
 export default function Header() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -15,7 +16,7 @@ export default function Header() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  const userLogout = useGlobalContext();
   return (
     <div>
       <StyledHeader>
@@ -48,7 +49,9 @@ export default function Header() {
       >
         <MenuItem onClick={handleClose}>My account</MenuItem>
         <MenuItem onClick={handleClose}>
-          <Link to="/">Logout</Link>
+          <Link onClick={() => userLogout()} to="/">
+            Logout
+          </Link>
         </MenuItem>
       </Menu>
     </div>

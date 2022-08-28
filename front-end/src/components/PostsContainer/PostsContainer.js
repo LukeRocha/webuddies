@@ -13,7 +13,7 @@ const PostsContainer = () => {
       getUserPosts(state.userState.userData.id, state.accessToken);
     }
     setUserPosts(state.userState.userPosts);
-  }, [state]);
+  }, [state.accessToken]);
 
   return (
     <PostContainer>

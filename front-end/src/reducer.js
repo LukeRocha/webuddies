@@ -24,6 +24,9 @@ const reducer = (state, action) => {
       },
     };
   }
-};
 
+  if (action.type === "USER_LOGOUT") {
+    return { state: action.payload };
+  }
+};
 export default reducer;
