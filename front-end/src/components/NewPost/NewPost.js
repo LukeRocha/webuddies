@@ -11,7 +11,7 @@ import { useGlobalContext } from "../../context";
 import { createNewPost } from "../../operations/operations";
 
 const PostArea = ({ children }) => {
-  const { userState, accessToken } = useGlobalContext();
+  const { userState, accessToken, getUserPostsData } = useGlobalContext();
   const [postContent, setPostContent] = useState({
     user_id: userState.userData.id,
     content: "",
@@ -49,6 +49,7 @@ const PostArea = ({ children }) => {
               createNewPost(postContent, accessToken);
               console.log(postContent);
               setPostContent({ ...postContent, content: "" });
+              getUserPostsData(accessToken);
             }}
           >
             Share

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import SinglePost from "../SinglePost/SinglePost";
 import { useGlobalContext } from "../../context";
 import { PostContainer } from "./styles";
@@ -8,13 +8,8 @@ const PostsContainer = () => {
 
   useEffect(() => {
     accessToken && getUserPostsData(accessToken);
-    console.log(accessToken);
-    // ;
   }, [accessToken]);
 
-  useEffect(() => {
-    console.log(123);
-  }, [userState.userPosts]);
   return (
     <PostContainer>
       {userState.userPosts &&

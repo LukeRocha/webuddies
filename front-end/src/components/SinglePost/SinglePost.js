@@ -1,4 +1,5 @@
 import React from "react";
+import { useGlobalContext } from "../../context";
 import {
   PostContainer,
   User,
@@ -9,10 +10,11 @@ import {
 } from "./styled";
 
 const SinglePost = ({ post, id }) => {
+  const { userState } = useGlobalContext();
   return (
     <>
       <PostContainer id={id}>
-        <User>Lucas</User>
+        <User>{userState.userData.nickname}</User>
         <TimeStamp>{`at ${post.timestamp}`}</TimeStamp>
         <PostContent>{`${post.post_content}`}</PostContent>
         <PostButtons>
@@ -22,9 +24,6 @@ const SinglePost = ({ post, id }) => {
             onClick={() => console.log("tem boi na linha")}
           >
             💜 like
-          </InterfaceButton>
-          <InterfaceButton onClick={() => console.log("tem boi na linha")}>
-            💬 comments
           </InterfaceButton>
         </PostButtons>
       </PostContainer>

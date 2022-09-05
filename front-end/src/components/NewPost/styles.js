@@ -5,7 +5,8 @@ export const NewPostContainer = styled.section`
   flex-direction: column;
   width: 90vw;
   margin: 0 auto;
-  background-color: var(--modal-background);
+  background-color: var(--main-dark-background);
+  border: 2px solid var(--modal-background);
   border-radius: 8px;
   @media (min-width: 600px) {
     width: 80vw;

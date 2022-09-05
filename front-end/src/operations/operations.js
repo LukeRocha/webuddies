@@ -40,7 +40,7 @@ export const getUserPosts = async (token) => {
     .catch((error) => {
       console.log("error:", error);
     });
-  console.log(requestPosts);
+
   return requestPosts;
 };
 
@@ -66,5 +66,5 @@ export const createNewPost = async (newPostData, token) => {
       console.log(error);
     });
 
-  // getUserPosts(token);
+  getUserPosts(token);
 };
