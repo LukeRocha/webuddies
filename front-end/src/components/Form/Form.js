@@ -10,7 +10,7 @@ import Input from "../Input/Input";
 import { Link } from "react-router-dom";
 
 const Form = () => {
-  const { registerSubmitHandler, state } = useGlobalContext();
+  const { registerSubmitHandler, serverMessages } = useGlobalContext();
 
   const {
     register,
@@ -32,8 +32,8 @@ const Form = () => {
           <Label>Nickname</Label>
           <Input ref={ref} {...register("nickname")} />
           <InputError>{errors.nickname?.message}</InputError>
-          {state.serverMessages.nickname && (
-            <InputError>{state.serverMessages.nickname}</InputError>
+          {serverMessages.nickname && (
+            <InputError>{serverMessages.nickname}</InputError>
           )}
         </InputContainer>
         <InputContainer>
@@ -71,8 +71,8 @@ const Form = () => {
           <Label>E-mail</Label>
           <Input ref={ref} {...register("mail")} />
           <InputError>{errors.mail?.message}</InputError>
-          {state.serverMessages.mail && (
-            <InputError>{state.serverMessages.mail}</InputError>
+          {serverMessages.mail && (
+            <InputError>{serverMessages.mail}</InputError>
           )}
         </InputContainer>
 

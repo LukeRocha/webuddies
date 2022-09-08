@@ -76,7 +76,7 @@ const FormContainer = styled.div`
 `;
 
 const Login = () => {
-  const { authUserCredentials } = useGlobalContext();
+  const { state, authUserCredentials } = useGlobalContext();
   const [size, setSize] = useState(window.innerWidth);
   const [userCredentials, setUserCredentials] = useState({
     nickname: "",
@@ -92,7 +92,7 @@ const Login = () => {
     return () => {
       window.removeEventListener("resize", checkWindowSize);
     };
-  }, []);
+  }, [state]);
 
   return (
     <LoginContainer>

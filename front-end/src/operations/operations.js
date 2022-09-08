@@ -5,6 +5,12 @@ const urls = {
   createNewPost: "http://localhost:3700/users/new-post",
   getPosts: "http://localhost:3700/users/get-posts-data",
   authUser: "http://localhost:3700/users/login",
+  logout: "http://localhost:3700/users/logout",
+};
+
+const authorizationHeader = (token) => {
+  const header = { headers: { authorization: `Bearer ${token}` } };
+  return header;
 };
 
 export const authUser = async (userCredentials) => {
@@ -25,21 +31,17 @@ export const authUser = async (userCredentials) => {
   return authorizedUser;
 };
 
-export const getUserPosts = async (id, token) => {
+export const getUserPosts = async (token) => {
   const requestPosts = await axios
-    .get(urls.getPosts, {
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
-    })
+    .get(urls.getPosts, { headers: { authorization: `Bearer ${token}` } })
     .then((resp) => {
-      return resp;
+      return resp.data;
     })
     .catch((error) => {
-      console.log(error);
+      console.log("error:", error);
     });
 
-  return requestPosts.data;
+  return requestPosts;
 };
 
 export const registerNewUser = async (userInputs) => {
@@ -51,13 +53,12 @@ export const registerNewUser = async (userInputs) => {
     .catch((error) => {
       console.log(error);
     });
-
   return postResult;
 };
 
-export const createNewPost = async (newPostData) => {
-  const postResult = await axios
-    .post(urls.createNewPost, newPostData)
+export const createNewPost = async (newPostData, token) => {
+  await axios
+    .post(urls.createNewPost, newPostData, authorizationHeader(token))
     .then((resp) => {
       return resp;
     })
@@ -65,5 +66,5 @@ export const createNewPost = async (newPostData) => {
       console.log(error);
     });
 
-  return postResult;
+  getUserPosts(token);
 };

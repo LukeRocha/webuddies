@@ -6,7 +6,7 @@ export const PostContainer = styled.article`
   justify-content: center;
   margin: 8px;
   padding: 12px;
-  background-color: var(--modal-background);
+  background-color: var(--main-dark-background);
   border-radius: 4px;
   width: auto;
 `;
@@ -25,17 +25,23 @@ export const TimeStamp = styled.small`
 export const PostContent = styled.span`
   display: flex;
   text-align: left;
+  height: 10vh;
+  border-radius: 4px;
   text-indent: 8px;
   color: #fff;
+  background-color: var(--modal-background);
+  padding: 12px;
 `;
 export const PostButtons = styled.nav`
   display: flex;
   flex-flow: row nowrap;
-  width: 100vw;
+  padding: 10px;
+  /* width: 100vw; */
   margin-top: 6px;
-  justify-content: left;
+  justify-content: right;
   gap: 12px;
   color: var(--purple-button);
+  position: relative;
 `;
 
 export const InterfaceButton = styled.button`

@@ -20,10 +20,14 @@ const reducer = (state, action) => {
     return {
       ...state,
       userState: {
+        userData: state.userState.userData,
         userPosts: action.payload,
       },
     };
   }
-};
 
+  if (action.type === "USER_LOGOUT") {
+    return { state: action.payload };
+  }
+};
 export default reducer;

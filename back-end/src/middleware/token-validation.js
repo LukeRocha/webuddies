@@ -13,6 +13,7 @@ const tokenCheck = async (req, res, next) => {
   try {
     const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
     req.user = decoded;
+
     next();
   } catch (error) {
     res.json(error);

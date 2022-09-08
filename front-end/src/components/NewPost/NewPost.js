@@ -11,15 +11,16 @@ import { useGlobalContext } from "../../context";
 import { createNewPost } from "../../operations/operations";
 
 const PostArea = ({ children }) => {
-  const { state } = useGlobalContext();
+  const { userState, accessToken, getUserPostsData } = useGlobalContext();
   const [postContent, setPostContent] = useState({
-    user_id: state.userState.userData.id,
+    user_id: userState.userData.id,
     content: "",
   });
 
   useEffect(() => {
-    setPostContent({ ...postContent, user_id: state.userState.userData.id });
-  }, []);
+    // getUserPostsData(accessToken);
+    setPostContent({ ...postContent, user_id: userState.userData.id });
+  }, [postContent.content]);
 
   return (
     <NewPostContainer>
@@ -30,6 +31,15 @@ const PostArea = ({ children }) => {
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8czzbrLzXJ9R_uhKyMiwj1iGxKhJtH7pwlQ&usqp=CAU"
           />
         </ImageContainer>
+
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            createNewPost(postContent, accessToken);
+            setPostContent({ ...postContent, content: "" });
+            getUserPostsData(accessToken);
+          }}
+        />
         <PostContent
           maxLength={200}
           placeholder="Share something with buddies..."
@@ -44,10 +54,13 @@ const PostArea = ({ children }) => {
       <ButtonsWrapper>
         <>
           <Button
+            type="submit"
             bg={"var(--green-button)"}
-            onClick={() => {
-              createNewPost(postContent);
+            onClick={(e) => {
+              e.preventDefault();
+              createNewPost(postContent, accessToken);
               setPostContent({ ...postContent, content: "" });
+              getUserPostsData(accessToken);
             }}
           >
             Share
