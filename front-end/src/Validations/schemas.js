@@ -5,7 +5,7 @@ const registerSchema = yup.object().shape({
   first_name: yup.string().required("this field is required"),
   last_name: yup.string().required("this field is required"),
   birth: yup.date().required("this field is required"),
-  city: yup.string().required("This field is required"),
+  city: yup.string().required("this field is required"),
   mail: yup.string().email().required("this field is required"),
   password: yup
     .string()
