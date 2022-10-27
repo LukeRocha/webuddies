@@ -7,23 +7,29 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "../../Validations/schemas";
 import { useGlobalContext } from "../../context";
 import Input from "../Input/Input";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Form = () => {
   const { registerSubmitHandler, serverMessages } = useGlobalContext();
-
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(registerSchema) });
 
-  const onSubmit = (data, e) => {
-    handleSubmit(data);
-    registerSubmitHandler(data);
-  };
+  const navigateHome = () =>{
+    navigate("/");
+  }
+
+  const onSubmit = async (data, e) => {
+    await handleSubmit(data);
+    await registerSubmitHandler(data);
+    navigateHome()
+  }
 
   const ref = React.createRef();
+
 
   return (
     <>
@@ -89,7 +95,7 @@ const Form = () => {
         </InputContainer>
         <InputContainer>
           <Button bg={"var(--green-button)"} type="submit">
-            Send
+            Create account
           </Button>
           <Link to="/">
             <Button
