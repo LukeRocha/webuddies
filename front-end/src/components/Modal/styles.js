@@ -5,9 +5,13 @@ export const StyledModal = styled.div`
   flex-direction: column;
   justify-content: center;
   align-content: center;
-  width: 80vw;
   margin: 0 auto;
 
+
+  
+  width: 50%;
+  border: 3px solid green;
+  padding: 10px;
   position: absolute;
   padding: 12px;
   background-color: var(--modal-background);

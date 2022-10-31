@@ -38,10 +38,7 @@ const Form = () => {
 
   return (
     <>
-      <FormComponent onSubmit={
-        async () =>{{
-           handleSubmit(onSubmit) 
-      }}}>
+      <FormComponent onSubmit={handleSubmit(onSubmit)}>
         <InputContainer>
           <Label>Nickname</Label>
           <Input ref={ref} {...register("nickname")} />
