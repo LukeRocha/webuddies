@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledModal = styled.div`
+export const StyledLoginInputs = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,7 +8,7 @@ export const StyledModal = styled.div`
   width: 80vw;
   margin: 0 auto;
 
-  position: absolute;
+  
   padding: 12px;
   background-color: var(--modal-background);
   border-radius: 4px;

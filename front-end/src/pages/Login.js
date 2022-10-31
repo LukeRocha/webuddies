@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useGlobalContext } from "../context";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import Modal from "../components/Modal/Modal";
+import LoginInputs from "../components/LoginInputs/LoginInputs";
 import Input from "../components/Input/Input";
 import Button from "../components/Button/Button";
 import buddies from "../assets/images/loginBuddies-mobile.png";
@@ -98,7 +98,7 @@ const Login = () => {
     <LoginContainer>
       <ModalContainer>
         <Title>we Buddies</Title>
-        <Modal>
+        <LoginInputs>
           <ModalWrapper>
             <form
               onSubmit={(e) => {
@@ -143,7 +143,7 @@ const Login = () => {
               </FormContainer>
             </form>
           </ModalWrapper>
-        </Modal>
+        </LoginInputs>
 
         <Link to="/register">
           <Button className="button-Link" bg={"var(--purple-button)"}>
