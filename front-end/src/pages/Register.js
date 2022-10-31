@@ -25,8 +25,7 @@ const Logo = styled.h1`
 
 const RegisterQuote = styled.p`
   color: #fff;
-`;
-
+`
 const Register = () => {
   return (
     <>

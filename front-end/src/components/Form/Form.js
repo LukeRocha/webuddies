@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import InputError from "../InputError/InputError";
 import Button from "../Button/Button";
+import Modal from "../Modal/Modal"
 import { FormComponent, InputContainer, Select, Label } from "./styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "../../Validations/schemas";
 import { useGlobalContext } from "../../context";
 import Input from "../Input/Input";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Form = () => {
   const { registerSubmitHandler, serverMessages } = useGlobalContext();
+  
+  const [isModalOn, setIsModalOn] = useState(true)
+
+  const navigate = useNavigate();
 
   const {
     register,
@@ -18,12 +23,18 @@ const Form = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(registerSchema) });
 
-  const onSubmit = (data, e) => {
-    handleSubmit(data);
-    registerSubmitHandler(data);
-  };
+  const navigateHome = () =>{
+    navigate("/");
+  }
+
+  const onSubmit = async (data, e) => {
+    await handleSubmit(data);
+    await registerSubmitHandler(data);
+    await setIsModalOn(true)
+  }
 
   const ref = React.createRef();
+
 
   return (
     <>
@@ -89,7 +100,7 @@ const Form = () => {
         </InputContainer>
         <InputContainer>
           <Button bg={"var(--green-button)"} type="submit">
-            Send
+            Create account
           </Button>
           <Link to="/">
             <Button
@@ -101,6 +112,14 @@ const Form = () => {
             </Button>
           </Link>
         </InputContainer>
+      {isModalOn && 
+      <Modal>
+        <h3>
+        Your account has been created!
+        </h3>
+        <Button bg={"var(--green-button)"} onClick={() => navigateHome()}>Ok</Button>
+        </Modal>
+        }
       </FormComponent>
     </>
   );

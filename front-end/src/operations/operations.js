@@ -66,5 +66,5 @@ export const createNewPost = async (newPostData, token) => {
       console.log(error);
     });
 
-  getUserPosts(token);
+   return getUserPosts(token);
 };

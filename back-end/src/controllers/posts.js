@@ -5,12 +5,13 @@ const getPosts = async (req, res) => {
   const userPosts = await db.knex
     .select("id", "user_id", "post_content", "timestamp")
     .from("posts")
-    .where("user_id", "=", req.user.userId)
+    .where("user_id", "=", req.user.userId )
     .orderBy("timestamp", "desc");
 
   try {
     res.send(userPosts);
   } catch (error) {
+    console.log(error)
     res.json(error);
   }
 };
@@ -34,7 +35,10 @@ const newPost = (req, res) => {
     return insertPost;
   };
 
-  return createPost(post);
+ return  createPost(post);
+  
+   
+  
 };
 
 module.exports = { getPosts, newPost };
