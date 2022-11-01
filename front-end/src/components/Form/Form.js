@@ -13,7 +13,7 @@ import { Link, useNavigate } from "react-router-dom";
 const Form = () => {
   const { registerSubmitHandler, serverMessages } = useGlobalContext();
   
-  const [isModalOn, setIsModalOn] = useState(true)
+  const [isModalOn, setIsModalOn] = useState(false)
 
   const navigate = useNavigate();
 
@@ -118,7 +118,7 @@ const Form = () => {
         Your account has been created!
         </h3>
         <Button bg={"var(--green-button)"} onClick={() => navigateHome()}>Ok</Button>
-        </Modal>
+        </Modal> 
         }
       </FormComponent>
     </>
