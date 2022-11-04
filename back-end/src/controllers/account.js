@@ -58,8 +58,14 @@ const create = async (req, res) => {
   return insertUserInDb(newUser);
 };
 
-  const accessUserProfile = (req, res) =>{
-    // console.log("param", req.param)
+  const accessUserProfile = async (req, res) =>{
+    console.log("param", req.params)
+    const userFromDb = await db.knex.select().from('users').where("nickname", "=",req.params.nickname)
+    console.log(userFromDb)
+    
+
+      
+
 
     // await db.knex.select().from('users').where(req.params.nickname,'=', )
   }

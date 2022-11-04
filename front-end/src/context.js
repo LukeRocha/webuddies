@@ -42,7 +42,6 @@ const AppProvider = ({ children }) => {
 
   const accessFriendPage = async (nicknameParam) =>{
     const nickParam = await accessUserProfile(nicknameParam)
-    console.log(nickParam)
     dispatch({type: "ACCESS_FRIEND_PAGE", payload: nickParam})
   }
   

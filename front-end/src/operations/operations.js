@@ -71,8 +71,9 @@ export const createNewPost = async (newPostData, token) => {
 };
 
 export const accessUserProfile = async(userName) =>{
+  console.log(userName)
   try {
-    return await axios.get(urls.accessFriendship, userName)
+    return await axios.get( `http://localhost:3700/users/${userName}` , userName)
   } catch (e) {
     // handle error
     console.log(e)

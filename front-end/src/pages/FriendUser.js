@@ -6,9 +6,9 @@ import { useParams } from "react-router-dom";
 const FriendUser =   () =>{
     const { accessFriendPage, ...state } = useGlobalContext();
     const params = useParams()
-    console.log(state)    
-    accessFriendPage(params)
-    console.log(state)
+    accessFriendPage(params.nickname)
+    console.log(params)
+    
     return(
          <>
             <h2>{'param.nickname page'}</h2>

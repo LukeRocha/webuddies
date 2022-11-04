@@ -30,12 +30,11 @@ const reducer = (state, action) => {
     return { state: action.payload };
   }
 
-  if (action.type === "ACCESS_FRIEND_PAGE") {
-    console.log(action.payload)
-    return {
-      ...state, 
-      accessedFriendPage: action.payload
-    }
-  }
+  // if (action.type === "ACCESS_FRIEND_PAGE") {
+  //   return {
+  //     ...state, 
+  //     accessedFriendPage: action.payload
+  //   }
+  // }
 };
 export default reducer;
