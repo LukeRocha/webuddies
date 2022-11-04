@@ -11,7 +11,7 @@ function generateAccessToken(user) {
 async function authenticateUser(req, res) {
   const response = {};
   const { nickname, password } = req.body;
-
+  console.log("hi")
   const dbUserData = await db.knex
     .select(
       "id",

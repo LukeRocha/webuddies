@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 require("dotenv").config();
 const { default: knex } = require("knex");
 const db = require("../database/db");
@@ -57,4 +58,11 @@ const create = async (req, res) => {
   return insertUserInDb(newUser);
 };
 
-module.exports = { create };
+  const accessUserProfile = (req, res) =>{
+    // console.log("param", req.param)
+
+    // await db.knex.select().from('users').where(req.params.nickname,'=', )
+  }
+
+
+module.exports = { create, accessUserProfile };

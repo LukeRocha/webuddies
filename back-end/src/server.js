@@ -17,19 +17,24 @@ app.use(cors({ origin: /http:\/\/localhost/ }));
 app.options("*", cors());
 
 const router = express.Router();
-router.post("/users/login", authenticationController.authenticateUser);
+
+//GET ROUTES
 router.get(
   "/users/get-posts-data",
   tokenMiddleware.tokenCheck,
   postsController.getPosts
 );
+router.get("/users/:nickname", accountController.accessUserProfile )
 
+// POST ROUTES
+router.post("/users/login", authenticationController.authenticateUser);
 router.post("/create-account", accountController.create);
 router.post(
   "/users/new-post",
   tokenMiddleware.tokenCheck,
   postsController.newPost
 );
+
 
 app.use(router);
 app.listen(port, () => {
