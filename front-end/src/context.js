@@ -4,6 +4,7 @@ import {
   registerNewUser,
   authUser,
   getUserPosts,
+  accessUserProfile
 } from "./operations/operations";
 
 const AppContext = React.createContext();
@@ -15,11 +16,12 @@ const initialState = {
   },
   serverMessages: {},
   accessToken: false,
+  accessedFriendPage:{}
 };
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-
+  
   const registerSubmitHandler = async (userInputs) => {
     const registeredUser = await registerNewUser(userInputs);
     dispatch({ type: "REGISTER_USER", payload: registeredUser.data });
@@ -38,6 +40,12 @@ const AppProvider = ({ children }) => {
     dispatch({ type: "FETCH_USER_POSTS", payload: postsDataFromDb });
   };
 
+  const accessFriendPage = async (nicknameParam) =>{
+    const nickParam = await accessUserProfile(nicknameParam)
+    console.log(nickParam)
+    dispatch({type: "ACCESS_FRIEND_PAGE", payload: nickParam})
+  }
+  
   const userLogout = () => {
     const emptyState = {
       ...state,
@@ -58,6 +66,7 @@ const AppProvider = ({ children }) => {
         authUserCredentials,
         getUserPostsData,
         userLogout,
+        accessFriendPage
       }}
     >
       {children}

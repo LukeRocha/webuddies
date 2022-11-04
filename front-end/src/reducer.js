@@ -29,5 +29,13 @@ const reducer = (state, action) => {
   if (action.type === "USER_LOGOUT") {
     return { state: action.payload };
   }
+
+  if (action.type === "ACCESS_FRIEND_PAGE") {
+    console.log(action.payload)
+    return {
+      ...state, 
+      accessedFriendPage: action.payload
+    }
+  }
 };
 export default reducer;

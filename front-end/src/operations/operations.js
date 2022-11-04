@@ -6,6 +6,7 @@ const urls = {
   getPosts: "http://localhost:3700/users/get-posts-data",
   authUser: "http://localhost:3700/users/login",
   logout: "http://localhost:3700/users/logout",
+  accessFriendship: "http://localhost:3700/users/:nickname"
 };
 
 const authorizationHeader = (token) => {
@@ -68,3 +69,12 @@ export const createNewPost = async (newPostData, token) => {
 
    return getUserPosts(token);
 };
+
+export const accessUserProfile = async(userName) =>{
+  try {
+    return await axios.get(urls.accessFriendship, userName)
+  } catch (e) {
+    // handle error
+    console.log(e)
+  }
+}
