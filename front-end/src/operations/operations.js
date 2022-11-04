@@ -6,7 +6,7 @@ const urls = {
   getPosts: "http://localhost:3700/users/get-posts-data",
   authUser: "http://localhost:3700/users/login",
   logout: "http://localhost:3700/users/logout",
-  accessFriendship: "http://localhost:3700/users/:nickname"
+  accessFriendship: "http://localhost:3700/users/",
 };
 
 const authorizationHeader = (token) => {
@@ -67,15 +67,14 @@ export const createNewPost = async (newPostData, token) => {
       console.log(error);
     });
 
-   return getUserPosts(token);
+  return getUserPosts(token);
 };
 
-export const accessUserProfile = async(userName) =>{
-  console.log(userName)
-  try {
-    return await axios.get( `http://localhost:3700/users/${userName}` , userName)
-  } catch (e) {
-    // handle error
-    console.log(e)
+export const accessUserProfile = async (userName) => {
+    try {
+    const dataFromDb = await axios.get(`${urls.accessFriendship}${userName}`, userName)
+    return dataFromDb.data[0]
+  } catch (error) {
+  console.log(error)  
   }
-}
+};
