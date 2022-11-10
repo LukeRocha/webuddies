@@ -58,11 +58,12 @@ const create = async (req, res) => {
   return insertUserInDb(newUser);
 };
 
-  const accessUserProfile = (req, res) =>{
-    // console.log("param", req.param)
-
-    // await db.knex.select().from('users').where(req.params.nickname,'=', )
-  }
-
+const accessUserProfile = async (req, res) => {
+  const dataFromDb = await db.knex
+  .select("nickname", "first_name", "last_name", "profile_picture", "user_status", "city", "id")
+  .from("users")
+  .where("nickname", "=", req.params.nickname)
+ res.send(dataFromDb)
+};
 
 module.exports = { create, accessUserProfile };

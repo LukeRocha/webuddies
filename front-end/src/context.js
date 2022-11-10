@@ -16,7 +16,7 @@ const initialState = {
   },
   serverMessages: {},
   accessToken: false,
-  accessedFriendPage:{}
+  accessedUserPage:{}
 };
 
 const AppProvider = ({ children }) => {
@@ -40,10 +40,9 @@ const AppProvider = ({ children }) => {
     dispatch({ type: "FETCH_USER_POSTS", payload: postsDataFromDb });
   };
 
-  const accessFriendPage = async (nicknameParam) =>{
-    const nickParam = await accessUserProfile(nicknameParam)
-    console.log(nickParam)
-    dispatch({type: "ACCESS_FRIEND_PAGE", payload: nickParam})
+  const getBuddyData = async (nicknameParam) =>{
+    const userDataFromDb = await accessUserProfile(nicknameParam)
+    dispatch({type: "ACCESS_FRIEND_PAGE", payload: userDataFromDb})
   }
   
   const userLogout = () => {
@@ -66,7 +65,7 @@ const AppProvider = ({ children }) => {
         authUserCredentials,
         getUserPostsData,
         userLogout,
-        accessFriendPage
+        getBuddyData
       }}
     >
       {children}

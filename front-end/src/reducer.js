@@ -31,11 +31,10 @@ const reducer = (state, action) => {
   }
 
   if (action.type === "ACCESS_FRIEND_PAGE") {
-    console.log(action.payload)
     return {
-      ...state, 
-      accessedFriendPage: action.payload
-    }
+      ...state,
+      accessedUserPage: action.payload,
+    };
   }
 };
 export default reducer;
