@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 const FriendUser = () =>{
     const { getBuddyData, ...state } = useGlobalContext();
     const params = useParams()
-    const {nickname, first_name} = {...state.accessedUserPage}
+    const {nickname, first_name, last_name} = {...state.accessedUserPage}
 
     useEffect(() =>{
         getBuddyData(params.nickname)
@@ -16,7 +16,7 @@ const FriendUser = () =>{
          <>
             <h1>{nickname}</h1>
             <h2>{first_name}</h2>
-         
+            <h3>{last_name}</h3>      
         </>
     )
 
