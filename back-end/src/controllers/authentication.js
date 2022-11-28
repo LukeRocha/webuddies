@@ -7,11 +7,10 @@ const jwt = require("jsonwebtoken");
 function generateAccessToken(user) {
   return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "30d" });
 }
-
+  
 async function authenticateUser(req, res) {
   const response = {};
   const { nickname, password } = req.body;
-  console.log("hi")
   const dbUserData = await db.knex
     .select(
       "id",
