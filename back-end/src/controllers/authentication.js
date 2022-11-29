@@ -44,4 +44,6 @@ async function authenticateUser(req, res) {
   }
 }
 
+
+//Tip: The dummy test user password is "11111111"
 module.exports = { authenticateUser };
