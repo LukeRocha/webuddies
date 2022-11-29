@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const accountController = require("./controllers/account");
 const postsController = require("./controllers/posts");
 const authenticationController = require("./controllers/authentication");
+const friendshipController = require("./controllers/friendships")
 const tokenMiddleware = require("./middleware/token-validation");
 
 const port = process.env.port || process.env.PORT || 3700;
@@ -34,6 +35,7 @@ router.post(
   tokenMiddleware.tokenCheck,
   postsController.newPost
 );
+router.post("/newFriend", friendshipController.followNewFriend)
 
 
 app.use(router);

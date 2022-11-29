@@ -7,6 +7,7 @@ const urls = {
   authUser: "http://localhost:3700/users/login",
   logout: "http://localhost:3700/users/logout",
   accessFriendship: "http://localhost:3700/users/",
+  addNewFriendship: "http://localhost:3700/newFriend"
 };
 
 const authorizationHeader = (token) => {
@@ -78,3 +79,14 @@ export const accessUserProfile = async (userName) => {
   console.log(error)  
   }
 };
+
+
+export const followNewFriend = async (userDataObject) => {
+  try{
+    console.log(userDataObject)
+     await axios.post(urls.addNewFriendship, userDataObject)
+  }
+  catch (error){
+    console.log(error)
+  }
+}
