@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const accountController = require("./controllers/account");
 const postsController = require("./controllers/posts");
 const authenticationController = require("./controllers/authentication");
-const friendshipController = require("./controllers/friendships")
+const friendshipController = require("./controllers/friendships");
 const tokenMiddleware = require("./middleware/token-validation");
 
 const port = process.env.port || process.env.PORT || 3700;
@@ -25,8 +25,8 @@ router.get(
   tokenMiddleware.tokenCheck,
   postsController.getPosts
 );
-router.get("/users/:nickname", accountController.accessUserProfile )
-
+router.get("/users/:nickname", accountController.accessUserProfile);
+router.get("/users/search/:nickname", friendshipController.searchUsers);
 // POST ROUTES
 router.post("/users/login", authenticationController.authenticateUser);
 router.post("/create-account", accountController.create);
@@ -35,8 +35,7 @@ router.post(
   tokenMiddleware.tokenCheck,
   postsController.newPost
 );
-router.post("/newFriend", friendshipController.followNewFriend)
-
+router.post("/newFriend", friendshipController.followNewFriend);
 
 app.use(router);
 app.listen(port, () => {

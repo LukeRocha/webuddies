@@ -18,7 +18,6 @@ const FriendUser = () => {
       main_user_id: id,
       target_friend_id: state.userState.userData.id,
     });
-    console.log(friendshipObject);
   }, []);
 
   // THERE ARE SOME STEPS TO FOLLOW:
