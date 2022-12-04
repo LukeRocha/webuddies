@@ -5,6 +5,7 @@ import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import HomeIcon from "@mui/icons-material/Home";
 import PersonSearchIcon from "@mui/icons-material/PersonSearch";
+import { Link } from "react-router-dom";
 
 import { BottomNavBar } from "./styled";
 
@@ -41,10 +42,13 @@ export default function BottomNav() {
             label="Friends"
             icon={<PeopleAltIcon />}
           />
+
           <BottomNavigationAction
             sx={{ color: "#fff" }}
             label="Search"
             icon={<PersonSearchIcon />}
+            href="/users/search"
+            variant="contained"
           />
         </BottomNavigation>
       </Box>
