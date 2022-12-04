@@ -8,8 +8,6 @@ import Button from "../components/Button/Button";
 import buddies from "../assets/images/loginBuddies-mobile.png";
 import desktopBuddies from "../assets/images/desktop-login-buddies.png";
 
-import SearchUsersComponent from "../components/SearchModal/SearchModal";
-
 const LoginContainer = styled.section`
   display: flex;
   flex-direction: column;
@@ -100,7 +98,6 @@ const Login = () => {
     <LoginContainer>
       <ModalContainer>
         <Title>we Buddies</Title>
-        <SearchUsersComponent></SearchUsersComponent>
         <LoginInputs>
           <ModalWrapper>
             <form
@@ -138,7 +135,8 @@ const Login = () => {
                     type="submit"
                     onClick={async () => {
                       await authUserCredentials(userCredentials);
-                    }}>
+                    }}
+                  >
                     Login
                   </Button>
                 </Link>
