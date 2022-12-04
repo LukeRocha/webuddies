@@ -8,7 +8,8 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Register from "./pages/Register";
 import FriendUser from "./pages/FriendUser";
-import SearchModal from "./components/SearchModal/SearchModal";
+import SearchPage from "./pages/SearchPage";
+
 ReactDOM.render(
   <React.StrictMode>
     <AppProvider>
@@ -18,7 +19,7 @@ ReactDOM.render(
           <Route path="/profile" element={<Profile />} />
           <Route path="/register" element={<Register />} />
           <Route path="/users/:nickname" element={<FriendUser />} />
-          <Route path="/users/search" element={<SearchModal />} />
+          <Route path="/users/search" element={<SearchPage />} />
         </Routes>
       </BrowserRouter>
     </AppProvider>

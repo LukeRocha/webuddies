@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { searchUsersProfile } from "../../operations/operations";
-import Header from "../Header/Header";
 import Input from "../Input/Input";
+import SearchUserCard from "../SearchUserCard/SearchUserCard";
 import {
   SearchContainer,
   UsersReturnComponent,
@@ -10,13 +10,8 @@ import {
 const SearchUsersComponent = ({ children, ...props }) => {
   const [nameSearch, setNameSearch] = useState("");
 
-  useEffect(() => {
-    console.log(nameSearch);
-  }, [nameSearch]);
-
   return (
     <SearchContainer>
-      <Header />
       <Input
         onChange={(e) => {
           setNameSearch(e.target.value);
@@ -26,7 +21,7 @@ const SearchUsersComponent = ({ children, ...props }) => {
         placeholder="Search Buddies..."
       />
       <UsersReturnComponent>
-        <SingleSearchUser {...props}>{children}</SingleSearchUser>
+        <SearchUserCard {...props}>{children}</SearchUserCard>
       </UsersReturnComponent>
     </SearchContainer>
   );
