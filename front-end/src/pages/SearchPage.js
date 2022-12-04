@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SearchUsersComponent from "../components/SearchModal/SearchModal";
 import Header from "../components/Header/Header";
+import BottomNav from "../components/BottomNav/BottomNav";
 import styled from "styled-components";
 
 const SearchPageContainer = styled.div`
@@ -13,7 +14,8 @@ const SearchPage = () => {
   return (
     <SearchPageContainer>
       <Header />
-      <SearchUsersComponent></SearchUsersComponent>
+      <SearchUsersComponent />
+      <BottomNav />
     </SearchPageContainer>
   );
 };

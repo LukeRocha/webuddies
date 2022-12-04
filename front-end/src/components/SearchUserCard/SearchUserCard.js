@@ -8,7 +8,7 @@ import {
 const SearchUserCard = ({ children, ...props }) => {
   return (
     <SingleUserCardContainer>
-      <ImageProfileContainer {...props} />
+      <ImageProfileContainer src={props.profile_picture} />
       <SingleUserData>{children}</SingleUserData>
     </SingleUserCardContainer>
   );

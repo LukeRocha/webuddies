@@ -7,21 +7,27 @@ import {
   UsersReturnComponent,
   SingleSearchUser,
 } from "./style";
+
 const SearchUsersComponent = ({ children, ...props }) => {
   const [nameSearch, setNameSearch] = useState("");
-
+  const [searchResult, setSearchResult] = useState([]);
+  const fetchUsers = async () => {
+    const result = await searchUsersProfile(nameSearch);
+    return result;
+  };
+  useEffect(() => {
+    setSearchResult(fetchUsers);
+  }, [nameSearch]);
   return (
     <SearchContainer>
       <Input
         onChange={(e) => {
           setNameSearch(e.target.value);
-          searchUsersProfile(e.target.value);
         }}
-        value={nameSearch}
         placeholder="Search Buddies..."
       />
       <UsersReturnComponent>
-        <SearchUserCard {...props}>{children}</SearchUserCard>
+        <SearchUserCard {...props}></SearchUserCard>
       </UsersReturnComponent>
     </SearchContainer>
   );
