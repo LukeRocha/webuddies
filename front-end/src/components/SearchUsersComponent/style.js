@@ -14,8 +14,3 @@ export const UsersReturnComponent = styled.div`
   border: 1px solid white;
   border-radius: 8px;
 `;
-
-export const SingleSearchUser = styled.span`
-  width: 90vw;
-  margin: 8px auto;
-`;
