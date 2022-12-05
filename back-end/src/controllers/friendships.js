@@ -19,7 +19,7 @@ const followNewFriend = async (idObject) => {
 const searchUsers = async (req, res) => {
   try {
     await db.knex
-      .select("nickname", "profile_picture", "first_name", "last_name")
+      .select("nickname", "profile_picture", "first_name", "last_name", "id")
       .from("users")
       .where("nickname", "like", `%${req.params.nickname}%`)
       .then((resp) => {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import SearchUsersComponent from "../components/SearchModal/SearchModal";
+import SearchUsersComponent from "../components/SearchUsersComponent/SearchUsersComponent";
 import Header from "../components/Header/Header";
 import BottomNav from "../components/BottomNav/BottomNav";
 import styled from "styled-components";

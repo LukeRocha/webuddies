@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { searchUsersProfile } from "../../operations/operations";
 import Input from "../Input/Input";
-import SearchUserCard from "../SearchUserCard/SearchUserCard";
+import SearchUserCard from "../SearchUserPreview/SearchUserPreview";
 import {
   SearchContainer,
   UsersReturnComponent,
@@ -10,14 +10,12 @@ import {
 
 const SearchUsersComponent = ({ children, ...props }) => {
   const [nameSearch, setNameSearch] = useState("");
-  const [searchResult, setSearchResult] = useState([]);
+
   const fetchUsers = async () => {
-    const result = await searchUsersProfile(nameSearch);
-    return result;
+    await searchUsersProfile(nameSearch);
   };
-  useEffect(() => {
-    setSearchResult(fetchUsers);
-  }, [nameSearch]);
+  useEffect(() => {}, [nameSearch]);
+
   return (
     <SearchContainer>
       <Input
@@ -26,9 +24,7 @@ const SearchUsersComponent = ({ children, ...props }) => {
         }}
         placeholder="Search Buddies..."
       />
-      <UsersReturnComponent>
-        <SearchUserCard {...props}></SearchUserCard>
-      </UsersReturnComponent>
+      <UsersReturnComponent></UsersReturnComponent>
     </SearchContainer>
   );
 };
