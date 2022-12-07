@@ -9,7 +9,6 @@ const PostsContainer = () => {
 
   const realTimePostRender = useCallback(() => {
     setUserPosts(userState.userPosts);
-    console.log(userPosts);
   }, [userState.userPosts]);
 
   useEffect(() => {

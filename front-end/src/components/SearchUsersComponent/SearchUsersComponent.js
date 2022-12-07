@@ -6,18 +6,21 @@ import { SearchContainer, UsersReturnComponent } from "./style";
 
 const SearchUsersComponent = ({ children, ...props }) => {
   const [nameSearch, setNameSearch] = useState("");
-  const [filteredUsers, setFilteredUsers] = useState(false);
+  const [filteredUsers, setFilteredUsers] = useState([]);
+
+  const fetchResult = async () => {
+    const result = await searchUsersProfile(nameSearch);
+    return result;
+  };
 
   useEffect(() => {
     const fetch = async () => {
-      const users = await searchUsersProfile(nameSearch);
-      console.log(users);
-      setFilteredUsers(users);
-      console.log(filteredUsers);
+      const result = await fetchResult();
+      console.log(result);
+      setFilteredUsers(result);
+      return result;
     };
     fetch();
-    console.log(filteredUsers);
-    return () => {};
   }, [nameSearch]);
 
   return (
@@ -30,7 +33,15 @@ const SearchUsersComponent = ({ children, ...props }) => {
       />
       <UsersReturnComponent>
         {
-          // Here we'll have the map function
+          <div>
+            {filteredUsers.map((user) => {
+              return (
+                <SearchUserPreview {...user} key={user.id}>
+                  {"ola"}
+                </SearchUserPreview>
+              );
+            })}
+          </div>
         }
       </UsersReturnComponent>
     </SearchContainer>

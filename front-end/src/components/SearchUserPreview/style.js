@@ -12,9 +12,11 @@ export const SingleUserCardContainer = styled.span`
 `;
 
 export const ImageProfileContainer = styled.img`
+  width: 80px;
+  height: 80px;
   display: flex;
   justify-content: center;
-  border: 50%;
+  border-radius: 50%;
   overflow: hidden;
   margin: 0 8px;
 `;
