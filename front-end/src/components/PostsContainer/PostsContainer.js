@@ -10,6 +10,7 @@ const PostsContainer = () => {
   const realTimePostRender = useCallback(() => {
     setUserPosts(userState.userPosts);
   }, [userState.userPosts]);
+  const storageToken = localStorage.getItem();
 
   useEffect(() => {
     accessToken && getUserPostsData(accessToken);

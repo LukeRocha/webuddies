@@ -4,7 +4,7 @@ import {
   registerNewUser,
   authUser,
   getUserPosts,
-  accessUserProfile
+  accessUserProfile,
 } from "./operations/operations";
 
 const AppContext = React.createContext();
@@ -16,12 +16,12 @@ const initialState = {
   },
   serverMessages: {},
   accessToken: false,
-  accessedUserPage:{}
+  accessedUserPage: {},
 };
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  
+
   const registerSubmitHandler = async (userInputs) => {
     const registeredUser = await registerNewUser(userInputs);
     dispatch({ type: "REGISTER_USER", payload: registeredUser.data });
@@ -29,6 +29,7 @@ const AppProvider = ({ children }) => {
 
   const authUserCredentials = async (userCredentials) => {
     const userDataFromDb = await authUser(userCredentials);
+    localStorage.setItem("access_token", userDataFromDb.token);
     dispatch({
       type: "AUTH_USER",
       payload: userDataFromDb,
@@ -40,11 +41,11 @@ const AppProvider = ({ children }) => {
     dispatch({ type: "FETCH_USER_POSTS", payload: postsDataFromDb });
   };
 
-  const getBuddyData = async (nicknameParam) =>{
-    const userDataFromDb = await accessUserProfile(nicknameParam)
-    dispatch({type: "ACCESS_FRIEND_PAGE", payload: userDataFromDb})
-  }
-  
+  const getBuddyData = async (nicknameParam) => {
+    const userDataFromDb = await accessUserProfile(nicknameParam);
+    dispatch({ type: "ACCESS_FRIEND_PAGE", payload: userDataFromDb });
+  };
+
   const userLogout = () => {
     const emptyState = {
       ...state,
@@ -65,7 +66,7 @@ const AppProvider = ({ children }) => {
         authUserCredentials,
         getUserPostsData,
         userLogout,
-        getBuddyData
+        getBuddyData,
       }}
     >
       {children}

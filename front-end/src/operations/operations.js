@@ -29,7 +29,7 @@ export const authUser = async (userCredentials) => {
     token: authRequestResult.data.accessToken,
     userData: authRequestResult.data.dbUserData[0],
   };
-
+  console.log(authorizedUser);
   return authorizedUser;
 };
 

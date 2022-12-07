@@ -7,7 +7,7 @@ const jwt = require("jsonwebtoken");
 function generateAccessToken(user) {
   return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "30d" });
 }
-  
+
 async function authenticateUser(req, res) {
   const response = {};
   const { nickname, password } = req.body;
@@ -25,6 +25,7 @@ async function authenticateUser(req, res) {
     .from("users")
     .where("nickname", req.body.nickname);
 
+  //this verification is not working
   if (!dbUserData[0]) {
     response.ServerMessage =
       "User has not found or password is wrong, try again";
@@ -43,7 +44,6 @@ async function authenticateUser(req, res) {
     res.status(201).send(response);
   }
 }
-
 
 //Tip: The dummy test user password is "11111111"
 module.exports = { authenticateUser };
