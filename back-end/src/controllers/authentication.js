@@ -34,8 +34,9 @@ async function authenticateUser(req, res) {
   }
 
   if (await bcrypt.compare(password, dbUserData[0].password)) {
+    const name = "lucas";
     const userId = dbUserData[0].id;
-    const accessToken = generateAccessToken({ userId, nickname });
+    const accessToken = generateAccessToken({ userId, nickname, name });
 
     response.accessToken = accessToken;
     delete dbUserData[0].password;
