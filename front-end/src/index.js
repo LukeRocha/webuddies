@@ -7,7 +7,8 @@ import "./styles.css";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Register from "./pages/Register";
-import FriendUser from "./pages/FriendUser"
+import FriendUser from "./pages/FriendUser";
+import SearchPage from "./pages/SearchPage";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -18,6 +19,7 @@ ReactDOM.render(
           <Route path="/profile" element={<Profile />} />
           <Route path="/register" element={<Register />} />
           <Route path="/users/:nickname" element={<FriendUser />} />
+          <Route path="/users/search" element={<SearchPage />} />
         </Routes>
       </BrowserRouter>
     </AppProvider>

@@ -1,5 +1,4 @@
 import axios from "axios";
-
 const urls = {
   registerUser: "http://localhost:3700/create-account",
   createNewPost: "http://localhost:3700/users/new-post",
@@ -7,7 +6,8 @@ const urls = {
   authUser: "http://localhost:3700/users/login",
   logout: "http://localhost:3700/users/logout",
   accessFriendship: "http://localhost:3700/users/",
-  addNewFriendship: "http://localhost:3700/newFriend"
+  addNewFriendship: "http://localhost:3700/newFriend",
+  searchUser: "http://localhost:3700/users/search/",
 };
 
 const authorizationHeader = (token) => {
@@ -72,21 +72,35 @@ export const createNewPost = async (newPostData, token) => {
 };
 
 export const accessUserProfile = async (userName) => {
-    try {
-    const dataFromDb = await axios.get(`${urls.accessFriendship}${userName}`, userName)
-    return dataFromDb.data[0]
+  try {
+    const dataFromDb = await axios.get(
+      `${urls.accessFriendship}${userName}`,
+      userName
+    );
+    return dataFromDb.data[0];
   } catch (error) {
-  console.log(error)  
+    console.log(error);
   }
 };
 
+export const searchUsersProfile = async (userName) => {
+  console.log(userName);
+  try {
+    const dataFromDb = await axios.get(
+      `${urls.searchUser}${userName}`,
+      userName
+    );
+    return dataFromDb.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const followNewFriend = async (userDataObject) => {
-  try{
-    console.log(userDataObject)
-     await axios.post(urls.addNewFriendship, userDataObject)
+  try {
+    console.log(userDataObject);
+    await axios.post(urls.addNewFriendship, userDataObject);
+  } catch (error) {
+    console.log(error);
   }
-  catch (error){
-    console.log(error)
-  }
-}
+};

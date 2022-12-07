@@ -60,10 +60,18 @@ const create = async (req, res) => {
 
 const accessUserProfile = async (req, res) => {
   const dataFromDb = await db.knex
-  .select("nickname", "first_name", "last_name", "profile_picture", "user_status", "city", "id")
-  .from("users")
-  .where("nickname", "=", req.params.nickname)
- res.send(dataFromDb)
+    .select(
+      "nickname",
+      "first_name",
+      "last_name",
+      "profile_picture",
+      "user_status",
+      "city",
+      "id"
+    )
+    .from("users")
+    .where("nickname", "=", req.params.nickname);
+  res.send(dataFromDb);
 };
 
 module.exports = { create, accessUserProfile };

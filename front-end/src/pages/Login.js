@@ -135,7 +135,8 @@ const Login = () => {
                     type="submit"
                     onClick={async () => {
                       await authUserCredentials(userCredentials);
-                    }}>
+                    }}
+                  >
                     Login
                   </Button>
                 </Link>

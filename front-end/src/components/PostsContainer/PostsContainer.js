@@ -7,25 +7,18 @@ const PostsContainer = () => {
   const { accessToken, userState, getUserPostsData } = useGlobalContext();
   const [userPosts, setUserPosts] = useState([]);
 
-  const renderPostsRealTimeForRealThisTime = useCallback(() => {
+  const realTimePostRender = useCallback(() => {
     setUserPosts(userState.userPosts);
-    console.log(userPosts);
   }, [userState.userPosts]);
 
   useEffect(() => {
     accessToken && getUserPostsData(accessToken);
-    renderPostsRealTimeForRealThisTime();
+    realTimePostRender();
   }, [accessToken]);
 
   return (
     <>
-      <PostContainer renderPosts={renderPostsRealTimeForRealThisTime}>
-        {userPosts &&
-          userPosts.map((post) => {
-            return <SinglePost key={post.id} id={post.id} post={post} />;
-          })}
-      </PostContainer>
-      <PostContainer renderPosts={renderPostsRealTimeForRealThisTime}>
+      <PostContainer renderPosts={realTimePostRender}>
         {userState.userPosts &&
           userState.userPosts.map((post) => {
             return <SinglePost key={post.id} id={post.id} post={post} />;
