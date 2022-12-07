@@ -35,11 +35,7 @@ const SearchUsersComponent = ({ children, ...props }) => {
         {
           <div>
             {filteredUsers.map((user) => {
-              return (
-                <SearchUserPreview {...user} key={user.id}>
-                  {"ola"}
-                </SearchUserPreview>
-              );
+              return <SearchUserPreview {...user} key={user.id} />;
             })}
           </div>
         }
