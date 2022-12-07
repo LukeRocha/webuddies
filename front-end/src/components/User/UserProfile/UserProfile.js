@@ -5,7 +5,7 @@ import {
   ImageContainer,
   UserData,
   Status,
-} from "./styled";
+} from "../styled";
 import { useGlobalContext } from "../../../context";
 import Button from "../../Button/Button";
 
