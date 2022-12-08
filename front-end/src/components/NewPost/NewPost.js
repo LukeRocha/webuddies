@@ -20,7 +20,7 @@ const PostArea = ({ children }) => {
   const getToken = localStorage.getItem("access_token");
 
   useEffect(() => {
-    // getUserPostsData(accessToken);
+    //with this, i need to always be with my state updated
     setPostContent({ ...postContent, user_id: userState.userData.id });
   }, [postContent.content]);
 
