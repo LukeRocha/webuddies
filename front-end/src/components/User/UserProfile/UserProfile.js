@@ -10,13 +10,15 @@ import { useGlobalContext } from "../../../context";
 import Button from "../../Button/Button";
 
 const UserProfile = () => {
-  const { userState } = useGlobalContext();
+  const { userState, getUserDataByToken } = useGlobalContext();
   const { nickname, first_name, last_name, user_status, profile_picture } =
     userState.userData;
+  const token = localStorage.getItem("access_token");
 
   useEffect(() => {
-    // render the user data by access token here
-  });
+    // render the user data by access token her
+    token && getUserDataByToken(token);
+  }, [token]);
 
   return (
     <>

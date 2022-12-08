@@ -70,9 +70,7 @@ const dataFromLoggedUser = async (req, res) => {
       "id"
     )
     .from("users")
-    .where("nickname", "=", req.body.nickname);
-
-  console.log(dataFromDb);
+    .where("nickname", "=", req.user.nickname);
   res.send(dataFromDb);
 };
 

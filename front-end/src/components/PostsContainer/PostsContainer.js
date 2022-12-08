@@ -5,11 +5,17 @@ import { PostContainer } from "./styles";
 
 const PostsContainer = () => {
   const { userState, getUserPostsData } = useGlobalContext();
+  const getToken = localStorage.getItem("access_token");
+  const [posts, setPosts] = useState(userState.userPosts);
 
   useEffect(() => {
-    const getToken = localStorage.getItem("access_token");
-    getToken && getUserPostsData(getToken);
-  }, [userState.userPosts]);
+    const renderPosts = async () => {
+      await getUserPostsData(getToken);
+      setPosts(userState.userPosts);
+    };
+
+    return renderPosts();
+  }, [getToken]);
 
   return (
     <>

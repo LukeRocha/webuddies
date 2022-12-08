@@ -5,6 +5,7 @@ import {
   authUser, //MARKDOWN OF THE TASK!!!!!
   getUserPosts,
   accessUserProfile,
+  validateUserToken,
 } from "./operations/operations";
 
 const AppContext = React.createContext();
@@ -35,6 +36,11 @@ const AppProvider = ({ children }) => {
       type: "AUTH_USER",
       payload: userDataFromDb,
     });
+  };
+
+  const getUserDataByToken = async (token) => {
+    const userDataFromDb = await validateUserToken(token);
+    dispatch({ type: "LOGGED_GET_DATA", payload: userDataFromDb });
   };
 
   const getUserPostsData = async (token) => {
@@ -71,6 +77,7 @@ const AppProvider = ({ children }) => {
         getUserPostsData,
         userLogout,
         getBuddyData,
+        getUserDataByToken,
       }}
     >
       {children}

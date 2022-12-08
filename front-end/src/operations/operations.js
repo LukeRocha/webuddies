@@ -8,7 +8,7 @@ const urls = {
   accessFriendship: "http://localhost:3700/users/",
   addNewFriendship: "http://localhost:3700/newFriend",
   searchUser: "http://localhost:3700/users/search/",
-  validateToken: "http://localhost:3700/user/token-check",
+  validateToken: "http://localhost:3700/profile/token-check",
 };
 
 const authorizationHeader = (token) => {
@@ -42,7 +42,6 @@ export const validateUserToken = async (token, userNickname) => {
     .catch((error) => {
       console.log("error", error);
     });
-  console.log(getUserData);
 
   return getUserData;
 };

@@ -15,6 +15,16 @@ const reducer = (state, action) => {
     };
   }
 
+  if (action.type === "LOGGED_GET_DATA") {
+    return {
+      ...state,
+      userState: {
+        userData: action.payload[0],
+        userPosts: state.userState.userPosts,
+      },
+    };
+  }
+
   if (action.type === "FETCH_USER_POSTS") {
     return {
       ...state,
