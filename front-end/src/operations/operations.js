@@ -8,6 +8,7 @@ const urls = {
   accessFriendship: "http://localhost:3700/users/",
   addNewFriendship: "http://localhost:3700/newFriend",
   searchUser: "http://localhost:3700/users/search/",
+  validateToken: "http://localhost:3700/profile/token-check",
 };
 
 const authorizationHeader = (token) => {
@@ -29,8 +30,20 @@ export const authUser = async (userCredentials) => {
     token: authRequestResult.data.accessToken,
     userData: authRequestResult.data.dbUserData[0],
   };
-
   return authorizedUser;
+};
+
+export const validateUserToken = async (token, userNickname) => {
+  const getUserData = await axios
+    .get(urls.validateToken, { headers: { authorization: `Bearer ${token}` } })
+    .then((resp) => {
+      return resp.data;
+    })
+    .catch((error) => {
+      console.log("error", error);
+    });
+
+  return getUserData;
 };
 
 export const getUserPosts = async (token) => {

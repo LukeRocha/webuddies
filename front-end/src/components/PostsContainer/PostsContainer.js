@@ -4,21 +4,22 @@ import { useGlobalContext } from "../../context";
 import { PostContainer } from "./styles";
 
 const PostsContainer = () => {
-  const { accessToken, userState, getUserPostsData } = useGlobalContext();
-  const [userPosts, setUserPosts] = useState([]);
-
-  const realTimePostRender = useCallback(() => {
-    setUserPosts(userState.userPosts);
-  }, [userState.userPosts]);
+  const { userState, getUserPostsData } = useGlobalContext();
+  const getToken = localStorage.getItem("access_token");
+  const [posts, setPosts] = useState(userState.userPosts);
 
   useEffect(() => {
-    accessToken && getUserPostsData(accessToken);
-    realTimePostRender();
-  }, [accessToken]);
+    const renderPosts = async () => {
+      await getUserPostsData(getToken);
+      setPosts(userState.userPosts);
+    };
+
+    return renderPosts();
+  }, [getToken]);
 
   return (
     <>
-      <PostContainer renderPosts={realTimePostRender}>
+      <PostContainer>
         {userState.userPosts &&
           userState.userPosts.map((post) => {
             return <SinglePost key={post.id} id={post.id} post={post} />;

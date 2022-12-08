@@ -25,8 +25,16 @@ router.get(
   tokenMiddleware.tokenCheck,
   postsController.getPosts
 );
+
+router.get(
+  "/profile/token-check",
+  tokenMiddleware.tokenCheck,
+  accountController.dataFromLoggedUser
+);
+
 router.get("/users/:nickname", accountController.accessUserProfile);
 router.get("/users/search/:nickname", friendshipController.searchUsers);
+
 // POST ROUTES
 router.post("/users/login", authenticationController.authenticateUser);
 router.post("/create-account", accountController.create);
