@@ -80,6 +80,7 @@ const AppProvider = ({ children }) => {
         userLogout,
         getBuddyData,
         getUserDataByToken,
+        editAccount,
       }}
     >
       {children}
