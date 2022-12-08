@@ -9,6 +9,7 @@ const urls = {
   addNewFriendship: "http://localhost:3700/newFriend",
   searchUser: "http://localhost:3700/users/search/",
   validateToken: "http://localhost:3700/profile/token-check",
+  editAccountData: "http://localhost:3700/account/edit",
 };
 
 const authorizationHeader = (token) => {
@@ -33,7 +34,8 @@ export const authUser = async (userCredentials) => {
   return authorizedUser;
 };
 
-export const validateUserToken = async (token, userNickname) => {
+//Late development to change to function on line 15
+export const validateUserToken = async (token) => {
   const getUserData = await axios
     .get(urls.validateToken, { headers: { authorization: `Bearer ${token}` } })
     .then((resp) => {
@@ -44,6 +46,23 @@ export const validateUserToken = async (token, userNickname) => {
     });
 
   return getUserData;
+};
+
+export const editAccountData = async (accountData, token) => {
+  try {
+    console.log(accountData);
+    await axios
+      .put(
+        urls.editAccountData,
+        { headers: { authorization: `Bearer ${token}` } },
+        accountData
+      )
+      .then((resp) => {
+        return resp.data;
+      });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const getUserPosts = async (token) => {

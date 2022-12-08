@@ -6,6 +6,7 @@ import {
   getUserPosts,
   accessUserProfile,
   validateUserToken,
+  editAccountData,
 } from "./operations/operations";
 
 const AppContext = React.createContext();
@@ -28,7 +29,6 @@ const AppProvider = ({ children }) => {
     dispatch({ type: "REGISTER_USER", payload: registeredUser.data });
   };
 
-  //MARKDOWN OF THE TASK!!!!!
   const authUserCredentials = async (userCredentials) => {
     const userDataFromDb = await authUser(userCredentials);
     localStorage.setItem("access_token", userDataFromDb.token);
@@ -43,6 +43,11 @@ const AppProvider = ({ children }) => {
     dispatch({ type: "LOGGED_GET_DATA", payload: userDataFromDb });
   };
 
+  const editAccount = async (token, accountData) => {
+    const editedUserData = await editAccount(accountData, token);
+    dispatch({ type: "EDIT_USER_ACCOUNT", payload: editedUserData });
+  };
+
   const getUserPostsData = async (token) => {
     const postsDataFromDb = await getUserPosts(token);
     dispatch({ type: "FETCH_USER_POSTS", payload: postsDataFromDb });
@@ -54,10 +59,7 @@ const AppProvider = ({ children }) => {
   };
 
   const userLogout = async () => {
-    console.log("ainda tem item", localStorage);
-    await localStorage.clear();
-
-    console.log(localStorage);
+    await localStorage.removeItem("access_token");
     const emptyState = {
       ...state,
       userState: {

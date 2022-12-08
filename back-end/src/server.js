@@ -47,7 +47,7 @@ router.post("/newFriend", friendshipController.followNewFriend);
 
 // UPDATE ROUTES
 router.put(
-  "/users/editAccount",
+  "/account/edit",
   authenticationController.authenticateUser,
   accountController.edit
 );
