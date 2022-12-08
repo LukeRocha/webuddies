@@ -11,11 +11,11 @@ const PostsContainer = () => {
     setUserPosts(userState.userPosts);
   }, [userState.userPosts]);
 
-  const storageToken = localStorage.getItem("access_token");
   useEffect(() => {
-    storageToken && getUserPostsData(storageToken);
+    const getToken = localStorage.getItem("access_token");
+    getToken && getUserPostsData(getToken);
     realTimePostRender();
-  }, [storageToken]);
+  }, [userState.userPosts]);
 
   return (
     <>

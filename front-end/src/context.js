@@ -2,7 +2,7 @@ import React, { useContext, useReducer } from "react";
 import reducer from "./reducer";
 import {
   registerNewUser,
-  authUser,
+  authUser, //MARKDOWN OF THE TASK!!!!!
   getUserPosts,
   accessUserProfile,
 } from "./operations/operations";
@@ -27,6 +27,7 @@ const AppProvider = ({ children }) => {
     dispatch({ type: "REGISTER_USER", payload: registeredUser.data });
   };
 
+  //MARKDOWN OF THE TASK!!!!!
   const authUserCredentials = async (userCredentials) => {
     const userDataFromDb = await authUser(userCredentials);
     localStorage.setItem("access_token", userDataFromDb.token);
@@ -46,14 +47,17 @@ const AppProvider = ({ children }) => {
     dispatch({ type: "ACCESS_FRIEND_PAGE", payload: userDataFromDb });
   };
 
-  const userLogout = () => {
+  const userLogout = async () => {
+    console.log("ainda tem item", localStorage);
+    await localStorage.clear();
+
+    console.log(localStorage);
     const emptyState = {
       ...state,
       userState: {
         userData: "",
         userPosts: "",
       },
-      accessToken: false,
     };
     dispatch({ type: "USER_LOGOUT", payload: emptyState });
   };

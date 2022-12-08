@@ -12,7 +12,6 @@ const reducer = (state, action) => {
       userState: {
         userData: action.payload.userData,
       },
-      accessToken: action.payload.token,
     };
   }
 
@@ -27,7 +26,9 @@ const reducer = (state, action) => {
   }
 
   if (action.type === "USER_LOGOUT") {
-    return { state: action.payload };
+    return {
+      state: "",
+    };
   }
 
   if (action.type === "ACCESS_FRIEND_PAGE") {

@@ -17,6 +17,8 @@ const PostArea = ({ children }) => {
     content: "",
   });
 
+  const getToken = localStorage.getItem("access_token");
+
   useEffect(() => {
     // getUserPostsData(accessToken);
     setPostContent({ ...postContent, user_id: userState.userData.id });
@@ -35,9 +37,9 @@ const PostArea = ({ children }) => {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            createNewPost(postContent, accessToken);
+            createNewPost(postContent, getToken);
             setPostContent({ ...postContent, content: "" });
-            getUserPostsData(accessToken);
+            getUserPostsData(getToken);
           }}
         />
         <PostContent
@@ -58,9 +60,9 @@ const PostArea = ({ children }) => {
             bg={"var(--green-button)"}
             onClick={(e) => {
               e.preventDefault();
-              createNewPost(postContent, accessToken);
+              createNewPost(postContent, getToken);
               setPostContent({ ...postContent, content: "" });
-              getUserPostsData(accessToken);
+              getUserPostsData(getToken);
             }}
           >
             Share
