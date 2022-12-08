@@ -58,6 +58,23 @@ const create = async (req, res) => {
   return insertUserInDb(newUser);
 };
 
+const dataFromLoggedUser = async (req, res, token) => {
+  const dataFromDb = await db.knex.select(
+    "nickname",
+    "first_name",
+    "last_name",
+    "profile_picture",
+    "user_status",
+    "city",
+    "id"
+  );
+
+  if (token) {
+    console.log(dataFromDb);
+    return dataFromDb;
+  }
+};
+
 const accessUserProfile = async (req, res) => {
   const dataFromDb = await db.knex
     .select(
@@ -74,4 +91,4 @@ const accessUserProfile = async (req, res) => {
   res.send(dataFromDb);
 };
 
-module.exports = { create, accessUserProfile };
+module.exports = { create, accessUserProfile, dataFromLoggedUser };

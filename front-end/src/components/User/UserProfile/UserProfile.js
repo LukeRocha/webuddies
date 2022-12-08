@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   UserContainer,
   UserDataContainer,
@@ -13,6 +13,10 @@ const UserProfile = () => {
   const { userState } = useGlobalContext();
   const { nickname, first_name, last_name, user_status, profile_picture } =
     userState.userData;
+
+  useEffect(() => {
+    // render the user data by access token here
+  });
 
   return (
     <>
