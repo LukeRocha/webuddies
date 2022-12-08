@@ -45,6 +45,13 @@ router.post(
 );
 router.post("/newFriend", friendshipController.followNewFriend);
 
+// UPDATE ROUTES
+router.put(
+  "/users/editAccount",
+  authenticationController.authenticateUser,
+  accountController.edit
+);
+
 app.use(router);
 app.listen(port, () => {
   console.log("Server is running...");

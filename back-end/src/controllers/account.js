@@ -90,4 +90,30 @@ const accessUserProfile = async (req, res) => {
   res.send(dataFromDb);
 };
 
-module.exports = { create, accessUserProfile, dataFromLoggedUser };
+const edit = async (req, res) => {
+  const updateUser = {
+    nickname: req.body.nickname,
+    first_name: req.body.first_name,
+    last_name: req.body.last_name,
+    user_status: req.body.user_status,
+  };
+  try {
+    const insertDataInDb = await db.knex
+      .where("nickname", req.body.dataBundle.nickname)
+      .table("users")
+      .update(updateUser);
+    const result = await db.knex
+      .select("*")
+      .from("users")
+      .where("nickname", "=", updateUser.nickname)
+      .then((resp) => {
+        res.json(resp);
+      });
+    return result;
+  } catch (error) {
+    res.send(error);
+  }
+  return insertDataInDb;
+};
+
+module.exports = { create, accessUserProfile, dataFromLoggedUser, edit };
