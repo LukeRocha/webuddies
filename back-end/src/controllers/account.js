@@ -97,6 +97,7 @@ const edit = async (req, res) => {
     last_name: req.body.last_name,
     user_status: req.body.user_status,
   };
+
   try {
     const insertDataInDb = await db.knex
       .where("nickname", req.body.dataBundle.nickname)

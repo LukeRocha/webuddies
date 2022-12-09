@@ -9,7 +9,7 @@ const urls = {
   addNewFriendship: "http://localhost:3700/newFriend",
   searchUser: "http://localhost:3700/users/search/",
   validateToken: "http://localhost:3700/profile/token-check",
-  editAccountData: "http://localhost:3700/account/edit",
+  editAccount: "http://localhost:3700/account/edit",
 };
 
 const authorizationHeader = (token) => {
@@ -53,7 +53,7 @@ export const editAccountData = async (accountData, token) => {
     console.log(accountData);
     await axios
       .put(
-        urls.editAccountData,
+        urls.editAccount,
         { headers: { authorization: `Bearer ${token}` } },
         accountData
       )

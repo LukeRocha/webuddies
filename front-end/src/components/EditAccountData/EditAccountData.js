@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+
 import Input from "../Input/Input";
 import Button from "../Button/Button";
 import {
@@ -11,13 +13,8 @@ import {
 import { useGlobalContext } from "../../context";
 
 const EditAccountData = ({ children, ...props }) => {
-  const { editAccount, state } = useGlobalContext();
-  const [accountEditData, setAccountEditData] = useState({
-    nickname: "",
-    first_name: "",
-    last_name: "",
-    user_status: "",
-  });
+  const { editAccount, getUserDataByToken, ...state } = useGlobalContext();
+  const { register, handleSubmit } = useForm();
 
   return (
     <EditAccountContainer>
@@ -27,11 +24,6 @@ const EditAccountData = ({ children, ...props }) => {
           e.preventDefault();
         }}
       >
-        <InputWrap>
-          <Label>Nickname:</Label>
-          <Input />
-        </InputWrap>
-
         <InputWrap>
           <Label>First name:</Label>
           <Input />
@@ -48,7 +40,9 @@ const EditAccountData = ({ children, ...props }) => {
         </InputWrap>
 
         <div>
-          <Button bg={"var(--green-button)"}>Submit</Button>
+          <Button type="submit" onClick={() => {}} bg={"var(--green-button)"}>
+            Submit
+          </Button>
         </div>
       </EditForm>
     </EditAccountContainer>
