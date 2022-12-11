@@ -119,12 +119,11 @@ export const searchUsersProfile = async (userName) => {
   }
 };
 
-export const followNewFriend = async (userDataObject, token) => {
-  console.log(userDataObject);
+export const followNewFriend = async (targetUserId, token) => {
+  const id = { target_friend_id: targetUserId };
   try {
-    console.log(userDataObject);
     await axios
-      .post(urls.addNewFriendship, userDataObject, authorizationHeader(token))
+      .post(urls.addNewFriendship, id, authorizationHeader(token))
       .then((resp) => console.log(resp));
     // check the length on return function
   } catch (error) {

@@ -2,14 +2,20 @@ require("dotenv").config();
 const { default: knex } = require("knex");
 const db = require("../database/db");
 
-const followNewFriend = async (idObject) => {
+const followNewFriend = async (req, res) => {
+  console.log(req.body);
+  const friendshipObject = {
+    main_user_id: req.user.userId,
+    target_friend_id: req.body.target_friend_id,
+  };
+
   try {
     await db.knex
-      .insert(idObject)
+      .insert(friendshipObject)
       .into("friendships")
       .then((resp) => {
-        console.log(resp);
-        console.table(resp);
+        // console.log(resp);
+        // console.table(resp);
       });
   } catch (error) {
     console.log(error);

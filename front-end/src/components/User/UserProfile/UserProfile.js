@@ -35,7 +35,7 @@ const UserProfile = () => {
           <UserData>
             <h2>{nickname}</h2>
             <p>{`${first_name} ${last_name}`}</p>
-            <small>288 buddies</small>
+            <small>Follow 1 Buddy</small>
             <Status>{`${user_status}`}</Status>
           </UserData>
         </UserDataContainer>

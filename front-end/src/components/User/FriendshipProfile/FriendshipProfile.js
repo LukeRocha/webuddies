@@ -14,16 +14,12 @@ import {
 
 const FriendUser = () => {
   const { getBuddyData, ...state } = useGlobalContext();
-  const [friendshipObject, setFriendshipObject] = useState("");
   const params = useParams();
-  const { id, nickname, first_name, last_name } = { ...state.accessedUserPage };
-
+  const { id, nickname, first_name, last_name } = state.accessedUserPage;
+  const token = localStorage.getItem("access_token");
+  console.log(id, nickname);
   useEffect(() => {
     getBuddyData(params.nickname);
-    setFriendshipObject({
-      main_user_id: id,
-      target_friend_id: state.userState.userData.id,
-    });
   }, []);
 
   return (
@@ -47,7 +43,7 @@ const FriendUser = () => {
               style={{
                 backgroundColor: "var(--purple-button)",
               }}
-              onClick={() => followNewFriend()}
+              onClick={() => followNewFriend(id, token)}
             >
               Buddy me
             </Button>
