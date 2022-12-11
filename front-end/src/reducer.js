@@ -54,7 +54,10 @@ const reducer = (state, action) => {
   if (action.type === "ACCESS_FRIEND_PAGE") {
     return {
       ...state,
-      accessedUserPage: action.payload,
+      accessedUserPage: {
+        userData: action.payload[0],
+        userPosts: action.payload[1],
+      },
     };
   }
 };

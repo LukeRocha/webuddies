@@ -18,7 +18,10 @@ const initialState = {
   },
   serverMessages: {},
   accessToken: false,
-  accessedUserPage: {},
+  accessedUserPage: {
+    userData: {},
+    userPosts: {},
+  },
 };
 
 const AppProvider = ({ children }) => {

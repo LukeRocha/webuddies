@@ -101,7 +101,8 @@ export const accessUserProfile = async (userName) => {
       `${urls.accessFriendship}${userName}`,
       userName
     );
-    return dataFromDb.data[0];
+    console.log(dataFromDb.data);
+    return dataFromDb.data;
   } catch (error) {
     console.log(error);
   }

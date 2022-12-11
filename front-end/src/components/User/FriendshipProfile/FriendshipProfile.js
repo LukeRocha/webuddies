@@ -3,7 +3,7 @@ import { useGlobalContext } from "../../../context";
 import { useParams } from "react-router-dom";
 import { followNewFriend } from "../../../operations/operations";
 import Button from "../../Button/Button";
-
+import SinglePost from "../../SinglePost/SinglePost";
 import {
   UserContainer,
   UserDataContainer,
@@ -11,20 +11,33 @@ import {
   UserData,
   Status,
 } from "../styles";
-import { FriendshipPostArea } from "./style";
+import { FriendContainer, FriendshipPostArea } from "./style";
 
 const FriendUser = () => {
   const { getBuddyData, ...state } = useGlobalContext();
   const params = useParams();
-  const { id, nickname, first_name, last_name } = state.accessedUserPage;
+  const [friendPosts, setFriendPosts] = useState([]);
+  const { id, nickname, first_name, last_name } =
+    state.accessedUserPage.userData;
+  const { userPosts } = state.accessedUserPage;
+
   const token = localStorage.getItem("access_token");
-  console.log(id, nickname);
+
   useEffect(() => {
     getBuddyData(params.nickname);
+    setFriendPosts(state.accessedUserPage.userPosts);
+    console.log(state.accessedUserPage);
   }, []);
 
+  useEffect(() => {
+    const getPosts = async () => {
+      getBuddyData(params.nickname);
+      setFriendPosts(userPosts);
+    };
+    getPosts();
+  }, [friendPosts]);
   return (
-    <>
+    <FriendContainer>
       <UserContainer>
         <UserDataContainer>
           <ImageContainer>
@@ -50,9 +63,14 @@ const FriendUser = () => {
             </Button>
           </UserData>
         </UserDataContainer>
-        <FriendshipPostArea></FriendshipPostArea>
       </UserContainer>
-    </>
+      <FriendshipPostArea>
+        {userPosts.length > 0 &&
+          userPosts.map((post) => {
+            return <SinglePost key={post.id} id={post.id} post={post} />;
+          })}
+      </FriendshipPostArea>
+    </FriendContainer>
   );
 };
 

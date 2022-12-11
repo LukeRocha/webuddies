@@ -1,5 +1,15 @@
 import styled from "styled-components";
 
+export const FriendContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+
+  @media (min-width: 1000px) {
+    flex-direction: row;
+    justify-content: center;
+  }
+`;
 export const FriendshipPostArea = styled.div`
   display: flex;
   width: 95vw;

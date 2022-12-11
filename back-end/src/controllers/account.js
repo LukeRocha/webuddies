@@ -75,7 +75,7 @@ const dataFromLoggedUser = async (req, res) => {
 };
 
 const accessUserProfile = async (req, res) => {
-  const dataFromDb = await db.knex
+  const userDataFromDb = await db.knex
     .select(
       "nickname",
       "first_name",
@@ -87,7 +87,18 @@ const accessUserProfile = async (req, res) => {
     )
     .from("users")
     .where("nickname", "=", req.params.nickname);
-  res.send(dataFromDb);
+
+  const postsDataFromDb = await db.knex
+    .select("id", "user_id", "post_content", "timestamp")
+    .from("posts")
+    .where("user_id", "=", "1");
+  console.log(postsDataFromDb);
+  const accessedUserData = {
+    userData: userDataFromDb,
+    userPosts: postsDataFromDb,
+  };
+  userDataFromDb.push(postsDataFromDb);
+  res.send(userDataFromDb);
 };
 
 const edit = async (req, res) => {
