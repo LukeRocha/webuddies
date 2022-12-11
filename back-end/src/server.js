@@ -43,7 +43,11 @@ router.post(
   tokenMiddleware.tokenCheck,
   postsController.newPost
 );
-router.post("/newFriend", friendshipController.followNewFriend);
+router.post(
+  "/newFriend",
+  tokenMiddleware.tokenCheck,
+  friendshipController.followNewFriend
+);
 
 // PUT ROUTES
 router.put("/account/edit", tokenMiddleware.tokenCheck, accountController.edit);

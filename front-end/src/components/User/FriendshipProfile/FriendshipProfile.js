@@ -3,31 +3,41 @@ import { useGlobalContext } from "../../../context";
 import { useParams } from "react-router-dom";
 import { followNewFriend } from "../../../operations/operations";
 import Button from "../../Button/Button";
-
+import SinglePost from "../../SinglePost/SinglePost";
 import {
   UserContainer,
   UserDataContainer,
   ImageContainer,
   UserData,
   Status,
-} from "../styled";
+} from "../styles";
+import { FriendContainer, FriendshipPostArea } from "./style";
 
 const FriendUser = () => {
   const { getBuddyData, ...state } = useGlobalContext();
-  const [friendshipObject, setFriendshipObject] = useState("");
   const params = useParams();
-  const { id, nickname, first_name, last_name } = { ...state.accessedUserPage };
+  const [friendPosts, setFriendPosts] = useState([]);
+  const { id, nickname, first_name, last_name } =
+    state.accessedUserPage.userData;
+  const { userPosts } = state.accessedUserPage;
+
+  const token = localStorage.getItem("access_token");
 
   useEffect(() => {
     getBuddyData(params.nickname);
-    setFriendshipObject({
-      main_user_id: id,
-      target_friend_id: state.userState.userData.id,
-    });
+    setFriendPosts(state.accessedUserPage.userPosts);
+    console.log(state.accessedUserPage);
   }, []);
 
+  useEffect(() => {
+    const getPosts = async () => {
+      getBuddyData(params.nickname);
+      setFriendPosts(userPosts);
+    };
+    getPosts();
+  }, [friendPosts]);
   return (
-    <>
+    <FriendContainer>
       <UserContainer>
         <UserDataContainer>
           <ImageContainer>
@@ -41,20 +51,26 @@ const FriendUser = () => {
           <UserData>
             <h2>{nickname}</h2>
             <p>{`${first_name} ${last_name}`}</p>
-            <small>288 buddies</small>
+            <small>Follow 1 Buddy</small>
             <Status>{"Ahoy!"}</Status>
             <Button
               style={{
                 backgroundColor: "var(--purple-button)",
               }}
-              onClick={() => followNewFriend()}
+              onClick={() => followNewFriend(id, token)}
             >
               Buddy me
             </Button>
           </UserData>
         </UserDataContainer>
       </UserContainer>
-    </>
+      <FriendshipPostArea>
+        {userPosts.length > 0 &&
+          userPosts.map((post) => {
+            return <SinglePost key={post.id} id={post.id} post={post} />;
+          })}
+      </FriendshipPostArea>
+    </FriendContainer>
   );
 };
 

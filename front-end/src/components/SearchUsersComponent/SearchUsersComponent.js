@@ -33,9 +33,10 @@ const SearchUsersComponent = ({ children, ...props }) => {
       <UsersReturnComponent>
         {
           <div>
-            {filteredUsers.map((user) => {
-              return <SearchUserPreview {...user} key={user.id} />;
-            })}
+            {nameSearch.length > 0 &&
+              filteredUsers.map((user, index) => {
+                return <SearchUserPreview {...user} key={index} />;
+              })}
           </div>
         }
       </UsersReturnComponent>

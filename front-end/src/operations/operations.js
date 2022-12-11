@@ -34,7 +34,6 @@ export const authUser = async (userCredentials) => {
   return authorizedUser;
 };
 
-//Late development to change to function on line 15
 export const validateUserToken = async (token) => {
   const getUserData = await axios
     .get(urls.validateToken, { headers: { authorization: `Bearer ${token}` } })
@@ -102,7 +101,8 @@ export const accessUserProfile = async (userName) => {
       `${urls.accessFriendship}${userName}`,
       userName
     );
-    return dataFromDb.data[0];
+    console.log(dataFromDb.data);
+    return dataFromDb.data;
   } catch (error) {
     console.log(error);
   }
@@ -120,10 +120,13 @@ export const searchUsersProfile = async (userName) => {
   }
 };
 
-export const followNewFriend = async (userDataObject) => {
+export const followNewFriend = async (targetUserId, token) => {
+  const id = { target_friend_id: targetUserId };
   try {
-    console.log(userDataObject);
-    await axios.post(urls.addNewFriendship, userDataObject);
+    await axios
+      .post(urls.addNewFriendship, id, authorizationHeader(token))
+      .then((resp) => console.log(resp));
+    // check the length on return function
   } catch (error) {
     console.log(error);
   }
