@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Input from "../Input/Input";
 import Button from "../Button/Button";
+import Modal from "../Modal/Modal";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import {
   EditAccountContainer,
@@ -14,6 +16,8 @@ import { useGlobalContext } from "../../context";
 
 const EditAccountData = ({ children, ...props }) => {
   const { editUserAccount, ...state } = useGlobalContext();
+  const [isModalOn, setIsModalOn] = useState(false);
+  const navigate = useNavigate();
   const token = localStorage.getItem("access_token");
   const { first_name, last_name, user_status } = state.userState.userData;
   const {
@@ -22,8 +26,14 @@ const EditAccountData = ({ children, ...props }) => {
     formState: { errors },
   } = useForm();
 
-  const handleEditData = (data) => editUserAccount(data, token);
+  const handleEditData = async (data) => {
+    await editUserAccount(data, token);
+    setIsModalOn(true);
+  };
 
+  const navigateHome = () => {
+    navigate("/profile");
+  };
   return (
     <EditAccountContainer>
       <Title>Edit your account</Title>
@@ -61,6 +71,14 @@ const EditAccountData = ({ children, ...props }) => {
           </Button>
         </div>
       </EditForm>
+      {isModalOn && (
+        <Modal>
+          <h3>Account data has updated!</h3>
+          <Button bg={"var(--green-button)"} onClick={() => navigateHome()}>
+            Ok
+          </Button>
+        </Modal>
+      )}
     </EditAccountContainer>
   );
 };
