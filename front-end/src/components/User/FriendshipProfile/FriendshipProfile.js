@@ -10,7 +10,8 @@ import {
   ImageContainer,
   UserData,
   Status,
-} from "../styled";
+} from "../styles";
+import { FriendshipPostArea } from "./style";
 
 const FriendUser = () => {
   const { getBuddyData, ...state } = useGlobalContext();
@@ -37,7 +38,7 @@ const FriendUser = () => {
           <UserData>
             <h2>{nickname}</h2>
             <p>{`${first_name} ${last_name}`}</p>
-            <small>288 buddies</small>
+            <small>Follow 1 Buddy</small>
             <Status>{"Ahoy!"}</Status>
             <Button
               style={{
@@ -49,6 +50,7 @@ const FriendUser = () => {
             </Button>
           </UserData>
         </UserDataContainer>
+        <FriendshipPostArea></FriendshipPostArea>
       </UserContainer>
     </>
   );

@@ -5,7 +5,7 @@ import {
   ImageContainer,
   UserData,
   Status,
-} from "../styled";
+} from "../styles";
 import { useGlobalContext } from "../../../context";
 
 const UserProfile = () => {
