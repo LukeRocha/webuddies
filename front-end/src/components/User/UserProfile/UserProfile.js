@@ -7,7 +7,6 @@ import {
   Status,
 } from "../styled";
 import { useGlobalContext } from "../../../context";
-import Button from "../../Button/Button";
 
 const UserProfile = () => {
   const { userState, getUserDataByToken } = useGlobalContext();
@@ -16,7 +15,6 @@ const UserProfile = () => {
   const token = localStorage.getItem("access_token");
 
   useEffect(() => {
-    // render the user data by access token her
     token && getUserDataByToken(token);
   }, [token]);
 
@@ -39,13 +37,6 @@ const UserProfile = () => {
             <p>{`${first_name} ${last_name}`}</p>
             <small>288 buddies</small>
             <Status>{`${user_status}`}</Status>
-            <Button
-              style={{
-                backgroundColor: "var(--purple-button)",
-              }}
-            >
-              Follow
-            </Button>
           </UserData>
         </UserDataContainer>
       </UserContainer>
