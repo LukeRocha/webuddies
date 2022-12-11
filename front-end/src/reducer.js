@@ -25,6 +25,16 @@ const reducer = (state, action) => {
     };
   }
 
+  if (action.type === "EDIT_USER_ACCOUNT") {
+    return {
+      ...state,
+      userState: {
+        userData: action.payload,
+        userPosts: state.userState.userPosts,
+      },
+    };
+  }
+
   if (action.type === "FETCH_USER_POSTS") {
     return {
       ...state,

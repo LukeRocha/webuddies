@@ -9,6 +9,7 @@ import Profile from "./pages/Profile";
 import Register from "./pages/Register";
 import FriendshipAccess from "./pages/FriendshipAccess";
 import SearchPage from "./pages/SearchPage";
+import EditAccount from "./pages/EditAccount";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -17,6 +18,7 @@ ReactDOM.render(
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/account/edit" element={<EditAccount />} />
           <Route path="/register" element={<Register />} />
           <Route path="/users/:nickname" element={<FriendshipAccess />} />
           <Route path="/users/search" element={<SearchPage />} />

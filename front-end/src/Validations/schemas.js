@@ -15,4 +15,9 @@ const registerSchema = yup.object().shape({
   confirm_password: yup.string().required("Password must match"),
 });
 
-export { registerSchema };
+const accountEditSchema = yup.object().shape({
+  first_name: yup.string().required("this field is required"),
+  last_name: yup.string().required("this field is required"),
+  user_status: yup.string().max(32).required("this field is required"),
+});
+export { registerSchema, accountEditSchema };

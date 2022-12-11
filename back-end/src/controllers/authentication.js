@@ -18,7 +18,6 @@ async function authenticateUser(req, res) {
       "nickname",
       "first_name",
       "last_name",
-      "mail",
       "profile_picture",
       "user_status",
       "password"

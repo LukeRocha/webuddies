@@ -45,6 +45,9 @@ router.post(
 );
 router.post("/newFriend", friendshipController.followNewFriend);
 
+// PUT ROUTES
+router.put("/account/edit", tokenMiddleware.tokenCheck, accountController.edit);
+
 app.use(router);
 app.listen(port, () => {
   console.log("Server is running...");
