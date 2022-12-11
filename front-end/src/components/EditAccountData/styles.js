@@ -3,9 +3,10 @@ import "../../styles.css";
 
 export const Title = styled.h2`
   color: white;
+  margin: 20px auto;
 `;
 
-export const EditAccountContainer = styled.div`
+export const EditAccountContainer = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;

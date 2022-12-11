@@ -49,20 +49,14 @@ export const validateUserToken = async (token) => {
 };
 
 export const editAccountData = async (accountData, token) => {
-  try {
-    console.log(accountData);
-    await axios
-      .put(
-        urls.editAccount,
-        { headers: { authorization: `Bearer ${token}` } },
-        accountData
-      )
-      .then((resp) => {
-        return resp.data;
-      });
-  } catch (error) {
-    console.log(error);
-  }
+  console.log(accountData);
+  const editUserData = await axios
+    .put(urls.editAccount, accountData, authorizationHeader(token))
+    .then((resp) => {
+      console.log(resp);
+      return resp.data;
+    });
+  return editUserData;
 };
 
 export const getUserPosts = async (token) => {

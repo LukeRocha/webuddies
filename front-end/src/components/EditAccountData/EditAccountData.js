@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import React from "react";
 
 import Input from "../Input/Input";
 import Button from "../Button/Button";
+import { useForm } from "react-hook-form";
 import {
   EditAccountContainer,
   Title,
@@ -13,34 +13,50 @@ import {
 import { useGlobalContext } from "../../context";
 
 const EditAccountData = ({ children, ...props }) => {
-  const { editAccount, getUserDataByToken, ...state } = useGlobalContext();
-  const { register, handleSubmit } = useForm();
+  const { editUserAccount, ...state } = useGlobalContext();
+  const token = localStorage.getItem("access_token");
+  const { first_name, last_name, user_status } = state.userState.userData;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const handleEditData = (data) => editUserAccount(data, token);
 
   return (
     <EditAccountContainer>
-      <Title>Account data edit</Title>
-      <EditForm
-        onSubmit={(e) => {
-          e.preventDefault();
-        }}
-      >
+      <Title>Edit your account</Title>
+      <EditForm onSubmit={handleSubmit(handleEditData)}>
         <InputWrap>
           <Label>First name:</Label>
-          <Input />
+          <Input
+            name="first_name"
+            {...register("first_name")}
+            defaultValue={first_name}
+          />
         </InputWrap>
 
         <InputWrap>
           <Label>Last name:</Label>
-          <Input />
+          <Input
+            name="last_name"
+            {...register("last_name")}
+            defaultValue={last_name}
+          />
         </InputWrap>
 
         <InputWrap>
           <Label>Bio:</Label>
-          <Input />
+          <Input
+            name="user_status"
+            defaultValue={user_status}
+            {...register("user_status")}
+          />
         </InputWrap>
 
         <div>
-          <Button type="submit" onClick={() => {}} bg={"var(--green-button)"}>
+          <Button type="submit" bg={"var(--green-button)"}>
             Submit
           </Button>
         </div>

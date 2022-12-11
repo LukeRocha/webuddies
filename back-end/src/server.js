@@ -45,12 +45,8 @@ router.post(
 );
 router.post("/newFriend", friendshipController.followNewFriend);
 
-// UPDATE ROUTES
-router.put(
-  "/account/edit",
-  authenticationController.authenticateUser,
-  accountController.edit
-);
+// PUT ROUTES
+router.put("/account/edit", tokenMiddleware.tokenCheck, accountController.edit);
 
 app.use(router);
 app.listen(port, () => {

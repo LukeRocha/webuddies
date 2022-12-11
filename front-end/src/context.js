@@ -43,8 +43,8 @@ const AppProvider = ({ children }) => {
     dispatch({ type: "LOGGED_GET_DATA", payload: userDataFromDb });
   };
 
-  const editAccount = async (token, accountData) => {
-    const editedUserData = await editAccount(accountData, token);
+  const editUserAccount = async (token, accountData) => {
+    const editedUserData = await editAccountData(token, accountData);
     dispatch({ type: "EDIT_USER_ACCOUNT", payload: editedUserData });
   };
 
@@ -80,7 +80,7 @@ const AppProvider = ({ children }) => {
         userLogout,
         getBuddyData,
         getUserDataByToken,
-        editAccount,
+        editUserAccount,
       }}
     >
       {children}

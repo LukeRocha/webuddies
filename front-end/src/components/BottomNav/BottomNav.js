@@ -34,6 +34,7 @@ export default function BottomNav() {
         >
           <BottomNavigationAction
             sx={{ color: "#fff" }}
+            href="/profile"
             label="Home"
             icon={<HomeIcon />}
           />
