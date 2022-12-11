@@ -116,7 +116,6 @@ const edit = async (req, res) => {
       .from("users")
       .where("nickname", "=", nickname)
       .then((resp) => {
-        console.log(resp);
         res.json(resp);
       });
     return result;

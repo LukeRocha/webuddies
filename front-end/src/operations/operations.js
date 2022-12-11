@@ -49,7 +49,6 @@ export const validateUserToken = async (token) => {
 };
 
 export const editAccountData = async (accountData, token) => {
-  console.log(accountData);
   const editUserData = await axios
     .put(urls.editAccount, accountData, authorizationHeader(token))
     .then((resp) => {
@@ -110,7 +109,6 @@ export const accessUserProfile = async (userName) => {
 };
 
 export const searchUsersProfile = async (userName) => {
-  console.log(userName);
   try {
     const dataFromDb = await axios.get(
       `${urls.searchUser}${userName}`,

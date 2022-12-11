@@ -16,7 +16,6 @@ const SearchUsersComponent = ({ children, ...props }) => {
   useEffect(() => {
     const fetch = async () => {
       const result = await fetchResult();
-      console.log(result);
       setFilteredUsers(result);
       return result;
     };

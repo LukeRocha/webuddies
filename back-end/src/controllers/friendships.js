@@ -23,7 +23,6 @@ const searchUsers = async (req, res) => {
       .from("users")
       .where("nickname", "like", `%${req.params.nickname}%`)
       .then((resp) => {
-        console.log(resp);
         return res.send(resp);
       });
   } catch (error) {
