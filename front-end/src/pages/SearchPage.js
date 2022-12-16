@@ -3,6 +3,7 @@ import SearchUsersComponent from "../components/SearchUsersComponent/SearchUsers
 import Header from "../components/Header/Header";
 import BottomNav from "../components/BottomNav/BottomNav";
 import styled from "styled-components";
+import { useGlobalContext } from "../context";
 
 const SearchPageContainer = styled.div`
   display: flex;
@@ -11,6 +12,8 @@ const SearchPageContainer = styled.div`
 `;
 
 const SearchPage = () => {
+  const { ...state } = useGlobalContext();
+  console.log("search", state);
   return (
     <SearchPageContainer>
       <Header />

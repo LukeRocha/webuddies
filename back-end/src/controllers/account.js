@@ -91,7 +91,8 @@ const accessUserProfile = async (req, res) => {
   const postsDataFromDb = await db.knex
     .select("id", "user_id", "post_content", "timestamp")
     .from("posts")
-    .where("user_id", "=", "1");
+    .where("user_id", "=", "1")
+    .orderBy("timestamp", "desc");
   console.log(postsDataFromDb);
   const accessedUserData = {
     userData: userDataFromDb,
