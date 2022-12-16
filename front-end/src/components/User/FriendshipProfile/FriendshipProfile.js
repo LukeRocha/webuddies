@@ -26,7 +26,6 @@ const FriendUser = () => {
   useEffect(() => {
     getBuddyData(params.nickname);
     setFriendPosts(state.accessedUserPage.userPosts);
-    console.log(state.accessedUserPage);
   }, []);
 
   useEffect(() => {

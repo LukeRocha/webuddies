@@ -5,21 +5,26 @@ import SearchUserPreview from "../SearchUserPreview/SearchUserPreview";
 import { SearchContainer, UsersReturnComponent } from "./style";
 
 const SearchUsersComponent = ({ children, ...props }) => {
-  const [nameSearch, setNameSearch] = useState("");
+  const [nameSearch, setNameSearch] = useState(false);
   const [filteredUsers, setFilteredUsers] = useState([]);
 
-  const fetchResult = async () => {
+  const fetchUserPosts = async () => {
     const result = await searchUsersProfile(nameSearch);
     return result;
   };
 
   useEffect(() => {
     const fetch = async () => {
-      const result = await fetchResult();
+      const result = await fetchUserPosts();
+      console.log(result);
       setFilteredUsers(result);
+
       return result;
     };
-    fetch();
+
+    if (nameSearch) {
+      return fetch();
+    }
   }, [nameSearch]);
 
   return (
@@ -33,10 +38,9 @@ const SearchUsersComponent = ({ children, ...props }) => {
       <UsersReturnComponent>
         {
           <div>
-            {nameSearch.length > 0 &&
-              filteredUsers.map((user, index) => {
-                return <SearchUserPreview {...user} key={index} />;
-              })}
+            {filteredUsers.map((user, index) => {
+              return <SearchUserPreview {...user} key={index} />;
+            })}
           </div>
         }
       </UsersReturnComponent>

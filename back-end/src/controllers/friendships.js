@@ -14,8 +14,7 @@ const followNewFriend = async (req, res) => {
       .insert(friendshipObject)
       .into("friendships")
       .then((resp) => {
-        // console.log(resp);
-        // console.table(resp);
+        console.log(resp);
       });
   } catch (error) {
     console.log(error);
