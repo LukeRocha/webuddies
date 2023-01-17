@@ -5,7 +5,7 @@ import SearchUserPreview from "../SearchUserPreview/SearchUserPreview";
 import { SearchContainer, UsersReturnComponent } from "./style";
 
 const SearchUsersComponent = ({ children, ...props }) => {
-  const [nameSearch, setNameSearch] = useState(false);
+  const [nameSearch, setNameSearch] = useState("");
   const [filteredUsers, setFilteredUsers] = useState([]);
 
   const fetchUserPosts = async () => {
@@ -22,10 +22,8 @@ const SearchUsersComponent = ({ children, ...props }) => {
       return result;
     };
 
-    if (nameSearch) {
-      return fetch();
-    }
-  }, [nameSearch]);
+    fetch();
+  }, [filteredUsers]);
 
   return (
     <SearchContainer>
@@ -38,9 +36,10 @@ const SearchUsersComponent = ({ children, ...props }) => {
       <UsersReturnComponent>
         {
           <div>
-            {filteredUsers.map((user, index) => {
-              return <SearchUserPreview {...user} key={index} />;
-            })}
+            {filteredUsers.length > 0 &&
+              filteredUsers.map((user, index) => {
+                return <SearchUserPreview {...user} key={index} />;
+              })}
           </div>
         }
       </UsersReturnComponent>
