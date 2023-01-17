@@ -94,8 +94,6 @@ const accessUserProfile = async (req, res) => {
     .where("user_id", "=", "1")
     .orderBy("timestamp", "desc");
 
-  console.log("id", userDataFromDb);
-
   userDataFromDb.push(postsDataFromDb);
   res.send(userDataFromDb);
 };
