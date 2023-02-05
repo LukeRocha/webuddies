@@ -23,7 +23,7 @@ const followNewFriend = async (req, res) => {
 
 const searchUsers = async (req, res) => {
   try {
-    if (req.params.nickname !== " ") {
+    if (req.params.nickname !== "") {
       await db.knex
         .select("nickname", "profile_picture", "first_name", "last_name", "id")
         .from("users")
@@ -32,7 +32,7 @@ const searchUsers = async (req, res) => {
           return res.send(resp);
         });
     } else {
-      return res.send("");
+      return res.send([]);
     }
   } catch (error) {
     console.log(error);

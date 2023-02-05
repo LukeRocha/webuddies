@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import { searchUsersProfile } from "../../operations/operations";
 import Input from "../Input/Input";
 import SearchUserPreview from "../SearchUserPreview/SearchUserPreview";
 import { SearchContainer, UsersReturnComponent } from "./style";
 
-const SearchUsersComponent = ({ children, ...props }) => {
+const SearchUsersComponent = ({ children }) => {
   const [nameSearch, setNameSearch] = useState("");
   const [filteredUsers, setFilteredUsers] = useState([]);
 
@@ -16,14 +16,12 @@ const SearchUsersComponent = ({ children, ...props }) => {
   useEffect(() => {
     const fetch = async () => {
       const result = await fetchUserPosts();
-      console.log(result);
       setFilteredUsers(result);
-
       return result;
     };
 
     fetch();
-  }, [filteredUsers]);
+  }, [nameSearch]);
 
   return (
     <SearchContainer>
@@ -36,7 +34,7 @@ const SearchUsersComponent = ({ children, ...props }) => {
       <UsersReturnComponent>
         {
           <div>
-            {filteredUsers.length > 0 &&
+            {nameSearch.trim() !== "" &&
               filteredUsers.map((user, index) => {
                 return <SearchUserPreview {...user} key={index} />;
               })}
