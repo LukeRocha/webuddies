@@ -89,13 +89,13 @@ const accessUserProfile = async (req, res) => {
     .where("nickname", "=", req.params.nickname);
 
   const postsDataFromDb = await db.knex
-    .select("id", "user_id", "post_content", "timestamp")
-    .from("posts")
-    .where("user_id", "=", "1")
-    .orderBy("timestamp", "desc");
-
+    .select("posts.*", "users.id as user_id1")
+    .table("posts")
+    .innerJoin("users", "users.id", "posts.user_id")
+    .where("users.nickname", "=", req.params.nickname);
   userDataFromDb.push(postsDataFromDb);
   res.send(userDataFromDb);
+  console.table(postsDataFromDb);
 };
 
 const edit = async (req, res) => {
