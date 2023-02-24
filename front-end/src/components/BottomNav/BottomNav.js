@@ -9,6 +9,11 @@ import { Link } from "react-router-dom";
 
 import { BottomNavBar } from "./styled";
 
+const RouterStyledLink = {
+  width: "auto",
+  height: "50vh",
+};
+
 export default function BottomNav() {
   const [value, setValue] = React.useState(0);
   return (
@@ -32,25 +37,27 @@ export default function BottomNav() {
             setValue(newValue);
           }}
         >
-          <BottomNavigationAction
-            sx={{ color: "#fff" }}
-            href="/profile"
-            label="Home"
-            icon={<HomeIcon />}
-          />
+          <Link to="/profile" style={RouterStyledLink}>
+            <BottomNavigationAction
+              sx={{ color: "#fff", "border-right": "none" }}
+              label="Home"
+              icon={<HomeIcon />}
+            />
+          </Link>
           <BottomNavigationAction
             sx={{ color: "#fff" }}
             label="Friends"
             icon={<PeopleAltIcon />}
           />
 
-          <BottomNavigationAction
-            sx={{ color: "#fff" }}
-            label="Search"
-            icon={<PersonSearchIcon />}
-            href="/users/search"
-            variant="contained"
-          />
+          <Link to="/users/search/" style={RouterStyledLink}>
+            <BottomNavigationAction
+              sx={{ color: "#fff" }}
+              label="Search"
+              icon={<PersonSearchIcon />}
+              variant="contained"
+            />
+          </Link>
         </BottomNavigation>
       </Box>
     </BottomNavBar>

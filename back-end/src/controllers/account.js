@@ -58,6 +58,14 @@ const create = async (req, res) => {
   return insertUserInDb(newUser);
 };
 
+const editUserData = async (req, res) => {
+  const dataFromDb = await db.knex
+    .selec("first_name", "last_name", "user_status")
+    .from("users")
+    .where("nickname", "=", req.nickname);
+  res.send(dataFromDb);
+};
+
 const dataFromLoggedUser = async (req, res) => {
   const dataFromDb = await db.knex
     .select(
@@ -95,7 +103,6 @@ const accessUserProfile = async (req, res) => {
     .where("users.nickname", "=", req.params.nickname);
   userDataFromDb.push(postsDataFromDb);
   res.send(userDataFromDb);
-  console.table(postsDataFromDb);
 };
 
 const edit = async (req, res) => {
@@ -132,4 +139,10 @@ const edit = async (req, res) => {
   }
 };
 
-module.exports = { create, accessUserProfile, dataFromLoggedUser, edit };
+module.exports = {
+  create,
+  accessUserProfile,
+  dataFromLoggedUser,
+  edit,
+  editUserData,
+};

@@ -26,6 +26,8 @@ router.get(
   postsController.getPosts
 );
 
+router.get("/user/get-user-data", accountController.dataFromLoggedUser);
+
 router.get(
   "/profile/token-check",
   tokenMiddleware.tokenCheck,
