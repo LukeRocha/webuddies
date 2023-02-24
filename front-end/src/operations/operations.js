@@ -3,6 +3,7 @@ const urls = {
   registerUser: "http://localhost:3700/create-account",
   createNewPost: "http://localhost:3700/users/new-post",
   getPosts: "http://localhost:3700/users/get-posts-data",
+  getLoggedData: "http://localhost:3700/user/get-user-data",
   authUser: "http://localhost:3700/users/login",
   logout: "http://localhost:3700/users/logout",
   accessFriendship: "http://localhost:3700/users/",
@@ -45,6 +46,17 @@ export const validateUserToken = async (token) => {
     });
 
   return getUserData;
+};
+
+export const getLoggedData = async (nickname) => {
+  console.log("nick", nickname);
+
+  const loggedData = await axios
+    .get(urls.getLoggedData, nickname)
+    .then((resp) => {
+      console.log(resp);
+    });
+  console.log(loggedData);
 };
 
 export const editAccountData = async (accountData, token) => {

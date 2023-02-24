@@ -32,25 +32,27 @@ export default function BottomNav() {
             setValue(newValue);
           }}
         >
-          <BottomNavigationAction
-            sx={{ color: "#fff" }}
-            href="/profile"
-            label="Home"
-            icon={<HomeIcon />}
-          />
+          <Link to="/profile">
+            <BottomNavigationAction
+              sx={{ color: "#fff" }}
+              label="Home"
+              icon={<HomeIcon />}
+            />
+          </Link>
           <BottomNavigationAction
             sx={{ color: "#fff" }}
             label="Friends"
             icon={<PeopleAltIcon />}
           />
 
-          <BottomNavigationAction
-            sx={{ color: "#fff" }}
-            label="Search"
-            icon={<PersonSearchIcon />}
-            href="/users/search"
-            variant="contained"
-          />
+          <Link to="/users/search/">
+            <BottomNavigationAction
+              sx={{ color: "#fff" }}
+              label="Search"
+              icon={<PersonSearchIcon />}
+              variant="contained"
+            />
+          </Link>
         </BottomNavigation>
       </Box>
     </BottomNavBar>

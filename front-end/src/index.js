@@ -16,9 +16,9 @@ ReactDOM.render(
     <AppProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route exact path="/" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/account/edit" element={<EditAccount />} />
+          <Route exact path="/account/edit" element={<EditAccount />} />
           <Route path="/register" element={<Register />} />
           <Route path="/users/:nickname" element={<FriendshipAccess />} />
           <Route path="/users/search" element={<SearchPage />} />
