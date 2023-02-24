@@ -1,3 +1,4 @@
+import { borderRight } from "@mui/system";
 import styled from "styled-components";
 
 export const BottomNavBar = styled.footer`
