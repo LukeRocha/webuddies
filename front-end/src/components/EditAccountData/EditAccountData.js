@@ -20,12 +20,12 @@ const EditAccountData = ({ children, ...props }) => {
   const [isModalOn, setIsModalOn] = useState(false);
   const navigate = useNavigate();
   const token = localStorage.getItem("access_token");
-  const { first_name, last_name, user_status } = state.userState.userData;
+  const { nickname, first_name, last_name, user_status } =
+    state.userState.userData;
   console.log(state.userState);
 
   // My state is gettin empty as I access this component from another page or component that isn't the profile page
   // any alteration here will need to be fixed, cause I believe that this isn't the best way to get data from my backend
-  getLoggedData("lukerocha");
 
   const {
     register,

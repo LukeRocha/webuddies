@@ -67,6 +67,7 @@ const editUserData = async (req, res) => {
 };
 
 const dataFromLoggedUser = async (req, res) => {
+  req.user;
   const dataFromDb = await db.knex
     .select(
       "nickname",
