@@ -47,14 +47,12 @@ export default function Header() {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={handleClose}>
-          <Link to="/account/edit">My account</Link>
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <Link onClick={() => userLogout()} to="/">
-            Logout
-          </Link>
-        </MenuItem>
+        <Link to="/account/edit">
+          <MenuItem onClick={handleClose}>My account</MenuItem>
+        </Link>
+        <Link onClick={() => userLogout()} to="/">
+          <MenuItem onClick={() => handleClose()}>Logout</MenuItem>
+        </Link>
       </Menu>
     </div>
   );

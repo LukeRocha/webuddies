@@ -4,7 +4,7 @@ export const StyledHeader = styled.header`
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  alignt-content: center;
+  align-content: center;
   padding: 5px;
   position: fixed;
   width: 100vw;

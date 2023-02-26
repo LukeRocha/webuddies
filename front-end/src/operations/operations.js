@@ -49,8 +49,6 @@ export const validateUserToken = async (token) => {
 };
 
 export const getLoggedData = async (nickname) => {
-  console.log("nick", nickname);
-
   const loggedData = await axios
     .get(urls.getLoggedData, nickname)
     .then((resp) => {
