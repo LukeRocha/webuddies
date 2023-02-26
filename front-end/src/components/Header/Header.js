@@ -50,11 +50,9 @@ export default function Header() {
         <Link to="/account/edit">
           <MenuItem onClick={handleClose}>My account</MenuItem>
         </Link>
-        <MenuItem onClick={handleClose}>
-          <Link onClick={() => userLogout()} to="/">
-            Logout
-          </Link>
-        </MenuItem>
+        <Link onClick={() => userLogout()} to="/">
+          <MenuItem onClick={() => handleClose()}>Logout</MenuItem>
+        </Link>
       </Menu>
     </div>
   );

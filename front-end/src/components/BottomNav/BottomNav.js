@@ -10,8 +10,7 @@ import { Link } from "react-router-dom";
 import { BottomNavBar } from "./styled";
 
 const RouterStyledLink = {
-  width: "auto",
-  height: "50vh",
+  height: "8vh",
 };
 
 export default function BottomNav() {
@@ -23,6 +22,7 @@ export default function BottomNav() {
           display: "flex",
           margin: "0 auto",
           flexDirection: "row",
+          height: "auto",
         }}
       >
         <BottomNavigation
@@ -56,7 +56,9 @@ export default function BottomNav() {
               label="Search"
               icon={<PersonSearchIcon />}
               variant="contained"
-            />
+            >
+              {"Search"}
+            </BottomNavigationAction>
           </Link>
         </BottomNavigation>
       </Box>
