@@ -15,6 +15,7 @@ const initialState = {
   userState: {
     userData: {},
     userPosts: [],
+    userFriendships: [],
   },
   serverMessages: {},
   accessToken: false,
