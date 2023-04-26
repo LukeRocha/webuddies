@@ -79,14 +79,14 @@ const dataFromLoggedUser = async function (req, res) {
     )
     .from("users")
     .where("nickname", "=", req.user.nickname);
-  const friendshipsFromDb = fetchFriendships(req.user.userId);
-  const dataBundle = await [dataFromDb, friendshipsFromDb];
-
+  const friendshipsFromDb = await fetchFriendships(req.user.userId);
+  const dataBundle = await [...dataFromDb, friendshipsFromDb];
+  console.log("aqui", dataBundle);
   res.send(dataFromDb);
 };
 
 const fetchFriendships = async (id, res) => {
-  const friendShipData = [];
+  const friendshipData = [];
 
   const followingFriends = await db.knex
     .select("target_friend_id")
@@ -104,10 +104,10 @@ const fetchFriendships = async (id, res) => {
       )
       .from("users")
       .where("id", "=", buddy.target_friend_id);
-    friendShipData.push(...result);
+    friendshipData.push(...result);
   }
 
-  console.log("result", friendShipData);
+  return friendshipData;
 };
 
 const accessUserProfile = async (req, res) => {
