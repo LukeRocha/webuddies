@@ -66,8 +66,7 @@ const editUserData = async (req, res) => {
   res.send(dataFromDb);
 };
 
-const dataFromLoggedUser = async (req, res) => {
-  req.user;
+const dataFromLoggedUser = async function (req, res) {
   const dataFromDb = await db.knex
     .select(
       "nickname",
@@ -80,7 +79,35 @@ const dataFromLoggedUser = async (req, res) => {
     )
     .from("users")
     .where("nickname", "=", req.user.nickname);
-  res.send(dataFromDb);
+  const friendshipsFromDb = await fetchFriendships(req.user.userId);
+  const dataBundle = await [...dataFromDb, friendshipsFromDb];
+
+  res.send(dataBundle);
+};
+
+const fetchFriendships = async (id, res) => {
+  const friendshipData = [];
+
+  const followingFriends = await db.knex
+    .select("target_friend_id")
+    .from("friendships")
+    .where("main_user_id", "=", id);
+
+  for (let buddy of followingFriends) {
+    const result = await db.knex
+      .select(
+        "nickname",
+        "first_name",
+        "last_name",
+        "profile_picture",
+        "user_status"
+      )
+      .from("users")
+      .where("id", "=", buddy.target_friend_id);
+    friendshipData.push(...result);
+  }
+
+  return friendshipData;
 };
 
 const accessUserProfile = async (req, res) => {

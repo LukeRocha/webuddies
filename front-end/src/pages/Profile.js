@@ -8,8 +8,6 @@ import NewPost from "../components/NewPost/NewPost";
 import { useGlobalContext } from "../context";
 
 const Profile = () => {
-  const { ...state } = useGlobalContext();
-  console.log("profile", state);
   return (
     <>
       <Header />

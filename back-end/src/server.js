@@ -10,6 +10,8 @@ const friendshipController = require("./controllers/friendships");
 const tokenMiddleware = require("./middleware/token-validation");
 
 const port = process.env.port || process.env.PORT || 3700;
+// I don't remember this command and I don't give a fuck, to kill a used process: sudo kill -9 `sudo lsof -t -i:3700`
+
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
