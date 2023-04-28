@@ -81,8 +81,8 @@ const dataFromLoggedUser = async function (req, res) {
     .where("nickname", "=", req.user.nickname);
   const friendshipsFromDb = await fetchFriendships(req.user.userId);
   const dataBundle = await [...dataFromDb, friendshipsFromDb];
-  console.log("aqui", dataBundle);
-  res.send(dataFromDb);
+
+  res.send(dataBundle);
 };
 
 const fetchFriendships = async (id, res) => {

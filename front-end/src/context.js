@@ -44,6 +44,7 @@ const AppProvider = ({ children }) => {
 
   const getUserDataByToken = async (token) => {
     const userDataFromDb = await validateUserToken(token);
+    console.log(userDataFromDb);
     dispatch({ type: "LOGGED_GET_DATA", payload: userDataFromDb });
   };
 

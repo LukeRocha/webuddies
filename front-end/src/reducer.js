@@ -20,6 +20,7 @@ const reducer = (state, action) => {
       ...state,
       userState: {
         userData: action.payload[0],
+        userFriendships: [...action.payload[1]],
         userPosts: state.userState.userPosts,
       },
     };
