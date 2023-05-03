@@ -4,7 +4,7 @@ import Input from "../Input/Input";
 import SearchUserPreview from "../SearchUserPreview/SearchUserPreview";
 import { SearchContainer, UsersReturnComponent } from "./style";
 
-const SearchUsersComponent = ({ children }) => {
+const SearchUsersComponent = () => {
   const [nameSearch, setNameSearch] = useState("");
   const [filteredUsers, setFilteredUsers] = useState([]);
 

@@ -13,7 +13,7 @@ const SearchPageContainer = styled.div`
 
 const SearchPage = () => {
   const { ...state } = useGlobalContext();
-  console.log("search", state);
+
   return (
     <SearchPageContainer>
       <Header />

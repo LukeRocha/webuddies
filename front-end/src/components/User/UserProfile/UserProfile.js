@@ -16,7 +16,7 @@ const UserProfile = () => {
 
   useEffect(() => {
     token && getUserDataByToken(token);
-  }, [token]);
+  }, []);
 
   return (
     <>
