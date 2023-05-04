@@ -39,17 +39,18 @@ export default function BottomNav() {
         >
           <Link to="/profile" style={RouterStyledLink}>
             <BottomNavigationAction
-              sx={{ color: "#fff", "border-right": "none" }}
+              sx={{ color: "#fff" }}
               label="Home"
               icon={<HomeIcon />}
             />
           </Link>
-          <BottomNavigationAction
-            sx={{ color: "#fff" }}
-            label="Friends"
-            icon={<PeopleAltIcon />}
-          />
-
+          <Link to="/friendships" style={RouterStyledLink}>
+            <BottomNavigationAction
+              sx={{ color: "#fff" }}
+              label="Friends"
+              icon={<PeopleAltIcon />}
+            />
+          </Link>
           <Link to="/users/search/" style={RouterStyledLink}>
             <BottomNavigationAction
               sx={{ color: "#fff" }}
