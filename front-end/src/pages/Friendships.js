@@ -30,9 +30,10 @@ const Friendships = () => {
     <>
       <Header />
       <FriendshipPageContainer>
-        <UserPreview user={user} />
-        <UserPreview user={user} />
-        {}
+        {friendships &&
+          friendships.map((user, key) => {
+            return <UserPreview user={user} key={key} />;
+          })}
       </FriendshipPageContainer>
       <BottomNav />
     </>

@@ -5,7 +5,7 @@ export const UserContainer = styled.div`
   flex-direction: row;
   padding: 12px;
   border-radius: 0.3rem;
-  width: 50vw;
+  width: 80vw;
   justify-content: flex-start;
   gap: 10px;
   background-color: var(--modal-background);
