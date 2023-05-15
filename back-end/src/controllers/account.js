@@ -3,7 +3,7 @@ require("dotenv").config();
 const { default: knex } = require("knex");
 const db = require("../database/db");
 const bcrypt = require("bcrypt");
-
+const friendshipController = require("./friendships");
 const create = async (req, res) => {
   const createHashPassword = async (password) => {
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -79,35 +79,12 @@ const dataFromLoggedUser = async function (req, res) {
     )
     .from("users")
     .where("nickname", "=", req.user.nickname);
-  const friendshipsFromDb = await fetchFriendships(req.user.userId);
+  const friendshipsFromDb = await friendshipController.fetchFriendships(
+    req.user.userId
+  );
   const dataBundle = await [...dataFromDb, friendshipsFromDb];
 
   res.send(dataBundle);
-};
-
-const fetchFriendships = async (id, res) => {
-  const friendshipData = [];
-
-  const followingFriends = await db.knex
-    .select("target_friend_id")
-    .from("friendships")
-    .where("main_user_id", "=", id);
-
-  for (let buddy of followingFriends) {
-    const result = await db.knex
-      .select(
-        "nickname",
-        "first_name",
-        "last_name",
-        "profile_picture",
-        "user_status"
-      )
-      .from("users")
-      .where("id", "=", buddy.target_friend_id);
-    friendshipData.push(...result);
-  }
-
-  return friendshipData;
 };
 
 const accessUserProfile = async (req, res) => {

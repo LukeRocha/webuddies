@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Register from "./pages/Register";
 import FriendshipAccess from "./pages/FriendshipAccess";
+import Friendships from "./pages/Friendships";
 import SearchPage from "./pages/SearchPage";
 import EditAccount from "./pages/EditAccount";
 
@@ -22,6 +23,7 @@ ReactDOM.render(
           <Route path="/register" element={<Register />} />
           <Route path="/users/:nickname" element={<FriendshipAccess />} />
           <Route path="/users/search" element={<SearchPage />} />
+          <Route path="/friendships" element={<Friendships />} />
         </Routes>
       </BrowserRouter>
     </AppProvider>

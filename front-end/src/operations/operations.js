@@ -39,7 +39,6 @@ export const validateUserToken = async (token) => {
   const getUserData = await axios
     .get(urls.validateToken, { headers: { authorization: `Bearer ${token}` } })
     .then((resp) => {
-      console.log(resp);
       return resp.data;
     })
     .catch((error) => {

@@ -38,4 +38,29 @@ const searchUsers = async (req, res) => {
     console.log(error);
   }
 };
-module.exports = { followNewFriend, searchUsers };
+
+const fetchFriendships = async (id, res) => {
+  const friendshipData = [];
+
+  const followingFriends = await db.knex
+    .select("target_friend_id")
+    .from("friendships")
+    .where("main_user_id", "=", id);
+
+  for (let buddy of followingFriends) {
+    const result = await db.knex
+      .select(
+        "nickname",
+        "first_name",
+        "last_name",
+        "profile_picture",
+        "user_status"
+      )
+      .from("users")
+      .where("id", "=", buddy.target_friend_id);
+    friendshipData.push(...result);
+  }
+
+  return friendshipData;
+};
+module.exports = { followNewFriend, searchUsers, fetchFriendships };
