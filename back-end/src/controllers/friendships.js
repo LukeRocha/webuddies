@@ -12,6 +12,7 @@ const followNewFriend = async (req, res) => {
     await db.knex.insert(friendshipObject).into("friendships");
   } catch (error) {
     console.log(error);
+
     res.status(500).json({
       error: "Erro while trying to friendship user, something went wrong",
     });
@@ -21,13 +22,12 @@ const followNewFriend = async (req, res) => {
 const searchUsers = async (req, res) => {
   try {
     if (req.params.nickname !== "") {
-      await db.knex
+      const usersSearch = await db.knex
         .select("nickname", "profile_picture", "first_name", "last_name", "id")
         .from("users")
-        .where("nickname", "like", `${req.params.nickname}%`)
-        .then((resp) => {
-          return res.send(resp);
-        });
+        .where("nickname", "like", `${req.params.nickname}%`);
+
+      res.send(usersSearch);
     } else {
       return res.send([]);
     }
