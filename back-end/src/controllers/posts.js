@@ -8,7 +8,7 @@ const getPosts = async (req, res) => {
       .from("posts")
       .where("user_id", "=", req.user.userId)
       .orderBy("timestamp", "desc");
-
+    console.log("posts", userPosts);
     res.send(userPosts);
   } catch (error) {
     console.log(error);
@@ -28,7 +28,6 @@ const newPost = (req, res) => {
   const createPost = async (postContent) => {
     try {
       await db.knex.insert(postContent).into("posts");
-      // .where("user_id", "=", post.user_id)
       res.send(`Content posted`);
     } catch (error) {
       res.status(500).json({
@@ -37,17 +36,6 @@ const newPost = (req, res) => {
     }
   };
   return createPost(post);
-
-  //   const insertPost = await db.knex
-  //     .insert(postContent)
-  //     .into("posts")
-  //     .where("user_id", "=", post.user_id)
-  //     .then((resp) => {
-  //       res.send(`Content posted! id:${post.user_id}`);
-  //     });
-
-  //   return insertPost;
-  // };
 };
 
 module.exports = { getPosts, newPost };
