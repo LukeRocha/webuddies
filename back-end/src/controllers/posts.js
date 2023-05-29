@@ -12,11 +12,9 @@ const getPosts = async (req, res) => {
     res.send(userPosts);
   } catch (error) {
     console.log(error);
-    res
-      .status(500)
-      .json({
-        error: "Erro while trying to retrive user posts, something went wrong",
-      });
+    res.status(500).json({
+      error: "Erro while trying to retrive user posts, something went wrong",
+    });
   }
 };
 
@@ -28,18 +26,28 @@ const newPost = (req, res) => {
   };
 
   const createPost = async (postContent) => {
-    const insertPost = await db.knex
-      .insert(postContent)
-      .into("posts")
-      .where("user_id", "=", post.user_id)
-      .then((resp) => {
-        res.send(`Content posted! id:${post.user_id}`);
+    try {
+      await db.knex.insert(postContent).into("posts");
+      // .where("user_id", "=", post.user_id)
+      res.send(`Content posted`);
+    } catch (error) {
+      res.status(500).json({
+        error: "Erro while trying to retrive user posts, something went wrong",
       });
-
-    return insertPost;
+    }
   };
-
   return createPost(post);
+
+  //   const insertPost = await db.knex
+  //     .insert(postContent)
+  //     .into("posts")
+  //     .where("user_id", "=", post.user_id)
+  //     .then((resp) => {
+  //       res.send(`Content posted! id:${post.user_id}`);
+  //     });
+
+  //   return insertPost;
+  // };
 };
 
 module.exports = { getPosts, newPost };
