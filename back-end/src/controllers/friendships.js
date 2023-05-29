@@ -39,28 +39,33 @@ const searchUsers = async (req, res) => {
   }
 };
 
-const fetchFriendships = async (id, res) => {
-  const friendshipData = [];
+const fetchFriendships = async (id) => {
+  const friendships = [];
 
-  const followingFriends = await db.knex
-    .select("target_friend_id")
-    .from("friendships")
-    .where("main_user_id", "=", id);
+  try {
+    const queryFriendships = await db.knex
+      .select("target_friend_id")
+      .from("friendships")
+      .where("main_user_id", "=", id);
 
-  for (let buddy of followingFriends) {
-    const result = await db.knex
-      .select(
-        "nickname",
-        "first_name",
-        "last_name",
-        "profile_picture",
-        "user_status"
-      )
-      .from("users")
-      .where("id", "=", buddy.target_friend_id);
-    friendshipData.push(...result);
+    for (let friendship of queryFriendships) {
+      const result = await db.knex
+        .select(
+          "nickname",
+          "first_name",
+          "last_name",
+          "profile_picture",
+          "user_status"
+        )
+        .from("users")
+        .where("id", "=", friendship.target_friend_id);
+      friendships.push(...result);
+    }
+
+    return friendships;
+  } catch (error) {
+    console.log(error);
+    return error;
   }
-
-  return friendshipData;
 };
 module.exports = { followNewFriend, searchUsers, fetchFriendships };
