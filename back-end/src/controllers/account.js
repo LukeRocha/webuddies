@@ -4,6 +4,7 @@ const { default: knex } = require("knex");
 const db = require("../database/db");
 const bcrypt = require("bcrypt");
 const friendshipController = require("./friendships");
+
 const create = async (req, res) => {
   const createHashPassword = async (password) => {
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -59,11 +60,18 @@ const create = async (req, res) => {
 };
 
 const editUserData = async (req, res) => {
-  const dataFromDb = await db.knex
-    .selec("first_name", "last_name", "user_status")
-    .from("users")
-    .where("nickname", "=", req.nickname);
-  res.send(dataFromDb);
+  try {
+    const dataFromDb = await db.knex
+      .selec("first_name", "last_name", "user_status")
+      .from("users")
+      .where("nickname", "=", req.nickname);
+    res.send(dataFromDb);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      error: "Error while trying to edit user data",
+    });
+  }
 };
 
 const dataFromLoggedUser = async function (req, res) {
