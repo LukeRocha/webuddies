@@ -19,20 +19,18 @@ const authorizationHeader = (token) => {
 };
 
 export const authUser = async (userCredentials) => {
-  const authRequestResult = await axios
-    .post(urls.authUser, userCredentials)
-    .then((resp) => {
-      return resp;
-    })
-    .catch((error) => {
+  try {
+    const authRequestResult = await axios.post(urls.authUser, userCredentials);
+    const authorizedUser = {
+      token: authRequestResult.data.accessToken,
+      userData: authRequestResult.data.dbUserData[0],
+    };
+    return authorizedUser;
+  } catch {
+    (error) => {
       console.error(error);
-    });
-
-  const authorizedUser = {
-    token: authRequestResult.data.accessToken,
-    userData: authRequestResult.data.dbUserData[0],
-  };
-  return authorizedUser;
+    };
+  }
 };
 
 export const validateUserToken = async (token) => {
