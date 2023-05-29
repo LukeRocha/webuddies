@@ -58,5 +58,5 @@ router.put("/account/edit", tokenMiddleware.tokenCheck, accountController.edit);
 
 app.use(router);
 app.listen(port, () => {
-  console.log("Server is running...");
+  console.log("server is running...");
 });

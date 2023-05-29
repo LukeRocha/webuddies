@@ -15,22 +15,12 @@ const reducer = (state, action) => {
     };
   }
 
-  if (action.type === "LOGGED_GET_DATA") {
+  if (action.type === "GET_LOGGED_DATA") {
     return {
       ...state,
       userState: {
         userData: action.payload[0],
         userFriendships: [...action.payload[1]],
-        userPosts: state.userState.userPosts,
-      },
-    };
-  }
-
-  if (action.type === "EDIT_USER_ACCOUNT") {
-    return {
-      ...state,
-      userState: {
-        userData: action.payload,
         userPosts: state.userState.userPosts,
       },
     };
@@ -42,6 +32,16 @@ const reducer = (state, action) => {
       userState: {
         userData: state.userState.userData,
         userPosts: action.payload,
+      },
+    };
+  }
+
+  if (action.type === "EDIT_USER_ACCOUNT") {
+    return {
+      ...state,
+      userState: {
+        userData: action.payload,
+        userPosts: state.userState.userPosts,
       },
     };
   }

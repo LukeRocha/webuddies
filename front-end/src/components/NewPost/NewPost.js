@@ -35,11 +35,11 @@ const PostArea = ({ children }) => {
         </ImageContainer>
 
         <form
-          onSubmit={(e) => {
+          onSubmit={async (e) => {
             e.preventDefault();
             createNewPost(postContent, getToken);
             setPostContent({ ...postContent, content: "" });
-            getUserPostsData(getToken);
+            await getUserPostsData(getToken);
           }}
         />
         <PostContent

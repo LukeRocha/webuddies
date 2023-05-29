@@ -37,24 +37,25 @@ export const authUser = async (userCredentials) => {
 
 export const validateUserToken = async (token) => {
   const getUserData = await axios
-    .get(urls.validateToken, { headers: { authorization: `Bearer ${token}` } })
+    .get(urls.validateToken, {
+      headers: { authorization: `Bearer ${token}` },
+    })
     .then((resp) => {
       return resp.data;
     })
     .catch((error) => {
       console.log("error", error);
     });
+  // just a test to see if this is ok
+  console.log(getUserData);
   return getUserData;
 };
 
-export const getLoggedData = async (nickname) => {
-  const loggedData = await axios
-    .get(urls.getLoggedData, nickname)
-    .then((resp) => {
-      console.log(resp);
-    });
-  console.log(loggedData);
-};
+// this function is not being used
+// export const getLoggedData = async (nickname) => {
+//   const loggedData = await axios.get(urls.getLoggedData, nickname);
+//   console.log(loggedData);
+// };
 
 export const editAccountData = async (accountData, token) => {
   const editUserData = await axios
@@ -68,13 +69,22 @@ export const editAccountData = async (accountData, token) => {
 
 export const getUserPosts = async (token) => {
   const requestPosts = await axios
-    .get(urls.getPosts, { headers: { authorization: `Bearer ${token}` } })
+    .get(urls.getPosts, {
+      headers: { authorization: `Bearer ${token}` },
+    })
     .then((resp) => {
       return resp.data;
-    })
-    .catch((error) => {
-      console.log("error:", error);
     });
+
+  //here lies my problems
+  // console
+  //   .log(requestPosts.data)
+  //   .then((resp) => {
+  //     return resp.data;
+  //   })
+  //   .catch((error) => {
+  //     console.log("error:", error);
+  //   });
 
   return requestPosts;
 };
