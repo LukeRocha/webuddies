@@ -31,8 +31,9 @@ const newPost = (req, res) => {
       `);
       res.send(`Content posted`);
     } catch (error) {
+      console.log(error);
       res.status(500).json({
-        error: "Erro while trying to retrive user posts, something went wrong",
+        error: "Erro while trying to create user post, something went wrong",
       });
     }
   };

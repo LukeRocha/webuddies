@@ -3,7 +3,6 @@ const { default: knex } = require("knex");
 const db = require("../database/db");
 
 const followNewFriend = async (req, res) => {
-  console.log("target user", req.body);
   const friendshipObject = {
     main_user_id: req.user.userId,
     target_friend_id: req.body.target_friend_id,
@@ -12,6 +11,7 @@ const followNewFriend = async (req, res) => {
   try {
     await db.knex.insert(friendshipObject).into("friendships");
   } catch (error) {
+    console.log(error);
     res.status(500).json({
       error: "Erro while trying to friendship user, something went wrong",
     });
@@ -33,6 +33,9 @@ const searchUsers = async (req, res) => {
     }
   } catch (error) {
     console.log(error);
+    res.status(500).json({
+      error: "Erro while trying to retrive data",
+    });
   }
 };
 
