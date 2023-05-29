@@ -36,26 +36,24 @@ export const authUser = async (userCredentials) => {
 };
 
 export const validateUserToken = async (token) => {
-  const getUserData = await axios
-    .get(urls.validateToken, {
+  try {
+    const getUserData = await axios.get(urls.validateToken, {
       headers: { authorization: `Bearer ${token}` },
-    })
-    .then((resp) => {
-      return resp.data;
-    })
-    .catch((error) => {
-      console.log("error", error);
     });
+
+    console.log(getUserData.data);
+    return getUserData.data;
+  } catch (error) {
+    console.log("error:", error);
+  }
+
   // just a test to see if this is ok
-  console.log(getUserData);
-  return getUserData;
 };
 
-// this function is not being used
-// export const getLoggedData = async (nickname) => {
-//   const loggedData = await axios.get(urls.getLoggedData, nickname);
-//   console.log(loggedData);
-// };
+export const getLoggedData = async (nickname) => {
+  const loggedData = await axios.get(urls.getLoggedData, nickname);
+  console.log(loggedData);
+};
 
 export const editAccountData = async (accountData, token) => {
   const editUserData = await axios

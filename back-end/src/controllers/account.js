@@ -4,6 +4,7 @@ const { default: knex } = require("knex");
 const db = require("../database/db");
 const bcrypt = require("bcrypt");
 const friendshipController = require("./friendships");
+const postsController = require("./posts");
 
 const create = async (req, res) => {
   const createHashPassword = async (password) => {
@@ -59,23 +60,8 @@ const create = async (req, res) => {
   return insertUserInDb(newUser);
 };
 
-const editUserData = async (req, res) => {
-  try {
-    const dataFromDb = await db.knex
-      .selec("first_name", "last_name", "user_status")
-      .from("users")
-      .where("nickname", "=", req.nickname);
-    res.send(dataFromDb);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({
-      error: "Error while trying to edit user data",
-    });
-  }
-};
-
 const dataFromLoggedUser = async function (req, res) {
-  const dataFromDb = await db.knex
+  const loggedUserDataFromDb = await db.knex
     .select(
       "nickname",
       "first_name",
@@ -87,35 +73,30 @@ const dataFromLoggedUser = async function (req, res) {
     )
     .from("users")
     .where("nickname", "=", req.user.nickname);
-  const friendshipsFromDb = await friendshipController.fetchFriendships(
+
+  const userFriendshipsFromDb = await friendshipController.fetchFriendships(
     req.user.userId
   );
-  const dataBundle = await [...dataFromDb, friendshipsFromDb];
 
+  // const postsFromLoggedUser = await postsController.getPosts(
+  //   (req = {
+  //     userId: 1,
+  //     nickname: "lukerocha",
+  //     iat: 1685322818,
+  //     exp: 1687914818,
+  //   })
+  // );
+  // console.log("ola", postsFromLoggedUser);
+
+  // console.log(postsFromLoggedUser);
+
+  const dataBundle = await [
+    ...loggedUserDataFromDb,
+    userFriendshipsFromDb,
+    // postsFromLoggedUser,
+  ];
+  console.log("get logged functioin fix", dataBundle);
   res.send(dataBundle);
-};
-
-const accessUserProfile = async (req, res) => {
-  const userDataFromDb = await db.knex
-    .select(
-      "nickname",
-      "first_name",
-      "last_name",
-      "profile_picture",
-      "user_status",
-      "city",
-      "id"
-    )
-    .from("users")
-    .where("nickname", "=", req.params.nickname);
-
-  const postsDataFromDb = await db.knex
-    .select("posts.*", "users.id as user_id1")
-    .table("posts")
-    .innerJoin("users", "users.id", "posts.user_id")
-    .where("users.nickname", "=", req.params.nickname);
-  userDataFromDb.push(postsDataFromDb);
-  res.send(userDataFromDb);
 };
 
 const edit = async (req, res) => {
@@ -132,6 +113,7 @@ const edit = async (req, res) => {
       .update(editedData)
       .table("users")
       .where("nickname", nickname);
+
     const result = await db.knex
       .select(
         "nickname",
@@ -142,20 +124,19 @@ const edit = async (req, res) => {
         "id"
       )
       .from("users")
-      .where("nickname", "=", nickname)
-      .then((resp) => {
-        res.json(resp);
-      });
-    return result;
+      .where("nickname", "=", nickname);
+
+    res.send(result);
   } catch (error) {
     console.log(error);
+    res.status(500).json({
+      error: "Error while trying to edit user data",
+    });
   }
 };
 
 module.exports = {
   create,
-  accessUserProfile,
   dataFromLoggedUser,
   edit,
-  editUserData,
 };

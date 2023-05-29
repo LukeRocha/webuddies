@@ -34,7 +34,7 @@ const searchUsers = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).json({
-      error: "Erro while trying to retrive data",
+      error: "Error while trying to retrive data",
     });
   }
 };
@@ -68,4 +68,32 @@ const fetchFriendships = async (id) => {
     return error;
   }
 };
-module.exports = { followNewFriend, searchUsers, fetchFriendships };
+
+const accessUserProfile = async (req, res) => {
+  const userDataFromDb = await db.knex
+    .select(
+      "nickname",
+      "first_name",
+      "last_name",
+      "profile_picture",
+      "user_status",
+      "city",
+      "id"
+    )
+    .from("users")
+    .where("nickname", "=", req.params.nickname);
+
+  const postsDataFromDb = await db.knex
+    .select("posts.*", "users.id as user_id1")
+    .table("posts")
+    .innerJoin("users", "users.id", "posts.user_id")
+    .where("users.nickname", "=", req.params.nickname);
+  userDataFromDb.push(postsDataFromDb);
+  res.send(userDataFromDb);
+};
+module.exports = {
+  followNewFriend,
+  searchUsers,
+  fetchFriendships,
+  accessUserProfile,
+};

@@ -36,7 +36,7 @@ router.get(
   accountController.dataFromLoggedUser
 );
 
-router.get("/users/:nickname", accountController.accessUserProfile);
+router.get("/users/:nickname", friendshipController.accessUserProfile);
 router.get("/users/search/:nickname", friendshipController.searchUsers);
 
 // POST ROUTES
