@@ -21,11 +21,11 @@ app.options("*", cors());
 
 const router = express.Router();
 
-//GET ROUTES
+//  GET ROUTES
 router.get(
   "/users/get-posts-data",
   tokenMiddleware.tokenCheck,
-  postsController.getPosts
+  postsController.upDateUserPosts
 );
 
 router.get("/user/get-user-data", accountController.dataFromLoggedUser);

@@ -21,7 +21,7 @@ const reducer = (state, action) => {
       userState: {
         userData: action.payload[0],
         userFriendships: [...action.payload[1]],
-        userPosts: state.userState.userPosts,
+        userPosts: [...action.payload[2]],
       },
     };
   }
@@ -31,6 +31,7 @@ const reducer = (state, action) => {
       ...state,
       userState: {
         userData: state.userState.userData,
+        userFriendships: state.userState.userFriendships,
         userPosts: action.payload,
       },
     };

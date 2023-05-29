@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 import Button from "../Button/Button";
 import {
   NewPostContainer,
@@ -11,16 +12,22 @@ import { useGlobalContext } from "../../context";
 import { createNewPost } from "../../operations/operations";
 
 const PostArea = ({ children }) => {
-  const { userState, accessToken, getUserPostsData } = useGlobalContext();
+  const { userState, updateUserPosts } = useGlobalContext();
+  const token = localStorage.getItem("access_token");
   const [postContent, setPostContent] = useState({
     user_id: userState.userData.id,
     content: "",
   });
 
-  const getToken = localStorage.getItem("access_token");
+  const handlePostSubmit = async (e) => {
+    e.preventDefault();
+    await createNewPost(postContent, token);
+    await updateUserPosts(token);
+    setPostContent({ ...postContent, content: "" });
+  };
 
   useEffect(() => {
-    //with this, i need to always be with my state updated
+    // with this, i need to always be with my state updated
     setPostContent({ ...postContent, user_id: userState.userData.id });
   }, [postContent.content]);
 
@@ -35,11 +42,8 @@ const PostArea = ({ children }) => {
         </ImageContainer>
 
         <form
-          onSubmit={async (e) => {
-            e.preventDefault();
-            createNewPost(postContent, getToken);
-            setPostContent({ ...postContent, content: "" });
-            await getUserPostsData(getToken);
+          onSubmit={() => {
+            handlePostSubmit;
           }}
         />
         <PostContent
@@ -58,12 +62,7 @@ const PostArea = ({ children }) => {
           <Button
             type="submit"
             bg={"var(--green-button)"}
-            onClick={(e) => {
-              e.preventDefault();
-              createNewPost(postContent, getToken);
-              setPostContent({ ...postContent, content: "" });
-              getUserPostsData(getToken);
-            }}
+            onClick={handlePostSubmit}
           >
             Share
           </Button>

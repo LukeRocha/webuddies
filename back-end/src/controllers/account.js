@@ -74,28 +74,18 @@ const dataFromLoggedUser = async function (req, res) {
     .from("users")
     .where("nickname", "=", req.user.nickname);
 
+  console.log("pppppppppppppppppppppP", req.user.userId);
+  const postsFromLoggedUser = await postsController.getPosts(req.user.userId);
   const userFriendshipsFromDb = await friendshipController.fetchFriendships(
     req.user.userId
   );
 
-  // const postsFromLoggedUser = await postsController.getPosts(
-  //   (req = {
-  //     userId: 1,
-  //     nickname: "lukerocha",
-  //     iat: 1685322818,
-  //     exp: 1687914818,
-  //   })
-  // );
-  // console.log("ola", postsFromLoggedUser);
-
-  // console.log(postsFromLoggedUser);
-
   const dataBundle = await [
     ...loggedUserDataFromDb,
     userFriendshipsFromDb,
-    // postsFromLoggedUser,
+    postsFromLoggedUser,
   ];
-  console.log("get logged functioin fix", dataBundle);
+
   res.send(dataBundle);
 };
 

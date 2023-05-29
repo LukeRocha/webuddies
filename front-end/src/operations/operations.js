@@ -41,13 +41,11 @@ export const validateUserToken = async (token) => {
       headers: { authorization: `Bearer ${token}` },
     });
 
-    console.log(getUserData.data);
+    console.log("?", getUserData.data);
     return getUserData.data;
   } catch (error) {
     console.log("error:", error);
   }
-
-  // just a test to see if this is ok
 };
 
 export const getLoggedData = async (nickname) => {
@@ -66,25 +64,15 @@ export const editAccountData = async (accountData, token) => {
 };
 
 export const getUserPosts = async (token) => {
-  const requestPosts = await axios
-    .get(urls.getPosts, {
+  try {
+    const requestPosts = await axios.get(urls.getPosts, {
       headers: { authorization: `Bearer ${token}` },
-    })
-    .then((resp) => {
-      return resp.data;
     });
 
-  //here lies my problems
-  // console
-  //   .log(requestPosts.data)
-  //   .then((resp) => {
-  //     return resp.data;
-  //   })
-  //   .catch((error) => {
-  //     console.log("error:", error);
-  //   });
-
-  return requestPosts;
+    return requestPosts.data;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const registerNewUser = async (userInputs) => {
