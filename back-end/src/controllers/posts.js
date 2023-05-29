@@ -8,7 +8,6 @@ const getPosts = async (req, res) => {
       .from("posts")
       .where("user_id", "=", req.user.userId)
       .orderBy("timestamp", "desc");
-    console.log("posts", userPosts);
     res.send(userPosts);
   } catch (error) {
     console.log(error);
@@ -28,6 +27,8 @@ const newPost = (req, res) => {
   const createPost = async (postContent) => {
     try {
       await db.knex.insert(postContent).into("posts");
+      console.log(`Content posted by: ${req.user.nickname}
+      `);
       res.send(`Content posted`);
     } catch (error) {
       res.status(500).json({

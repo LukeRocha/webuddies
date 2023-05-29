@@ -3,21 +3,18 @@ const { default: knex } = require("knex");
 const db = require("../database/db");
 
 const followNewFriend = async (req, res) => {
-  console.log(req.body);
+  console.log("target user", req.body);
   const friendshipObject = {
     main_user_id: req.user.userId,
     target_friend_id: req.body.target_friend_id,
   };
 
   try {
-    await db.knex
-      .insert(friendshipObject)
-      .into("friendships")
-      .then((resp) => {
-        console.log(resp);
-      });
+    await db.knex.insert(friendshipObject).into("friendships");
   } catch (error) {
-    console.log(error);
+    res.status(500).json({
+      error: "Erro while trying to friendship user, something went wrong",
+    });
   }
 };
 
