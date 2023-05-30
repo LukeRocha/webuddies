@@ -74,7 +74,6 @@ const dataFromLoggedUser = async function (req, res) {
     .from("users")
     .where("nickname", "=", req.user.nickname);
 
-  console.log("pppppppppppppppppppppP", req.user.userId);
   const postsFromLoggedUser = await postsController.getPosts(req.user.userId);
   const userFriendshipsFromDb = await friendshipController.fetchFriendships(
     req.user.userId
