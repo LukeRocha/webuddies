@@ -27,7 +27,6 @@ const PostArea = ({ children }) => {
   };
 
   useEffect(() => {
-    // with this, i need to always be with my state updated
     setPostContent({ ...postContent, user_id: userState.userData.id });
   }, [postContent.content]);
 

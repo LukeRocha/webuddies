@@ -61,31 +61,38 @@ const create = async (req, res) => {
 };
 
 const dataFromLoggedUser = async function (req, res) {
-  const loggedUserDataFromDb = await db.knex
-    .select(
-      "nickname",
-      "first_name",
-      "last_name",
-      "profile_picture",
-      "user_status",
-      "city",
-      "id"
-    )
-    .from("users")
-    .where("nickname", "=", req.user.nickname);
+  try {
+    const loggedUserDataFromDb = await db.knex
+      .select(
+        "nickname",
+        "first_name",
+        "last_name",
+        "profile_picture",
+        "user_status",
+        "city",
+        "id"
+      )
+      .from("users")
+      .where("nickname", "=", req.user.nickname);
 
-  const postsFromLoggedUser = await postsController.getPosts(req.user.userId);
-  const userFriendshipsFromDb = await friendshipController.fetchFriendships(
-    req.user.userId
-  );
+    const postsFromLoggedUser = await postsController.getPosts(req.user.userId);
+    const userFriendshipsFromDb = await friendshipController.fetchFriendships(
+      req.user.userId
+    );
 
-  const dataBundle = await [
-    ...loggedUserDataFromDb,
-    userFriendshipsFromDb,
-    postsFromLoggedUser,
-  ];
+    const dataBundle = await [
+      ...loggedUserDataFromDb,
+      userFriendshipsFromDb,
+      postsFromLoggedUser,
+    ];
 
-  res.send(dataBundle);
+    res.send(dataBundle);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      error: "Error while trying to retrieve user data",
+    });
+  }
 };
 
 const edit = async (req, res) => {
