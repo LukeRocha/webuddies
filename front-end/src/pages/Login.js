@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useGlobalContext } from "../context";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import LoginInputs from "../components/LoginInputs/LoginInputs";
 import Input from "../components/Input/Input";
@@ -74,20 +74,29 @@ const FormContainer = styled.div`
 
   padding: 18px;
 `;
-
+const ErrorMessage = styled.span`
+  display: flex;
+  text-align: center;
+  color: red;
+  padding: 8px;
+`;
 const Login = () => {
   const { state, authUserCredentials } = useGlobalContext();
+  const navigate = useNavigate();
   const [size, setSize] = useState(window.innerWidth);
   const [userCredentials, setUserCredentials] = useState({
     nickname: "",
     password: "",
   });
+  const [errorMessage, setErrorMessage] = useState("");
+
   const checkWindowSize = () => {
     setSize(window.innerWidth);
   };
 
   useEffect(() => {
     window.addEventListener("resize", checkWindowSize);
+    console.log(state);
 
     return () => {
       window.removeEventListener("resize", checkWindowSize);
@@ -101,9 +110,14 @@ const Login = () => {
         <LoginInputs>
           <ModalWrapper>
             <form
-              onSubmit={(e) => {
+              onSubmit={async (e) => {
                 e.preventDefault();
-                authUserCredentials(userCredentials);
+                try {
+                  await authUserCredentials(userCredentials);
+                  navigate("/profile");
+                } catch (error) {
+                  setErrorMessage(error.error);
+                }
               }}
             >
               <FormContainer>
@@ -128,13 +142,22 @@ const Login = () => {
                   }}
                   value={userCredentials.password}
                 ></Input>
+                {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
                 <RegisterLink>{"Forgot my password"}</RegisterLink>
                 <Link to="profile">
                   <Button
                     bg={"var(--green-button)"}
                     type="submit"
-                    onClick={async () => {
-                      await authUserCredentials(userCredentials);
+                    onClick={async (e) => {
+                      e.preventDefault();
+                      try {
+                        await authUserCredentials(userCredentials);
+                        navigate("/profile");
+                      } catch (error) {
+                        console.log(error.error);
+                        setErrorMessage(error.error);
+                      }
+                      authUserCredentials(userCredentials);
                     }}
                   >
                     Login

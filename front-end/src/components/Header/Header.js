@@ -13,10 +13,12 @@ export default function Header() {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+  const userLogout = useGlobalContext();
   const handleClose = () => {
+    localStorage.removeItem("access_token");
+    userLogout();
     setAnchorEl(null);
   };
-  const userLogout = useGlobalContext();
   return (
     <div>
       <StyledHeader>
@@ -50,8 +52,14 @@ export default function Header() {
         <Link to="/account/edit">
           <MenuItem onClick={handleClose}>My account</MenuItem>
         </Link>
-        <Link onClick={() => userLogout()} to="/">
-          <MenuItem onClick={() => handleClose()}>Logout</MenuItem>
+        <Link to="/">
+          <MenuItem
+            onClick={async () => {
+              handleClose();
+            }}
+          >
+            Logout
+          </MenuItem>
         </Link>
       </Menu>
     </div>

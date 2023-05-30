@@ -35,7 +35,9 @@ const AppProvider = ({ children }) => {
 
   const authUserCredentials = async (userCredentials) => {
     const userDataFromDb = await authUser(userCredentials);
+    console.log(userDataFromDb);
     localStorage.setItem("access_token", userDataFromDb.token);
+
     dispatch({
       type: "AUTH_USER",
       payload: userDataFromDb,
