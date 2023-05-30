@@ -1,16 +1,18 @@
 import axios from "axios";
 const urls = {
   registerUser: "http://localhost:3700/create-account",
-  createNewPost: "http://localhost:3700/users/new-post",
-  getPosts: "http://localhost:3700/users/get-posts-data",
-  getLoggedData: "http://localhost:3700/user/get-user-data",
   authUser: "http://localhost:3700/users/login",
-  logout: "http://localhost:3700/users/logout",
+  validateToken: "http://localhost:3700/profile/token-check",
+  editAccount: "http://localhost:3700/account/edit",
+
+  getPosts: "http://localhost:3700/users/get-posts-data",
+  createNewPost: "http://localhost:3700/users/new-post",
+
   accessFriendship: "http://localhost:3700/users/",
   addNewFriendship: "http://localhost:3700/newFriend",
   searchUser: "http://localhost:3700/users/search/",
-  validateToken: "http://localhost:3700/profile/token-check",
-  editAccount: "http://localhost:3700/account/edit",
+
+  logout: "http://localhost:3700/users/logout",
 };
 
 const authorizationHeader = (token) => {
@@ -19,89 +21,76 @@ const authorizationHeader = (token) => {
 };
 
 export const authUser = async (userCredentials) => {
-  const authRequestResult = await axios
-    .post(urls.authUser, userCredentials)
-    .then((resp) => {
-      return resp;
-    })
-    .catch((error) => {
+  try {
+    const authRequestResult = await axios.post(urls.authUser, userCredentials);
+    const authorizedUser = {
+      token: authRequestResult.data.accessToken,
+      userData: authRequestResult.data.dbUserData[0],
+    };
+    return authorizedUser;
+  } catch {
+    (error) => {
       console.error(error);
-    });
-
-  const authorizedUser = {
-    token: authRequestResult.data.accessToken,
-    userData: authRequestResult.data.dbUserData[0],
-  };
-  return authorizedUser;
+    };
+  }
 };
 
 export const validateUserToken = async (token) => {
-  const getUserData = await axios
-    .get(urls.validateToken, { headers: { authorization: `Bearer ${token}` } })
-    .then((resp) => {
-      return resp.data;
-    })
-    .catch((error) => {
-      console.log("error", error);
+  try {
+    const getUserData = await axios.get(urls.validateToken, {
+      headers: { authorization: `Bearer ${token}` },
     });
-  return getUserData;
-};
-
-export const getLoggedData = async (nickname) => {
-  const loggedData = await axios
-    .get(urls.getLoggedData, nickname)
-    .then((resp) => {
-      console.log(resp);
-    });
-  console.log(loggedData);
+    return getUserData.data;
+  } catch (error) {
+    console.log("error:", error);
+  }
 };
 
 export const editAccountData = async (accountData, token) => {
-  const editUserData = await axios
-    .put(urls.editAccount, accountData, authorizationHeader(token))
-    .then((resp) => {
-      console.log(resp);
-      return resp.data;
-    });
-  return editUserData;
+  try {
+    const editUserData = await axios.put(
+      urls.editAccount,
+      accountData,
+      authorizationHeader(token)
+    );
+    return editUserData;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const getUserPosts = async (token) => {
-  const requestPosts = await axios
-    .get(urls.getPosts, { headers: { authorization: `Bearer ${token}` } })
-    .then((resp) => {
-      return resp.data;
-    })
-    .catch((error) => {
-      console.log("error:", error);
+  try {
+    const requestPosts = await axios.get(urls.getPosts, {
+      headers: { authorization: `Bearer ${token}` },
     });
 
-  return requestPosts;
+    return requestPosts.data;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const registerNewUser = async (userInputs) => {
-  const postResult = await axios
-    .post(urls.registerUser, userInputs)
-    .then((resp) => {
-      return resp;
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-  return postResult;
+  try {
+    const postResult = await axios.post(urls.registerUser, userInputs);
+    return postResult;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const createNewPost = async (newPostData, token) => {
-  await axios
-    .post(urls.createNewPost, newPostData, authorizationHeader(token))
-    .then((resp) => {
-      return resp;
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-
-  return getUserPosts(token);
+  try {
+    await axios.post(
+      urls.createNewPost,
+      newPostData,
+      authorizationHeader(token)
+    );
+    return getUserPosts(token);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const accessUserProfile = async (userName) => {
@@ -129,12 +118,14 @@ export const searchUsersProfile = async (userName) => {
 };
 
 export const followNewFriend = async (targetUserId, token) => {
-  const id = { target_friend_id: targetUserId };
   try {
-    await axios
-      .post(urls.addNewFriendship, id, authorizationHeader(token))
-      .then((resp) => console.log(resp));
-    // check the length on return function
+    const id = { target_friend_id: targetUserId };
+    const addResult = await axios.post(
+      urls.addNewFriendship,
+      id,
+      authorizationHeader(token)
+    );
+    return addResult;
   } catch (error) {
     console.log(error);
   }

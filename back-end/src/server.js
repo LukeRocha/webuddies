@@ -21,11 +21,11 @@ app.options("*", cors());
 
 const router = express.Router();
 
-//GET ROUTES
+//  GET ROUTES
 router.get(
   "/users/get-posts-data",
   tokenMiddleware.tokenCheck,
-  postsController.getPosts
+  postsController.upDateUserPosts
 );
 
 router.get("/user/get-user-data", accountController.dataFromLoggedUser);
@@ -36,7 +36,7 @@ router.get(
   accountController.dataFromLoggedUser
 );
 
-router.get("/users/:nickname", accountController.accessUserProfile);
+router.get("/users/:nickname", friendshipController.accessUserProfile);
 router.get("/users/search/:nickname", friendshipController.searchUsers);
 
 // POST ROUTES
@@ -58,5 +58,5 @@ router.put("/account/edit", tokenMiddleware.tokenCheck, accountController.edit);
 
 app.use(router);
 app.listen(port, () => {
-  console.log("Server is running...");
+  console.log("server is running...");
 });

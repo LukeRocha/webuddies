@@ -1,18 +1,33 @@
 const { default: knex } = require("knex");
 const db = require("../database/db");
 
-const getPosts = async (req, res) => {
-  const userPosts = await db.knex
-    .select("id", "user_id", "post_content", "timestamp")
-    .from("posts")
-    .where("user_id", "=", req.user.userId )
-    .orderBy("timestamp", "desc");
-
+const getPosts = async (id) => {
   try {
+    const userPosts = await db.knex
+      .select("id", "user_id", "post_content", "timestamp")
+      .from("posts")
+      .where("user_id", "=", id)
+      .orderBy("timestamp", "desc");
+
+    return userPosts;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+
+const upDateUserPosts = async (req, res) => {
+  try {
+    const userPosts = await db.knex
+      .select("id", "user_id", "post_content", "timestamp")
+      .from("posts")
+      .where("user_id", "=", req.user.userId)
+      .orderBy("timestamp", "desc");
+
     res.send(userPosts);
   } catch (error) {
-    console.log(error)
-    res.json(error);
+    console.log(error);
+    return error;
   }
 };
 
@@ -24,21 +39,19 @@ const newPost = (req, res) => {
   };
 
   const createPost = async (postContent) => {
-    const insertPost = await db.knex
-      .insert(postContent)
-      .into("posts")
-      .where("user_id", "=", post.user_id)
-      .then((resp) => {
-        res.send(`Content posted! id:${post.user_id}`);
+    try {
+      await db.knex.insert(postContent).into("posts");
+      console.log(`Content posted by: ${req.user.nickname}
+      `);
+      res.send(`Content posted`);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({
+        error: "Erro while trying to create user post, something went wrong",
       });
-
-    return insertPost;
+    }
   };
-
- return  createPost(post);
-  
-   
-  
+  return createPost(post);
 };
 
-module.exports = { getPosts, newPost };
+module.exports = { getPosts, newPost, upDateUserPosts };

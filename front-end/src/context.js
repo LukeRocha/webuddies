@@ -44,7 +44,7 @@ const AppProvider = ({ children }) => {
 
   const getUserDataByToken = async (token) => {
     const userDataFromDb = await validateUserToken(token);
-    dispatch({ type: "LOGGED_GET_DATA", payload: userDataFromDb });
+    dispatch({ type: "GET_LOGGED_DATA", payload: userDataFromDb });
   };
 
   const editUserAccount = async (token, accountData) => {
@@ -52,7 +52,7 @@ const AppProvider = ({ children }) => {
     dispatch({ type: "EDIT_USER_ACCOUNT", payload: editedUserData });
   };
 
-  const getUserPostsData = async (token) => {
+  const updateUserPosts = async (token) => {
     const postsDataFromDb = await getUserPosts(token);
     dispatch({ type: "FETCH_USER_POSTS", payload: postsDataFromDb });
   };
@@ -80,7 +80,7 @@ const AppProvider = ({ children }) => {
         ...state,
         registerSubmitHandler,
         authUserCredentials,
-        getUserPostsData,
+        updateUserPosts,
         userLogout,
         getBuddyData,
         getUserDataByToken,

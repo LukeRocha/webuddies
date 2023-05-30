@@ -25,11 +25,12 @@ async function authenticateUser(req, res) {
     .from("users")
     .where("nickname", req.body.nickname);
 
+  console.log(dbUserData[0]);
   //this verification is not working
-  if (!dbUserData[0]) {
+  if (dbUserData[0] == undefined || dbUserData[0] == []) {
     response.ServerMessage =
       "User has not found or password is wrong, try again";
-    res.status(401).send(response);
+    res.status(401).send(response, "ERRO!");
     return response;
   }
 
