@@ -10,7 +10,7 @@ function generateAccessToken(user) {
 }
 
 async function authenticateUser(req, res) {
-  const response = {};
+  let response = {};
   const { nickname, password } = req.body;
   const dbUserData = await db.knex
     .select(
@@ -27,11 +27,15 @@ async function authenticateUser(req, res) {
 
   console.log(dbUserData[0]);
   //this verification is not working
-  if (dbUserData[0] == undefined || dbUserData[0] == []) {
-    response.ServerMessage =
-      "User has not found or password is wrong, try again";
-    res.status(401).send(response, "ERRO!");
-    return response;
+  if (!dbUserData[0]) {
+    res
+      .status(401)
+      .send({
+        serverMessage: "User has not found or password is wrong, try again",
+      });
+    return {
+      serverMessage: "User has not found or password is wrong, try again",
+    };
   }
 
   if (await bcrypt.compare(password, dbUserData[0].password)) {
@@ -44,6 +48,10 @@ async function authenticateUser(req, res) {
 
     // here we can bring only the token, and proceed to profile page!
     res.status(201).send(response);
+  } else {
+    response.ServerMessage = "Incorrect password. Please try again.";
+    res.status(401).send(response);
+    return response;
   }
 }
 

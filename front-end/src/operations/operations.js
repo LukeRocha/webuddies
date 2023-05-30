@@ -27,11 +27,10 @@ export const authUser = async (userCredentials) => {
       token: authRequestResult.data.accessToken,
       userData: authRequestResult.data.dbUserData[0],
     };
+    console.log(authorizedUser);
     return authorizedUser;
-  } catch {
-    (error) => {
-      console.error(error);
-    };
+  } catch (error) {
+    throw { error: "Error: Username or password is not valid" };
   }
 };
 
@@ -40,9 +39,10 @@ export const validateUserToken = async (token) => {
     const getUserData = await axios.get(urls.validateToken, {
       headers: { authorization: `Bearer ${token}` },
     });
+    console.log(getUserData);
     return getUserData.data;
   } catch (error) {
-    console.log("error:", error);
+    console.log("error is:", error);
   }
 };
 
