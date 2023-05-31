@@ -5,8 +5,8 @@ import {
   ImageContainer,
   UserData,
   Status,
-} from "../styles";
-import { useGlobalContext } from "../../../context";
+} from "./styles";
+import { useGlobalContext } from "../../context";
 
 const UserProfile = () => {
   const { userState, getUserDataByToken } = useGlobalContext();
