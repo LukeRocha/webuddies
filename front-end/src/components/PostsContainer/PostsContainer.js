@@ -32,7 +32,7 @@ const PostsContainer = () => {
             <SinglePost key={post.id} id={post.id} post={post} />
           ))
         ) : (
-          <p>No posts available.</p>
+          <p>No posts avaible</p>
         )}
       </PostContainer>
     </>

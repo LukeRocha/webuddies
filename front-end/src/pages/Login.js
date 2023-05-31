@@ -157,7 +157,6 @@ const Login = () => {
                         console.log(error.error);
                         setErrorMessage(error.error);
                       }
-                      authUserCredentials(userCredentials);
                     }}
                   >
                     Login

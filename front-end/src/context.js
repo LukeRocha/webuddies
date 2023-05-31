@@ -1,4 +1,4 @@
-import React, { useContext, useReducer } from "react";
+import React, { useContext, useReducer, useEffect } from "react";
 import reducer from "./reducer";
 import {
   registerNewUser,
@@ -36,7 +36,7 @@ const AppProvider = ({ children }) => {
   const authUserCredentials = async (userCredentials) => {
     const userDataFromDb = await authUser(userCredentials);
     console.log(userDataFromDb);
-    localStorage.setItem("access_token", userDataFromDb.token);
+    await localStorage.setItem("access_token", userDataFromDb.token);
 
     dispatch({
       type: "AUTH_USER",
