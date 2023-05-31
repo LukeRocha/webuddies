@@ -12,16 +12,19 @@ export const FormComponent = styled.form`
   width: 95vw;
 
   @media (min-width: 500px) {
-    min-width: 70vw;
-    justify-content: center;
-    padding: 10px;
-    display: grid;
-    grid-template-columns: 2fr 2fr;
+    width: 70vw;
+    /* width: calc(40% - 4px); */
+    /* width: 400px; */
+    margin-left: auto;
+    margin-right: auto;
+    /* display: grid;
+    grid-template-columns: repeat(2, 1fr); */
     gap: 2px;
   }
 
-  @media (min-width: 1200px) {
-    width: 70vw;
+  @media (min-width: 900px) {
+    width: 400vw;
+    max-width: 500px;
   }
 `;
 
@@ -34,7 +37,7 @@ export const InputContainer = styled.div`
   align-content: center;
 
   @media (min-width: 500px) {
-    max-width: 30vw;
+    max-width: 33vw;
     text-align: left;
     align-items: center;
     padding: 2px;
@@ -64,4 +67,25 @@ export const Label = styled.label`
   color: #fff;
   margin: 2px 12px;
   text-align: left;
+`;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+  margin: 6px auto;
+  align-self: center;
+  align-content: center;
+  gap: 20px;
+
+  @media (min-width: 500px) {
+    max-width: 33vw;
+    text-align: left;
+    align-items: center;
+    padding: 2px;
+  }
+
+  @media (min-width: 900px) {
+    margin: 20px auto;
+  }
 `;

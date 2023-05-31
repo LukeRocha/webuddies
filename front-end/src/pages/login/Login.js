@@ -105,7 +105,6 @@ const Login = () => {
             </form>
           </ModalWrapper>
         </LoginInputs>
-
         <Link to="/register">
           <Button className="button-Link" bg={"var(--purple-button)"}>
             Become a buddy!

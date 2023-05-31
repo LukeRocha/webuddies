@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import InputError from "../InputError/InputError";
 import Button from "../Button/Button";
-import Modal from "../Modal/Modal"
-import { FormComponent, InputContainer, Select, Label } from "./styles";
+import Modal from "../Modal/Modal";
+import {
+  FormComponent,
+  InputContainer,
+  Select,
+  Label,
+  ButtonWrapper,
+} from "./styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "../../Validations/schemas";
@@ -12,8 +18,8 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Form = () => {
   const { registerSubmitHandler, serverMessages } = useGlobalContext();
-  
-  const [isModalOn, setIsModalOn] = useState(false)
+
+  const [isModalOn, setIsModalOn] = useState(false);
 
   const navigate = useNavigate();
 
@@ -23,18 +29,17 @@ const Form = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(registerSchema) });
 
-  const navigateHome = () =>{
+  const navigateHome = () => {
     navigate("/");
-  }
+  };
 
   const onSubmit = async (data, e) => {
     await handleSubmit(data);
     await registerSubmitHandler(data);
-    await setIsModalOn(true)
-  }
+    await setIsModalOn(true);
+  };
 
   const ref = React.createRef();
-
 
   return (
     <>
@@ -96,9 +101,9 @@ const Form = () => {
         <InputContainer>
           <Label>Confirm password</Label>
           <Input ref={ref} type="password" {...register("confirm_password")} />
-          <InputError>{errors.confirm_password?.message}</InputError>
+          {<InputError>{errors.confirm_password?.message}</InputError>}
         </InputContainer>
-        <InputContainer>
+        <ButtonWrapper>
           <Button bg={"var(--green-button)"} type="submit">
             Create account
           </Button>
@@ -111,15 +116,15 @@ const Form = () => {
               cancel
             </Button>
           </Link>
-        </InputContainer>
-      {isModalOn && 
-      <Modal>
-        <h3>
-        Your account has been created!
-        </h3>
-        <Button bg={"var(--green-button)"} onClick={() => navigateHome()}>Ok</Button>
-        </Modal> 
-        }
+        </ButtonWrapper>
+        {isModalOn && (
+          <Modal>
+            <h3>Your account has been created!</h3>
+            <Button bg={"var(--green-button)"} onClick={() => navigateHome()}>
+              Ok
+            </Button>
+          </Modal>
+        )}
       </FormComponent>
     </>
   );
