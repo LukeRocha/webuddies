@@ -7,8 +7,10 @@ export const LoginContainer = styled.section`
 
   @media (min-width: 1200px) {
     flex-direction: row-reverse;
-
     padding: 30px;
+    height: 100vh;
+    max-height: 100%;
+    overflow: hidden;
   }
 `;
 
