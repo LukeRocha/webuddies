@@ -17,7 +17,7 @@ const SinglePost = ({ post, id }) => {
         <User>{userState.userData.nickname}</User>
         <TimeStamp>{`at ${post.timestamp}`}</TimeStamp>
         <PostContent>{`${post.post_content}`}</PostContent>
-        <PostButtons>
+        {/* <PostButtons>
           <InterfaceButton
             role="img"
             alt="like"
@@ -25,7 +25,7 @@ const SinglePost = ({ post, id }) => {
           >
             💜 like
           </InterfaceButton>
-        </PostButtons>
+        </PostButtons> */}
       </PostContainer>
     </>
   );
