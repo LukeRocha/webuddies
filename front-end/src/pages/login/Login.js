@@ -14,6 +14,7 @@ import {
   BuddiesContainer,
   ModalWrapper,
   FormContainer,
+  FormTitle,
   ErrorMessage,
 } from "./styles";
 
@@ -58,6 +59,7 @@ const Login = () => {
               }}
             >
               <FormContainer>
+                <FormTitle>LOGIN</FormTitle>
                 <Input
                   placeholder="nickname"
                   onChange={(e) =>

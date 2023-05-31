@@ -9,16 +9,19 @@ export const FormComponent = styled.form`
   margin: 0 auto;
   padding: 12px;
   background-color: var(--modal-background);
-  @media (min-width: 900px) {
+  width: 95vw;
+
+  @media (min-width: 500px) {
+    min-width: 70vw;
+    justify-content: center;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    gap: 2px;
   }
 
   @media (min-width: 1200px) {
-    width: 40vw;
-    justify-content: center;
-    padding: 30px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    width: 70vw;
   }
 `;
 
@@ -30,10 +33,11 @@ export const InputContainer = styled.div`
   align-self: center;
   align-content: center;
 
-  @media (min-width: 600px) {
+  @media (min-width: 500px) {
+    max-width: 30vw;
     text-align: left;
     align-items: center;
-    padding: 12px;
+    padding: 2px;
   }
 
   @media (min-width: 900px) {

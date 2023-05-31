@@ -22,7 +22,7 @@ export const ModalContainer = styled.div`
   gap: 20px;
 
   @media (min-width: 600px) {
-    margin: 0 auto;
+    margin: 10px auto;
   }
   @media (min-width: 1200px) {
     width: 70vw;
@@ -35,6 +35,14 @@ export const Title = styled.h1`
   color: var(--purple-button);
   font-size: 5em;
   margin: 12px auto;
+`;
+
+export const FormTitle = styled.h1`
+  color: white;
+  align-self: center;
+  padding: 4px;
+  font-size: 2rem;
+  font-weight: bolder;
 `;
 
 export const RegisterLink = styled.a`
@@ -66,7 +74,7 @@ export const FormContainer = styled.div`
   flex-direction: column;
   justify-content: center;
 
-  padding: 18px;
+  padding: 10px;
 `;
 export const ErrorMessage = styled.span`
   display: flex;
