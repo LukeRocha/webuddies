@@ -9,16 +9,22 @@ export const FormComponent = styled.form`
   margin: 0 auto;
   padding: 12px;
   background-color: var(--modal-background);
-  @media (min-width: 900px) {
+  width: 95vw;
+
+  @media (min-width: 500px) {
+    width: 70vw;
+    /* width: calc(40% - 4px); */
+    /* width: 400px; */
+    margin-left: auto;
+    margin-right: auto;
+    /* display: grid;
+    grid-template-columns: repeat(2, 1fr); */
+    gap: 2px;
   }
 
-  @media (min-width: 1200px) {
-    width: 40vw;
-    justify-content: center;
-    padding: 30px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+  @media (min-width: 900px) {
+    width: 400vw;
+    max-width: 500px;
   }
 `;
 
@@ -30,10 +36,11 @@ export const InputContainer = styled.div`
   align-self: center;
   align-content: center;
 
-  @media (min-width: 600px) {
+  @media (min-width: 500px) {
+    max-width: 33vw;
     text-align: left;
     align-items: center;
-    padding: 12px;
+    padding: 2px;
   }
 
   @media (min-width: 900px) {
@@ -60,4 +67,25 @@ export const Label = styled.label`
   color: #fff;
   margin: 2px 12px;
   text-align: left;
+`;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+  margin: 6px auto;
+  align-self: center;
+  align-content: center;
+  gap: 20px;
+
+  @media (min-width: 500px) {
+    max-width: 33vw;
+    text-align: left;
+    align-items: center;
+    padding: 2px;
+  }
+
+  @media (min-width: 900px) {
+    margin: 20px auto;
+  }
 `;

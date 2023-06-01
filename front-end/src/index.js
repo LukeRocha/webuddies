@@ -4,13 +4,13 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AppProvider } from "./context";
 import "./styles.css";
-import Login from "./pages/Login";
-import Profile from "./pages/Profile";
-import Register from "./pages/Register";
-import FriendshipAccess from "./pages/FriendshipAccess";
-import Friendships from "./pages/Friendships";
-import SearchPage from "./pages/SearchPage";
-import EditAccount from "./pages/EditAccount";
+import Login from "./pages/login/Login";
+import Profile from "./pages/profile/Profile";
+import Register from "./pages/register/Register";
+import FriendshipAccess from "./pages/friendshipAccess/FriendshipAccess";
+import Friendships from "./pages/friendships/Friendships";
+import SearchPage from "./pages/searchPage/SearchPage";
+import EditAccount from "./pages/editAccount/EditAccount";
 
 ReactDOM.render(
   <React.StrictMode>

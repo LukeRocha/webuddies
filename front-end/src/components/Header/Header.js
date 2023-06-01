@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -9,14 +9,19 @@ import { useGlobalContext } from "../../context";
 
 export default function Header() {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const navigate = useNavigate();
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+    setAnchorEl((prevAnchorEl) => (prevAnchorEl ? null : event.currentTarget));
   };
-  const userLogout = useGlobalContext();
-  const handleClose = () => {
+  const { state, userLogout } = useGlobalContext();
+  const logoutHandler = async () => {
     localStorage.removeItem("access_token");
-    userLogout();
+    await userLogout();
+    console.log(state);
+    navigate("/");
+  };
+  const handleClose = () => {
     setAnchorEl(null);
   };
   return (
@@ -56,6 +61,7 @@ export default function Header() {
           <MenuItem
             onClick={async () => {
               handleClose();
+              await logoutHandler();
             }}
           >
             Logout

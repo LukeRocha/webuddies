@@ -7,7 +7,7 @@ export const BottomNavBar = styled.footer`
   bottom: 0;
   right: 0;
   position: fixed;
-
+  overflow-x: hidden;
   background: var(--modal-background);
   margin: 0;
 `;
