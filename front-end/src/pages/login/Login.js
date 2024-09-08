@@ -90,6 +90,7 @@ const Login = () => {
                     onClick={async (e) => {
                       e.preventDefault();
                       try {
+                        console.log(userCredentials)
                         await authUserCredentials(userCredentials);
                         navigate("/profile");
                       } catch (error) {

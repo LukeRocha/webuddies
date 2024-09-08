@@ -1,18 +1,21 @@
 import axios from "axios";
+
+const apiURL = process.env.REACT_APP_API_URL;
+
 const urls = {
-  registerUser: "http://localhost:3700/create-account",
-  authUser: "http://localhost:3700/users/login",
-  validateToken: "http://localhost:3700/profile/token-check",
-  editAccount: "http://localhost:3700/account/edit",
+  registerUser: apiURL + "/create-account",
+  authUser: apiURL + "/users/login",
+  validateToken: apiURL + "/profile/token-check",
+  editAccount: apiURL + "/account/edit",
 
-  getPosts: "http://localhost:3700/users/get-posts-data",
-  createNewPost: "http://localhost:3700/users/new-post",
+  getPosts: apiURL + "/users/get-posts-data",
+  createNewPost: apiURL + "/users/new-post",
 
-  accessFriendship: "http://localhost:3700/users/",
-  addNewFriendship: "http://localhost:3700/newFriend",
-  searchUser: "http://localhost:3700/users/search/",
+  accessFriendship: apiURL + "/users/",
+  addNewFriendship: apiURL + "/newFriend",
+  searchUser: apiURL + "/users/search/",
 
-  logout: "http://localhost:3700/users/logout",
+  logout: apiURL + "/users/logout",
 };
 
 const authorizationHeader = (token) => {

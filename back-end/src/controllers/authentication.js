@@ -25,7 +25,7 @@ async function authenticateUser(req, res) {
     .from("users")
     .where("nickname", req.body.nickname);
 
-  console.log(dbUserData[0]);
+  console.log("user: " + dbUserData[0].nickname);
   //this verification is not working
   if (!dbUserData[0]) {
     res
