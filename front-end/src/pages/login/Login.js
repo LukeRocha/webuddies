@@ -65,7 +65,7 @@ const Login = () => {
                   onChange={(e) =>
                     setUserCredentials({
                       ...userCredentials,
-                      nickname: e.target.value,
+                      nickname: e.target.value.toLowerCase(),
                     })
                   }
                   value={userCredentials.nickname}
