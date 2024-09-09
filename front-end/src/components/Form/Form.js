@@ -15,6 +15,7 @@ import { registerSchema } from "../../Validations/schemas";
 import { useGlobalContext } from "../../context";
 import Input from "../Input/Input";
 import { Link, useNavigate } from "react-router-dom";
+import StyledButton from "../Button/styles";
 
 const Form = () => {
   const { registerSubmitHandler, serverMessages } = useGlobalContext();
@@ -120,11 +121,13 @@ const Form = () => {
         {isModalOn && (
           <Modal>
             <h3>Your account has been created!</h3>
-            <Button bg={"var(--green-button)"} onClick={() => navigateHome()}>
+            <StyledButton>
+              <Button bg={"var(--green-button)"} onClick={() => navigateHome()}>
               Ok
             </Button>
+              </StyledButton>
           </Modal>
-        )}
+        )} 
       </FormComponent>
     </>
   );

@@ -1,7 +1,11 @@
 import React from "react";
-import { StyledModal } from "./styles";
+import { StyledModal, StyledOverlay } from "./styles";
 const Modal = ({ children, ...props }) => {
-  return <StyledModal {...props}>{children}</StyledModal>;
+  return (
+<StyledOverlay>
+  <StyledModal {...props}>{children}</StyledModal>;
+</StyledOverlay>
+  )
 };
 
 export default Modal;
